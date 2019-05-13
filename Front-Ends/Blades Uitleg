@@ -1,0 +1,42 @@
+Front-end Klant
+
+Blades:
+	Header
+	  -> Menu
+
+	Body
+	  -> Slider
+	  -> "Deals of the day" ( Nieuwste Producten );
+	  -> "Latest Products" (Meest verkochte Producten);
+	  -> "Nieuwste Reviews"
+
+	Footer
+	  -> Gegevens
+	  -> Copyrights dingen
+
+Breadcrumbs -> Blade
+Product Description/Details/Reviews -> Blade
+
+Products Pagina
+
+Filter
+Producten
+
+Cart -> Producten Blade
+
+
+Website Volgorde:
+
+	Header
+	Menu
+	Slider
+	Nieuwste producten
+	Nieuwbrief registratie
+	Meest verkochte producten
+	Nieuwste Reviews
+	Gegevens
+	Footer (Copyright)
+
+
+	
+
