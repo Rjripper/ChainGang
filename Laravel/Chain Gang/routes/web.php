@@ -64,6 +64,7 @@ Route::get('/user/delete/', function() {
     return view('dashboard.body.users.delete');
 });
 
+
 // Customer
 Route::get('/customer/create/', function() {
     return view('dashboard.body.customers.create');
@@ -79,6 +80,23 @@ Route::get('/customer/1/', function() {
 
 Route::get('/customer/delete/', function() {
     return view('dashboard.body.customers.delete');
+});
+
+//Products
+Route::get('/product/create/', function() {
+    return view('dashboard.body.products.create');
+});
+
+Route::get('/product/edit/1/', function() {
+    return view('dashboard.body.products.update');
+});
+
+Route::get('/product/1/', function() {
+    return view('dashboard.body.products.view');
+});
+
+Route::get('/product/delete/', function() {
+    return view('dashboard.body.products.delete');
 });
 
 
