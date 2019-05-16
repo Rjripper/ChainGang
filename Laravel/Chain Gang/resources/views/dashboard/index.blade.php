@@ -29,8 +29,7 @@
                 <main class="main-content bgc-grey-100">
                     <div id="mainContent">
                         {{-- Body --}}
-                        {{-- @yield('body') --}}
-                        @include('dashboard.body.users.index')
+                        @yield('body')
                         {{-- Body --}}
                     </div>
                 </main>
