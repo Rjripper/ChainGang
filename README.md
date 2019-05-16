@@ -2,14 +2,13 @@
   Chain Gang
 </h1>
 
+Chain Gang is a simple Laravel webshop made my students, open source and free. It has a webshop front-end and an admin back-end.
+
 # Preview
 
 ### Screenshot
 
 ![Chainggang admin dashboard preview](https://i.boring.host/13HR7TtA.png)
-
-## Description
-Chain Gang is a simple Laravel webshop made my students, open source and free. It has a webshop front-end and an admin back-end.
 
 ## Getting Started
 In order to run **Chaing Gang** on your local machine all what you need to do is to have the prerequisites stated below installed on your machine and follow the installation steps down below.
