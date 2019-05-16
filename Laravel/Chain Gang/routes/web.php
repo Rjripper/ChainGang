@@ -64,6 +64,23 @@ Route::get('/user/delete/', function() {
     return view('dashboard.body.users.delete');
 });
 
+// Customer
+Route::get('/customer/create/', function() {
+    return view('dashboard.body.customers.create');
+});
+
+Route::get('/customer/edit/1/', function() {
+    return view('dashboard.body.customers.update');
+});
+
+Route::get('/customer/1/', function() {
+    return view('dashboard.body.customers.view');
+});
+
+Route::get('/customer/delete/', function() {
+    return view('dashboard.body.customers.delete');
+});
+
 
 
 
