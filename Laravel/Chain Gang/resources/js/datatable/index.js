@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
 import 'datatables';
 
-export default (function () {
+$(document).ready( function () {
   $('#dataTable').DataTable();
-}());
+} );

@@ -1,4 +1,4 @@
-import '../styles/index.scss';
+import '../sass/app.scss';
 
 import './masonry';
 import './charts';
@@ -7,7 +7,6 @@ import './scrollbar';
 import './search';
 import './sidebar';
 import './skycons';
-import './vectorMaps';
 import './chat';
 import './datatable';
 import './datepicker';
