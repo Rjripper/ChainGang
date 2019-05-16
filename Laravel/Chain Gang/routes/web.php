@@ -17,3 +17,6 @@ Route::get('/', function () {
 });
 
 
+Route::get('/newsletter/create', function() {
+    return view('dashboard.body.newsletter.create');
+});
