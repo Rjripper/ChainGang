@@ -14,7 +14,7 @@
 
 //Sidepanels
 Route::get('/', function () {
-    return view('dashboard.index');
+    return view('dashboard.body.home.view');
 })->name('dashboard');
 
 Route::get('/users', function() {
@@ -44,7 +44,6 @@ Route::get('/reviews', function() {
 Route::get('/sales', function() {
     return view('dashboard.body.sales.index');
 })->name('sales');
-
 
 
 // User
@@ -81,6 +80,7 @@ Route::get('/customer/1/', function() {
 Route::get('/customer/delete/', function() {
     return view('dashboard.body.customers.delete');
 });
+
 
 //Products
 Route::get('/product/create/', function() {
