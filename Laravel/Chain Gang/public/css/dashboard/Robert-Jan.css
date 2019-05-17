@@ -29,7 +29,12 @@
     text-align: right;
 }
 
-
+.btn-add-product{
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+}
 
 .btn-add-newsletter-layout{
     width: 100%;
@@ -37,5 +42,12 @@
     padding-top: 10px;
     display: block;
     text-align: right;
-   
+}
+
+.inputfield-spacing{
+    padding-bottom: 10px;
+}
+
+.card{
+    border: none !important;
 }

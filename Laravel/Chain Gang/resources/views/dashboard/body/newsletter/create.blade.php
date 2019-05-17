@@ -19,7 +19,7 @@
                                 <div class="card-body">
                                     <div>
                                         Titel:
-                                        <input type="text">
+                                        <input class="form-control" type="text">
                                     </div> 
                                     <div>
                                         Auteur:

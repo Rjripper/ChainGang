@@ -16,9 +16,18 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+
+/*
+        Newsletters
+*/
 Route::get('/newsletter', function() {
     return view('dashboard.body.newsletter.index');
 });
+
+Route::get('/newsletter/create', function() {
+    return view('dashboard.body.newsletter.create');
+})->name('newsletter-create');
+
 
 Route::get('/newsletter/1/', function() {
     return view('dashboard.body.newsletter.view');
@@ -28,6 +37,25 @@ Route::get('/newsletter/update', function() {
     return view('dashboard.body.newsletter.update');
 })->name('newsletter-edit');
 
-Route::get('/newsletter/create', function() {
-    return view('dashboard.body.newsletter.create');
-})->name('newsletter-create');
+
+/*
+        Orders
+*/
+Route::get('/orders', function() {
+    return view('dashboard.body.orders.index');
+});
+
+Route::get('/orders/create', function() {
+    return view('dashboard.body.orders.create');
+})->name('orders-create');
+
+Route::get('/orders/1/', function() {
+    return view('dashboard.body.orders.view');
+})->name('order-view');
+
+Route::get('/orders/update', function() {
+    return view('dashboard.body.orders.update');
+})->name('orders-edit');
+
+
+
