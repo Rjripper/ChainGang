@@ -40,7 +40,7 @@
                                 <td>bobross</td>
                                 <td>mufasa</td>
                                 <td>28903423423</td>
-                                <td>22-4-2001/td>
+                                <td>22-4-2001</td>
                                 <td>€100,-</td>
                                 <td>
                                     <div class="text-center">                                        

@@ -3,7 +3,7 @@
 
 
 <div class="container-fluid">
-    <h4 class="c-grey-900 mT-10 mB-30">Toevoegen Nieuwsbrief</h4>
+    <h4 class="c-grey-900 mT-10 mB-30">Aanpassen Nieuwsbrief</h4>
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
@@ -19,7 +19,7 @@
                                 <div class="card-body">
                                     <div>
                                         Titel:
-                                        <input type="text">
+                                        <input class="form-control" type="text">
                                     </div> 
                                     <div>
                                         Auteur:
@@ -56,7 +56,7 @@
                             </div>
                         </div>   
                         <div class="submit-newsletter">
-                            <input type="submit" value="Updaten nieuwsbrief" class="btn btn-primary">
+                            <input type="submit" value="Aanpassen nieuwsbrief" class="btn btn-primary">
                         </div>                     
                         
                     {{-- EIND Nieuwsbrief toevoegen--}}

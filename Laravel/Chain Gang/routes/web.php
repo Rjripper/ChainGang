@@ -58,4 +58,24 @@ Route::get('/orders/update', function() {
 })->name('orders-edit');
 
 
+/*
+        Sales
+*/
+
+Route::get('/sales', function() {
+    return view('dashboard.body.sales.index');
+});
+
+Route::get('/sales/create', function() {
+    return view('dashboard.body.sales.create');
+})->name('sales-create');
+
+Route::get('/sales/1/', function() {
+    return view('dashboard.body.sales.view');
+})->name('sales-view');
+
+Route::get('/sales/update', function() {
+    return view('dashboard.body.sales.update');
+})->name('sales-edit');
+
 
