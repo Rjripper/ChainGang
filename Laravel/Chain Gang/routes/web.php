@@ -16,11 +16,10 @@ Route::get('/', function ()
     return view('klant.body.home.home');
 });
 
-
 /*
-    Home
+        About 
 */
-Route::get('/home', function () 
+Route::get('/about', function () 
 {
-    return view('klant.body.home.home');
+    return view('klant.body.about.about');
 });
