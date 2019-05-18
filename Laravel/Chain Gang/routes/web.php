@@ -13,7 +13,7 @@
 
 Route::get('/', function () 
 {
-    return view('klant.body.home.index');
+    return view('klant.body.home.home');
 });
 
 
