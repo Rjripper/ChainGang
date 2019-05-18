@@ -61,7 +61,6 @@ Route::get('/orders/update', function() {
 /*
         Sales
 */
-
 Route::get('/sales', function() {
     return view('dashboard.body.sales.index');
 });
@@ -82,7 +81,6 @@ Route::get('/sales/update', function() {
 /*
         Reviews
 */
-
 Route::get('/reviews', function() {
     return view('dashboard.body.reviews.index');
 });

@@ -55,7 +55,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-12 mb-12">
-                            <div class="btn-add-newsletter-layout">
+                            <div class="btn-add-index">
                                 <a href="{{ url('/orders/create') }}"><button class="btn btn-primary tables-function-button">Bestelling aanmaken</button></a> 
                             </div>
                         </div>

@@ -10,7 +10,7 @@
                 <h4 class="c-grey-900 mB-20">Nieuwsbrief aanpassen</h4>
                
                 {{-- Begin Form --}}
-                <form action="POST">
+                <form>
                     @csrf
                     {{-- Nieuwsbrief toevoegen --}}
                     <div class="row">
@@ -49,14 +49,22 @@
                             </div>
                             </div>
                         </div>   
+                    </form>
+                    {{-- EIND Form--}}
+    
+    
+                    <div class="row">   
+                        <div class="btn-back">
+                            <a href="{{ url('/newsletter') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                        </div>                    
                         <div class="btn-add-newsletter-layout">
-                                <a href="{{ url('/newsletter') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanpassen</button></a> 
+                            <a href="{{ url('/newsletter') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
                         </div>                
-                        
-                    {{-- EIND Nieuwsbrief toevoegen--}}
-                </form>
-                {{-- EIND Form--}}
-            </div>                   
+                        </div>   
+                    </div>            
+                {{-- EIND Nieuwsbrief toevoegen--}}
+                </div>                   
+                                   
               
         </div>
     </div>

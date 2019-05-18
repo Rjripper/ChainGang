@@ -114,11 +114,17 @@
                                 </div>
                             </div>
                             </div>
-                        </div>             
-                        
-                    {{-- EIND Orders toevoegen--}}
-                </form>
-                {{-- EIND Form--}}
+                        </div>
+                    </form>
+                    {{-- EIND Form--}}             
+                    <div class="row">   
+                        <div class="btn-back">
+                            <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                        </div>
+                        <div class="btn-add-newsletter-layout">
+                        </div>                
+                    </div>    
+                    {{-- EIND Orders toevoegen--}}              
             </div>
                     
               

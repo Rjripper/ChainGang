@@ -11,7 +11,10 @@
                     <div class="col-sm"></div>
                     <div class="col-sm">
                         <h4 class="c-grey-900 mB-20">Aanmaken Korting</h4>
-                        <form>                    
+
+                        {{-- Begin Form--}}
+                        <form> 
+                            @csrf                   
                             <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
                             <div class="form-group"><label for="inputSale">Korting (%)</label> <input type="text" class="form-control" id="inputSale"></div>                            
                             <div class="form-group"><label for="inputProduct">Product</label> 
@@ -50,17 +53,19 @@
                             </div>
 
                         </form>
+                        {{-- Eind Form--}}
                     </div>
-                    <div class="col-sm"></div>
-                  </div>               
-               
-                <div class="row">
-                    <div class="col-md-12 mb-12">
-                        <div class="btn-add-newsletter-layout">
-                            <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
-                        </div>
+                    <div class="col-sm"></div>                    
+                  </div>
+
+                  <div class="row">   
+                    <div class="btn-back">
+                        <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                     </div>
-                </div>   
+                    <div class="btn-add-newsletter-layout">
+                        <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
+                    </div>                
+                </div>    
             </div>
         </div>
     </div>

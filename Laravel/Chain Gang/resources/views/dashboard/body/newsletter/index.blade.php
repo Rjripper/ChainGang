@@ -44,9 +44,13 @@
                             </tbody>                            
         
                         </table>
-                        <div class="btn-add-newsletter-layout">
-                            <a type="button" class="btn btn-primary" href="{{ url('/newsletter/create') }}">Aanmaken Nieuwsbrief</a>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-12">
+                                <div class="btn-add-index">
+                                    <a href="{{ url('/reviews/create') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
+                                </div>
+                            </div>
+                        </div>   
                     </div>
                 </div>
             </div>

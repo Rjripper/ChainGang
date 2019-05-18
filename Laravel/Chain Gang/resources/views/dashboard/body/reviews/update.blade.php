@@ -10,7 +10,7 @@
                 
                     <h4 class="c-grey-900 mB-20">Review Aanpassen</h4>
                     {{-- Begin Form --}}
-                    <form method="POST">     
+                    <form>     
                         @csrf
                         {{-- Nieuwsbrief toevoegen --}} 
                         <div class="row">      
@@ -71,20 +71,20 @@
                                     </div>    
                                 </div>
                             </div>
-                        </div>    
-                        {{-- Nieuwsbrief toevoegen --}}
-                    </form>
-                    {{-- Begin Form --}}
-                
-                              
-               
-                <div class="row">
-                    <div class="col-md-12 mb-12">
-                        <div class="btn-add-newsletter-layout">
-                            <a href="{{ url('/reviews') }}"><button class="btn btn-primary tables-function-button">Opslaan</button></a> 
                         </div>
-                    </div>
-                </div>   
+                    </form>
+                    {{-- Begin Form --}}        
+                    <div class="row">   
+                        <div class="btn-back">
+                            <a href="{{ url('/reviews') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                        </div>
+                        <div class="btn-add-newsletter-layout">
+                            <a href="{{ url('/reviews') }}"><button class="btn btn-primary tables-function-button">Reviews aanpassen</button></a> 
+                        </div>                
+                    </div>      
+                    {{-- Nieuwsbrief toevoegen --}}
+
+                            
             </div>
         </div>
     </div>

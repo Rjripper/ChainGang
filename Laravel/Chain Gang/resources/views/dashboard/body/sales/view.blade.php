@@ -11,7 +11,9 @@
                     <div class="col-sm"></div>
                     <div class="col-sm">
                         <h4 class="c-grey-900 mB-20">Overzicht Korting</h4>
-                        <form>                    
+                        {{-- Begin Form--}}
+                        <form>  
+                            @csrf                  
                             <div class="form-group"><label for="disabledTextInput">Title</label> <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"></div>
                             <div class="form-group"><label for="disabledTextInput">Korting (%)</label> <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"></div>                            
                             <div class="form-group"><label for="inputProduct">Product</label> 
@@ -49,9 +51,17 @@
                             </div>
 
                         </form>
+                        {{-- Eind Form--}}
                     </div>
                     <div class="col-sm"></div>
-                  </div>               
+                  </div>
+                <div class="row">   
+                    <div class="btn-back">
+                        <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                    </div>
+                    <div class="btn-add-newsletter-layout">
+                    </div>                
+                </div>                 
             </div>
         </div>
     </div>
