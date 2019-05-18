@@ -10,11 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// route naar de index 
 Route::get('/', function () 
 {
     return view('klant.index');
 });
 
-Route::get('/header', function () {
-    return view('klant/header/header');
+// route naar de mijn account
+Route::get('/myaccount', function()
+{
+    return view('klant.body.user-details.myaccount');
+});
+
+// route naar de checkout
+Route::get('/checkout', function()
+{
+    return view('klant.body.checkout.checkout');
 });

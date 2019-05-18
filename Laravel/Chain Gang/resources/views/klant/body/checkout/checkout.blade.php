@@ -1,8 +1,9 @@
+	@extends('klant.index');
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb">
 		<div class="container">
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
+			<li><a href="{{url('/')}}">Home</a></li>
 				<li class="active">Checkout</li>
 			</ul>
 		</div>
@@ -15,7 +16,9 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
+				{{-- Start checkout-form --}}
 				<form id="checkout-form" class="clearfix">
+					@csrf
 					<div class="col-md-6">
 						<div class="Adres gegevens">
 							<p>Bent u al klant ? <a href="#">Login</a></p>
@@ -58,7 +61,7 @@
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="col-md-6">
 						<div class="shiping-methods">
 							<div class="section-title">
@@ -94,7 +97,7 @@
 								<label for="payments-1">Directe bank overboeking</label>
 								<div class="caption">
 									<p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Als u kiest voor bank overschrijving duurt het 1 tot 2 werkdagen voor het geld op onze rekening staat. Wij zullen met uw order aan de slag gaan op het moment dat het geld op onze rekening staat.
                                     </p>
 								</div>
 							</div>
@@ -103,7 +106,7 @@
 								<label for="payments-2">Ideal</label>
 								<div class="caption">
 									<p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Als u met Ideal betaald staat het geld direct op onze rekening, en zullen we ook direct met uw order aan de slag gaan.
                                     </p>
 								</div>
 							</div>
@@ -112,7 +115,7 @@
 								<label for="payments-3">Paypal</label>
 								<div class="caption">
 									<p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Als u met PayPal betaald staat het geld direct bij ons op de rekening, en zullen we ook direct met uw order aan de slag gaan.
                                     </p>
 								</div>
 							</div>
@@ -124,6 +127,7 @@
 							<div class="section-title">
 								<h3 class="title">Controleer order</h3>
 							</div>
+							{{-- Inhoud van de winkelwagen --}}
 							<table class="shopping-cart-table table">
 								<thead>
 									<tr>
@@ -150,34 +154,6 @@
 										<td class="total text-center"><strong class="primary-color">€32.50</strong></td>
 										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
 									</tr>
-									<tr>
-                                            <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-                                            <td class="details">
-                                                <a href="#">Product naam komt hier</a>
-                                                <ul>
-                                                    <li><span>Maat: XL</span></li>
-                                                    <li><span>Kleur: Camelot</span></li>
-                                                </ul>
-                                            </td>
-                                            <td class="price text-center"><strong>€32.50</strong><br><del class="font-weak"><small>€40.00</small></del></td>
-                                            <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                            <td class="total text-center"><strong class="primary-color">€32.50</strong></td>
-                                            <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                                <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-                                                <td class="details">
-                                                    <a href="#">Product naam komt hier</a>
-                                                    <ul>
-                                                        <li><span>Maat: XL</span></li>
-                                                        <li><span>Kleur: Camelot</span></li>
-                                                    </ul>
-                                                </td>
-                                                <td class="price text-center"><strong>€32.50</strong><br><del class="font-weak"><small>€40.00</small></del></td>
-                                                <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                                <td class="total text-center"><strong class="primary-color">€32.50</strong></td>
-                                                <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-                                            </tr>
 								</tbody>
 								<tfoot>
 									<tr>
@@ -197,6 +173,7 @@
 									</tr>
 								</tfoot>
 							</table>
+							{{-- Einde inhoud van de winkelwagen --}}
 							<div class="pull-right">
 								<button class="primary-btn">Plaats bestelling</button>
 							</div>
@@ -204,9 +181,10 @@
 
 					</div>
 				</form>
+				{{-- Einde checkout-form --}}
 			</div>
 			<!-- /row -->
 		</div>
 		<!-- /container -->
 	</div>
-	<!-- /section -->
+    <!-- /section -->

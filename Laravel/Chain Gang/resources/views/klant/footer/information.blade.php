@@ -19,8 +19,8 @@
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://facebook.com" target="blanck"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com" target="blanck"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 						</ul>
@@ -34,10 +34,8 @@
 					<div class="footer">
 						<h3 class="footer-header">Mijn Account</h3>
 						<ul class="list-links">
-							<li><a href="#">Mijn account</a></li>
-							<li><a href="#">Mijn verlanglijst</a></li>
-							<li><a href="#">Vergelijk</a></li>
-							<li><a href="#">Checkout</a></li>
+						<li><a href="{{url('/myaccount')}}">Mijn account</a></li>
+							<li><a href="{{url('/checkout')}}">Checkout</a></li>
 							<li><a href="#">Login</a></li>
 						</ul>
 					</div>
@@ -61,7 +59,7 @@
 				<!-- /footer widget -->
 
 				<!-- footer subscribe -->
-				<div class="col-md-3 col-sm-6 col-xs-6">
+				{{-- <div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
 						<h3 class="footer-header">Blijf op de hoogte</h3>
 						<p>Dit is de nieuwsbrief, die moet nog ergens anders naar toe!!</p>
@@ -72,7 +70,7 @@
 							<button class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
 						</form>
 					</div>
-				</div>
+				</div> --}}
 				<!-- /footer subscribe -->
 			</div>
 			<!-- /row -->
