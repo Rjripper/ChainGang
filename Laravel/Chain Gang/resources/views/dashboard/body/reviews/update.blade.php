@@ -3,12 +3,12 @@
 
 
 <div class="container-fluid">
-    <h4 class="c-grey-900 mT-10 mB-30">Reviews</h4>
+    <h4 class="c-grey-900 mT-10 mB-30">Recensie</h4>
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 
-                    <h4 class="c-grey-900 mB-20">Review Aanpassen</h4>
+                    <h4 class="c-grey-900 mB-20">Recensie Aanpassen</h4>
                     {{-- Begin Form --}}
                     <form>     
                         @csrf
@@ -79,7 +79,7 @@
                             <a href="{{ url('/reviews') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>
                         <div class="btn-add-newsletter-layout">
-                            <a href="{{ url('/reviews') }}"><button class="btn btn-primary tables-function-button">Reviews aanpassen</button></a> 
+                            <a href="#"><button class="btn btn-primary tables-function-button">Recensie Wijzigen</button></a> 
                         </div>                
                     </div>      
                     {{-- Nieuwsbrief toevoegen --}}

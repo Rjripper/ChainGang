@@ -17,40 +17,47 @@
                                 <form class="container" id="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col-md-6 mb-3"><label for="validationCustom01">Voornaam</label>
-                                            <p class="table-detail-text">Mark</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                         <div class="col-md-6 mb-3"><label for="validationCustom02">Achternaam</label>
-                                            <p class="table-detail-text">Otto</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="validationCustom03">E-mailadres</label>
-                                            <p class="table-detail-text">Markotto@frank.com</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="validationCustom03">Rol</label> 
-                                            <p class="table-detail-text">Gebruiker</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="validationCustom03">Adres</label>
-                                            <p class="table-detail-text">Kerklaan 69</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="validationCustom04">Plaats</label>
-                                            <p class="table-detail-text">Amsterdam</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="validationCustom05">Telefoonnummer</label>
-                                            <p class="table-detail-text">+316403740372</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="validationCustom03">Registratie datum</label>
-                                            <p class="table-detail-text">12:03:43 12/03/2019</p>
+                                            <div class="timepicker-input input-icon form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon bgc-white bd bdwR-0">
+                                                        <i class="ti-calendar"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>

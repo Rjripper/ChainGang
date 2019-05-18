@@ -27,7 +27,7 @@
             <li class="nav-item"><a class="sidebar-link" href="{{ route ('orders') }}"><span class="icon-holder"><i class="c-deep-purple-500 ti-truck"></i> </span><span class="title">Bestellingen</span></a></li>
             <li class="nav-item"><a class="sidebar-link" href="{{ route ('newsletters') }}"><span class="icon-holder"><i class="c-indigo-500 ti-write"></i> </span><span class="title">Nieuwsbrieven</span></a></li>
             <li class="nav-item"><a class="sidebar-link" href="{{ route ('reviews') }}"><span class="icon-holder"><i class="c-light-blue-500 ti-pencil"></i> </span><span class="title">Recensies</span></a></li>
-            <li class="nav-item dropdown"><a class="sidebar-link" href="{{ route ('sales') }}"><span class="icon-holder"><i class="c-pink-500 ti-gift"></i> </span><span class="title">Uitverkopen</span></a></li>
+            <li class="nav-item"><a class="sidebar-link" href="{{ route ('sales') }}"><span class="icon-holder"><i class="c-pink-500 ti-gift"></i> </span><span class="title">Uitverkopen</span></a></li>
         </ul>
     </div>
 </div>

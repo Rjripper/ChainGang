@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-md-6 mb-6">
                                     <div class="text-right">
-                                        <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Klant wijzigen</button></a> 
+                                        <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Klant Wijzigen</button></a> 
                                     </div>
                                 </div>
                             </div>                                       

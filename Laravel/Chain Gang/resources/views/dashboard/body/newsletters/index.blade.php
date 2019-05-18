@@ -1,8 +1,8 @@
 @extends('dashboard.index')
-@section('body')
 
+@section('body')
         <div class="container-fluid">
-            <h4 class="c-grey-900 mT-10 mB-30">Data Tables</h4>
+            <h4 class="c-grey-900 mT-10 mB-30">Nieuwsbrief</h4>
             <div class="row">
                 <div class="col-md-12">
                     <div class="bgc-white bd bdrs-3 p-20 mB-20">
@@ -34,7 +34,6 @@
                                 <td>
                                     <div class="text-center">
                                         <a class="table-icon-link tables-icons" href="{{ url('/newsletter/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/newsletter/update/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Nieuwsbrief_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -47,7 +46,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-12">
                                 <div class="btn-add-index">
-                                    <a href="{{ url('/reviews/create') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
+                                    <a href="{{ url('/newsletter/create') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
                                 </div>
                             </div>
                         </div>   

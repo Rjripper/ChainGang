@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Bestelling Overzicht</h4>
+                <h4 class="c-grey-900 mB-20">Bestelling - #4343123 (1)</h4>
                
                 {{-- Begin Form --}}
                 <form>
@@ -15,26 +15,30 @@
                             <div class="col-sm-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
+                                    <div class="form-group"><label for="inputTitle">Titel</label>
+                                        <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                    </div>
                                     <div class="form-group"><label for="inputStatus">Status</label> 
-                                        <select id="inputStatus" class="form-control">
+                                        <select id="inputStatus" class="form-control" disabled>
                                             <option selected="selected">Status...</option>
                                             <option>...</option>
                                         </select>
                                     </div>
                                     <div class="form-group"><label for="inputAteur">Auteur</label> 
-                                        <select id="inputAteur" class="form-control">
+                                        <select id="inputAteur" class="form-control" disabled>
                                             <option selected="selected">Auteur...</option>
                                             <option>...</option>
                                         </select>
                                     </div>
                                     <div class="form-group"><label for="inputKlant">Klant</label> 
-                                        <select id="inputKlant" class="form-control">
+                                        <select id="inputKlant" class="form-control" disabled>
                                             <option selected="selected">Klant...</option>
                                             <option>...</option>
                                         </select>
                                     </div>                                  
-                                    <div class="form-group"><label for="inputTrackAndTrace">Track & Trace</label> <input type="text" class="form-control" id="inputTrackAndTrace"></div>
+                                    <div class="form-group"><label for="inputTrackAndTrace">Track & Trace</label>
+                                        <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                    </div>
                                     <div class="form-group">
                                         <label class="fw-500">Datum van Bestelling</label>
                                         <div class="timepicker-input input-icon form-group">
@@ -42,7 +46,7 @@
                                                 <div class="input-group-addon bgc-white bd bdwR-0">
                                                     <i class="ti-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Datum van Bestelling" data-provide="datepicker">
+                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
                                             </div>
                                         </div>
                                     </div>                                     
@@ -53,32 +57,14 @@
                                                 <div class="input-group-addon bgc-white bd bdwR-0">
                                                     <i class="ti-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Datum van Verzending" data-provide="datepicker">
+                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
                                             </div>
                                         </div>
                                     </div>         
                                 </div>
                             </div>
                             </div>
-                            <div class="col-sm-3">
-                            <div class="card">
-                                <div class="card-body">                                    
-                                   <label for="inputProduct">Product</label> 
-                                        {{-- <select id="inputProduct" id="inputGroupSelect03" class="form-control"> --}}
-                                            <select id="inputKlant" class="form-control">
-                                            <option selected="selected">Product...</option>
-                                            <option value="1">Fiets</option>
-                                            <option value="2">Fietsje</option>
-                                            <option value="3">Grote fiets</option>
-                                        </select>
-                                    </div> 
-                                    <div>
-                                        <a class="btn btn-add-product" onclick="addRow('dataTable')">Voeg toe aan lijst</a>
-                                    </div>                               
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
+                            <div class="col-sm-9">
                             <div class="card">
                                 <div class="card-body">
                                     <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -101,7 +87,7 @@
                                         <tbody>
                                             {{-- Loop this with all Products --}}
                                             <tr>
-                                                <td><img style="width: 20%; height: 20%;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
+                                                <td><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
                                                 <td>fiets</td>
                                                 <td>20</td>
                                                 <td>
@@ -126,12 +112,7 @@
                     </div>    
                     {{-- EIND Orders toevoegen--}}              
             </div>
-                    
-              
-        
-
         </div>
-
     </div>
 </div>
 

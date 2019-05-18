@@ -18,7 +18,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Product naam</label>
-                                            <p class="table-detail-text">E-Bike Zoof 3000</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                     </div>
                                     <br>
@@ -58,7 +58,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>
-                                            <p class="table-detail-text">1200</p>
+                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
                                         </div>
                                     </div>
                                 </div>

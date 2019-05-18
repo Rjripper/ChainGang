@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Nieuwsbrief overzicht</h4>
+                <h4 class="c-grey-900 mB-20">Nieuwsbrief Wijzigen</h4>
                
                 {{-- Begin Form --}}
                 <form>
@@ -30,36 +30,41 @@
                             <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-body">
-                                    <div>HTML nieuwsbrief</div>
+                                    <div>HTML/Tekst Nieuwsbrief</div>
                                     <textarea name="sourceCode" id="sourceCode" class="textArea-layout">
 
-                                    </textarea>                                 
+                                    </textarea>
+                                    <div class="preview-newsletter">
+                                        <a class="btn btn-light" onclick="runCode();">Maak preview!</a>
+                                    </div>                                    
                                 </div>
                             </div>
                             </div>
                             <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="tag">Preview nieuwsbrief:</div>
+                                    <div class="tag">Preview Nieuwsbrief:</div>
                                     <iframe class="iframe-layout" name="targetCode" id="targetCode"></iframe>
                                 </div>
                             </div>
                             </div>
-                        </div> 
-                </form>
-                {{-- EIND Form--}}
-
-
-                <div class="row">   
-                    <div class="btn-back">
-                        <a href="{{ url('/newsletter') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
-                    </div>                    
-                    <div class="btn-add-newsletter-layout">
-                    </div>                
-                    </div>   
-                </div>            
-            {{-- EIND Nieuwsbrief toevoegen--}}
-            </div>                   
+                        </div>   
+                    </form>
+                    {{-- EIND Form--}}
+    
+    
+                    <div class="row">   
+                        <div class="btn-back">
+                            <a href="{{ url('/newsletters') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                        </div>                    
+                        <div class="btn-add-newsletter-layout">
+                            <a href="{{ url('/newsletters') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief Wijzigen</button></a> 
+                        </div>                
+                        </div>   
+                    </div>            
+                {{-- EIND Nieuwsbrief toevoegen--}}
+                </div>                   
+                                   
               
         </div>
     </div>

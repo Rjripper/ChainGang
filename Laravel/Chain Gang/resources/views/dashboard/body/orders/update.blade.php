@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Bestelling Aanpassen</h4>
+                <h4 class="c-grey-900 mB-20">Bestelling Wijzigen</h4>
                
                 {{-- Begin Form --}}
                 <form>
@@ -65,7 +65,7 @@
                                 <div class="card-body">                                    
                                    <label for="inputProduct">Product</label> 
                                         {{-- <select id="inputProduct" id="inputGroupSelect03" class="form-control"> --}}
-                                            <select id="inputKlant" class="form-control">
+                                        <select id="inputKlant" class="form-control">
                                             <option selected="selected">Product...</option>
                                             <option value="1">Fiets</option>
                                             <option value="2">Fietsje</option>
@@ -101,7 +101,7 @@
                                         <tbody>
                                             {{-- Loop this with all Products --}}
                                             <tr>
-                                                <td><img style="width: 20%; height: 20%;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
+                                                <td><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
                                                 <td>fiets</td>
                                                 <td>20</td>
                                                 <td>
@@ -123,19 +123,14 @@
                             <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>
                         <div class="btn-add-newsletter-layout">
-                            <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Bestelling aanpassen</button></a> 
+                            <a href="#"><button class="btn btn-primary tables-function-button">Bestelling Wijzigen</button></a> 
                         </div>                
                     </div>                       
                         
                     {{-- EIND Orders toevoegen--}}
 
             </div>
-                    
-              
-        
-
         </div>
-
     </div>
 </div>
 

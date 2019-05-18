@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="col-md-6 mb-6">
                                             <div class="text-right">
-                                                <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Gebruiker aanmaken</button></a> 
+                                                <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Gebruiker Wijzigen</button></a> 
                                             </div>
                                         </div>
                                     </div>  

@@ -3,20 +3,17 @@
 
 
 <div class="container-fluid">
-    <h4 class="c-grey-900 mT-10 mB-30">Korting</h4>
+    <h4 class="c-grey-900 mT-10 mB-30">Uitverkoop</h4>
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 <div class="row">
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                        <h4 class="c-grey-900 mB-20">Aanmaken Korting</h4>
+                    <div class="col-sm-5">
+                        <h4 class="c-grey-900 mB-20">Uitverkoop Aanmaken</h4>
 
-                        {{-- Begin Form--}}
-                        <form> 
-                            @csrf                   
+                        {{-- Begin Form--}}             
                             <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
-                            <div class="form-group"><label for="inputSale">Korting (%)</label> <input type="text" class="form-control" id="inputSale"></div>                            
+                            <div class="form-group"><label for="inputSale">Korting in (%)</label> <input type="text" class="form-control" id="inputSale"></div>                            
                             <div class="form-group"><label for="inputProduct">Product</label> 
                                 <select id="inputProduct" class="form-control">
                                     <option selected="selected">Product...</option>
@@ -51,9 +48,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </form>
-                        {{-- Eind Form--}}
                     </div>
                     <div class="col-sm"></div>                    
                   </div>
@@ -63,7 +57,7 @@
                         <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                     </div>
                     <div class="btn-add-newsletter-layout">
-                        <a href="{{ url('/sales') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
+                        <a href="#"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
                     </div>                
                 </div>    
             </div>

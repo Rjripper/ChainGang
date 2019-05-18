@@ -29,24 +29,10 @@ Route::get('/products', function() {
     return view('dashboard.body.products.index');
 })->name('products');
 
-Route::get('/orders', function() {
-    return view('dashboard.body.orders.index');
-})->name('orders');
 
-Route::get('/newsletters', function() {
-    return view('dashboard.body.newsletters.index');
-})->name('newsletters');
-
-Route::get('/reviews', function() {
-    return view('dashboard.body.reviews.index');
-})->name('reviews');
-
-Route::get('/sales', function() {
-    return view('dashboard.body.sales.index');
-})->name('sales');
-
-
-// User
+/*
+    Users
+*/
 Route::get('/user/create/', function() {
     return view('dashboard.body.users.create');
 });
@@ -64,7 +50,9 @@ Route::get('/user/delete/', function() {
 });
 
 
-// Customer
+/*
+    Customers
+*/
 Route::get('/customer/create/', function() {
     return view('dashboard.body.customers.create');
 });
@@ -82,7 +70,9 @@ Route::get('/customer/delete/', function() {
 });
 
 
-//Products
+/*
+    Products
+*/
 Route::get('/product/create/', function() {
     return view('dashboard.body.products.create');
 });
@@ -101,86 +91,85 @@ Route::get('/product/delete/', function() {
 
 
 
-
+//== RJ's Routes
 /*
-        Newsletters
+    Newsletters
 */
-Route::get('/newsletter', function() {
-    return view('dashboard.body.newsletter.index');
-});
+Route::get('/newsletters', function() {
+    return view('dashboard.body.newsletters.index');
+})->name('newsletters');
 
 Route::get('/newsletter/create', function() {
-    return view('dashboard.body.newsletter.create');
-})->name('newsletter-create');
-
+    return view('dashboard.body.newsletters.create');
+});
 
 Route::get('/newsletter/1/', function() {
-    return view('dashboard.body.newsletter.view');
-})->name('newsletter-view');
+    return view('dashboard.body.newsletters.view');
+});
 
-Route::get('/newsletter/update', function() {
-    return view('dashboard.body.newsletter.update');
-})->name('newsletter-edit');
+Route::get('/newsletter/edit/1', function() {
+    return view('dashboard.body.newsletters.update');
+});
 
 
 /*
-        Orders
+    Orders
 */
 Route::get('/orders', function() {
     return view('dashboard.body.orders.index');
+})->name('orders');
+
+Route::get('/order/create', function() {
+    return view('dashboard.body.orders.create');
 });
 
-Route::get('/orders/create', function() {
-    return view('dashboard.body.orders.create');
-})->name('orders-create');
-
-Route::get('/orders/1/', function() {
+Route::get('/order/1/', function() {
     return view('dashboard.body.orders.view');
-})->name('order-view');
+});
 
-Route::get('/orders/update', function() {
+Route::get('/order/edit/1', function() {
     return view('dashboard.body.orders.update');
-})->name('orders-edit');
+});
 
 
 /*
-        Sales
+    Sales
 */
 Route::get('/sales', function() {
     return view('dashboard.body.sales.index');
+})->name('sales');
+
+Route::get('/sale/create', function() {
+    return view('dashboard.body.sales.create');
 });
 
-Route::get('/sales/create', function() {
-    return view('dashboard.body.sales.create');
-})->name('sales-create');
-
-Route::get('/sales/1/', function() {
+Route::get('/sale/1/', function() {
     return view('dashboard.body.sales.view');
-})->name('sales-view');
+});
 
-Route::get('/sales/update', function() {
+Route::get('/sale/edit/1', function() {
     return view('dashboard.body.sales.update');
-})->name('sales-edit');
+});
 
 
 /*
-        Reviews
+    Reviews
 */
 Route::get('/reviews', function() {
     return view('dashboard.body.reviews.index');
+})->name('reviews');
+
+Route::get('/review/create', function() {
+    return view('dashboard.body.reviews.create');
 });
 
-Route::get('/reviews/create', function() {
-    return view('dashboard.body.reviews.create');
-})->name('reviews-create');
-
-Route::get('/reviews/1/', function() {
+Route::get('/review/1/', function() {
     return view('dashboard.body.reviews.view');
-})->name('reviews-view');
+});
 
-Route::get('/reviews/update', function() {
+Route::get('/review/edit/1', function() {
     return view('dashboard.body.reviews.update');
-})->name('reviews-edit');
+});
 
 
 
