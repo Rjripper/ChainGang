@@ -102,6 +102,86 @@ Route::get('/product/delete/', function() {
 
 
 
+/*
+        Newsletters
+*/
+Route::get('/newsletter', function() {
+    return view('dashboard.body.newsletter.index');
+});
+
+Route::get('/newsletter/create', function() {
+    return view('dashboard.body.newsletter.create');
+})->name('newsletter-create');
+
+
+Route::get('/newsletter/1/', function() {
+    return view('dashboard.body.newsletter.view');
+})->name('newsletter-view');
+
+Route::get('/newsletter/update', function() {
+    return view('dashboard.body.newsletter.update');
+})->name('newsletter-edit');
+
+
+/*
+        Orders
+*/
+Route::get('/orders', function() {
+    return view('dashboard.body.orders.index');
+});
+
+Route::get('/orders/create', function() {
+    return view('dashboard.body.orders.create');
+})->name('orders-create');
+
+Route::get('/orders/1/', function() {
+    return view('dashboard.body.orders.view');
+})->name('order-view');
+
+Route::get('/orders/update', function() {
+    return view('dashboard.body.orders.update');
+})->name('orders-edit');
+
+
+/*
+        Sales
+*/
+Route::get('/sales', function() {
+    return view('dashboard.body.sales.index');
+});
+
+Route::get('/sales/create', function() {
+    return view('dashboard.body.sales.create');
+})->name('sales-create');
+
+Route::get('/sales/1/', function() {
+    return view('dashboard.body.sales.view');
+})->name('sales-view');
+
+Route::get('/sales/update', function() {
+    return view('dashboard.body.sales.update');
+})->name('sales-edit');
+
+
+/*
+        Reviews
+*/
+Route::get('/reviews', function() {
+    return view('dashboard.body.reviews.index');
+});
+
+Route::get('/reviews/create', function() {
+    return view('dashboard.body.reviews.create');
+})->name('reviews-create');
+
+Route::get('/reviews/1/', function() {
+    return view('dashboard.body.reviews.view');
+})->name('reviews-view');
+
+Route::get('/reviews/update', function() {
+    return view('dashboard.body.reviews.update');
+})->name('reviews-edit');
+
 
 
 

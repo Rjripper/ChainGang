@@ -1,0 +1,101 @@
+.iframe-layout{
+    width: 100%;
+    height: 246px;
+}
+
+.textArea-layout{
+    width: 100%;
+    height: 200px;
+    text-align: left;
+}
+.textArea-layout-reviews{
+    width: 100%;
+    height: 400px;
+    text-align: left;
+}
+
+.preview-newsletter{
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+    border: none;
+}
+
+.btn-preview-newsletter{
+    background-color: lightgray;
+    border: none;
+}
+
+.submit-newsletter{
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+}
+
+.btn-add-product{
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+}
+
+.btn-back{
+    width: 50%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.btn-add-newsletter-layout{
+    width: 50%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.btn-add-index{
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    display: block;
+    text-align: right;
+}
+
+.inputfield-spacing{
+    padding-bottom: 10px;
+}
+
+.card{
+    border: none !important;
+}
+
+.tables-icons {
+    margin-right:10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+     /* View */
+    .tables-icons:first-child:hover {
+        color: #50e573;
+    }
+
+    /* Edit */
+    .tables-icons:nth-child(2):hover {
+        color:  #2e7ee8;
+    }
+    /* Delete */
+    .tables-icons:last-child:hover {
+        color: #e53d3d;
+    }
+
+.table-icon-link {
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+}
