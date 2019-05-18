@@ -8,6 +8,11 @@
     height: 200px;
     text-align: left;
 }
+.textArea-layout-reviews{
+    width: 100%;
+    height: 400px;
+    text-align: left;
+}
 
 .preview-newsletter{
     box-sizing: border-box;

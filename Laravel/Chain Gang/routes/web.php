@@ -79,3 +79,26 @@ Route::get('/sales/update', function() {
 })->name('sales-edit');
 
 
+/*
+        Reviews
+*/
+
+Route::get('/reviews', function() {
+    return view('dashboard.body.reviews.index');
+});
+
+Route::get('/reviews/create', function() {
+    return view('dashboard.body.reviews.create');
+})->name('reviews-create');
+
+Route::get('/reviews/1/', function() {
+    return view('dashboard.body.reviews.view');
+})->name('reviews-view');
+
+Route::get('/reviews/update', function() {
+    return view('dashboard.body.reviews.update');
+})->name('reviews-edit');
+
+
+
+
