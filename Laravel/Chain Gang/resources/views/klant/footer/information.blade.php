@@ -77,4 +77,3 @@
 			</div>
 			<!-- /row -->
 			<hr>
-@include('klant.footer.copyright')

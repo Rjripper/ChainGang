@@ -10,11 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () 
 {
-    return view('klant.index');
+    return view('klant.body.home.index');
 });
 
-Route::get('/header', function () {
-    return view('klant/header/header');
+
+/*
+    Home
+*/
+Route::get('/home', function () 
+{
+    return view('klant.body.home.home');
 });

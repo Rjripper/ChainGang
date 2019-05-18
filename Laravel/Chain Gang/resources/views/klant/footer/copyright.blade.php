@@ -15,15 +15,3 @@
 		<!-- /container -->
 	</footer>
 	<!-- /FOOTER -->
-
-	<!-- jQuery Plugins -->
-	<script src="{{ asset('js/customer/initial/js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/customer/initial/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/customer/initial/js/slick.min.js') }}"></script>
-	<script src="{{ asset('js/customer/initial/js/nouislider.min.js') }}"></script>
-	<script src="{{ asset('js/customer/initial/js/jquery.zoom.min.js') }}"></script>
-	<script src="{{ asset('js/customer/initial/js/main.js') }}"></script>
-
-</body>
-
-</html>
