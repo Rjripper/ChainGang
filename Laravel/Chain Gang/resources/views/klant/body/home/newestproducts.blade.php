@@ -1,9 +1,9 @@
 <!-- section-title -->
 <div class="col-md-12">
 		<div class="section-title">
-			<h2 class="title">Best verkochte producten</h2>
+			<h2 class="title">Nieuwste producten</h2>
 			<div class="pull-right">
-				<div class="product-slick-dots-2 custom-dots">
+				<div class="product-slick-dots-1 custom-dots">
 					
 				</div>
 			</div>
@@ -27,7 +27,7 @@
 {{-- product slider --}}
 <div class="col-md-9 col-sm-6 col-xs-6">
 	<div class="row">
-		<div id="product-slick-2" class="product-slick">
+		<div id="product-slick-1" class="product-slick">
 			{{-- single product --}}
 			@for($i = 0; $i < 6; $i++)
 				<!-- Product Single -->
