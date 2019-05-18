@@ -11,9 +11,10 @@
 |
 */
 // route naar de index 
+
 Route::get('/', function () 
 {
-    return view('klant.index');
+    return view('klant.body.home.index');
 });
 
 // route naar de mijn account
@@ -26,4 +27,18 @@ Route::get('/myaccount', function()
 Route::get('/checkout', function()
 {
     return view('klant.body.checkout.checkout');
+});
+
+// route naar de login
+Route::get('/login', function()
+{
+    return view('klant.body.login.login');
+});
+
+/*
+    Home
+*/
+Route::get('/home', function () 
+{
+    return view('klant.body.home.home');
 });

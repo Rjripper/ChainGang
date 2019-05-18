@@ -1,0 +1,7 @@
+#home .home-wrap {
+    margin-left: 0 !important;
+}
+
+.header-search>form .search-input {
+    padding-left : 0 !important;
+}

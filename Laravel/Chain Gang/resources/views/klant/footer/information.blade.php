@@ -36,7 +36,7 @@
 						<ul class="list-links">
 						<li><a href="{{url('/myaccount')}}">Mijn account</a></li>
 							<li><a href="{{url('/checkout')}}">Checkout</a></li>
-							<li><a href="#">Login</a></li>
+							<li><a href="{{url('/login')}}">Login</a></li>
 						</ul>
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 					<div class="footer">
 						<h3 class="footer-header">Klanten Service</h3>
 						<ul class="list-links">
-							<li><a href="#">Over ons</a></li>
+							<li><a href="{{url('/about')}}">Over ons</a></li>
 							<li><a href="#">Verzenden & retouneren</a></li>
 							<li><a href="#">Verzend gids</a></li>
 							<li><a href="#">Veel gestelde vragen</a></li>
@@ -75,4 +75,3 @@
 			</div>
 			<!-- /row -->
 			<hr>
-@include('klant.footer.copyright')

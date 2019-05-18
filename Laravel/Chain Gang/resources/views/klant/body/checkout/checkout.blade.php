@@ -1,4 +1,6 @@
-	@extends('klant.index');
+	@extends('klant.index')
+
+	@section('body')
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb">
 		<div class="container">
@@ -187,4 +189,5 @@
 		</div>
 		<!-- /container -->
 	</div>
-    <!-- /section -->
+	<!-- /section -->
+	@endsection
