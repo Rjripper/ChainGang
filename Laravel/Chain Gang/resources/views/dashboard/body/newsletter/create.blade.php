@@ -3,11 +3,11 @@
 
 
 <div class="container-fluid">
-    <h4 class="c-grey-900 mT-10 mB-30">Toevoegen Nieuwsbrief</h4>
+    <h4 class="c-grey-900 mT-10 mB-30">Nieuwsbrief</h4>
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Nieuwsbrief</h4>
+                <h4 class="c-grey-900 mB-20">Nieuwsbrief toevoegen</h4>
                
                 {{-- Begin Form --}}
                 <form action="POST">
@@ -17,19 +17,13 @@
                             <div class="col-sm-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <div>
-                                        Titel:
-                                        <input class="form-control" type="text">
-                                    </div> 
-                                    <div>
-                                        Auteur:
-                                        <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-                                            <option selected>Auteur</option>
-                                            <option value="1">Mustafa</option>
-                                            <option value="2">Mufasa</option>
-                                            <option value="3">Muffie</option>
+                                    <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
+                                    <div class="form-group"><label for="inputAteur">Auteur</label> 
+                                        <select id="inputAteur" class="form-control">
+                                            <option selected="selected">Auteur...</option>
+                                            <option>...</option>
                                         </select>
-                                    </div>                                       
+                                    </div>                                     
                                 </div>
                             </div>
                             </div>
@@ -55,20 +49,16 @@
                             </div>
                             </div>
                         </div>   
-                        <div class="submit-newsletter">
-                            <input type="submit" value="Aanmaken nieuwsbrief" class="btn btn-primary">
-                        </div>                     
+                        <div class="btn-add-newsletter-layout">
+                                <a href="{{ url('/newsletter') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
+                        </div>                
                         
                     {{-- EIND Nieuwsbrief toevoegen--}}
                 </form>
                 {{-- EIND Form--}}
-            </div>
-                    
+            </div>                   
               
-        
-
         </div>
-
     </div>
 </div>
 

@@ -5,77 +5,79 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Bestelling aanmaken</h4>
+                <h4 class="c-grey-900 mB-20">Bestelling Aanpassen</h4>
                
                 {{-- Begin Form --}}
-                <form action="POST">
+                <form>
                     @csrf
                     {{-- Orders toevoegen --}}
                     <div class="row">
                             <div class="col-sm-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="inputfield-spacing">
-                                        Status
-                                        <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-                                            <option selected>Status</option>
-                                            <option value="1">Mustafa</option>
-                                            <option value="2">Mufasa</option>
-                                            <option value="3">Muffie</option>
+                                    <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
+                                    <div class="form-group"><label for="inputStatus">Status</label> 
+                                        <select id="inputStatus" class="form-control">
+                                            <option selected="selected">Status...</option>
+                                            <option>...</option>
                                         </select>
-                                    </div> 
-                                    <div class="inputfield-spacing">
-                                        Auteur
-                                        <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-                                            <option selected>Auteur</option>
-                                            <option value="1">Mustafa</option>
-                                            <option value="2">Mufasa</option>
-                                            <option value="3">Muffie</option>
+                                    </div>
+                                    <div class="form-group"><label for="inputAteur">Auteur</label> 
+                                        <select id="inputAteur" class="form-control">
+                                            <option selected="selected">Auteur...</option>
+                                            <option>...</option>
                                         </select>
-                                    </div> 
-                                    <div class="inputfield-spacing">
-                                        Klant
-                                        <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-                                            <option selected>Klant</option>
-                                            <option value="1">Mustafa</option>
-                                            <option value="2">Mufasa</option>
-                                            <option value="3">Muffie</option>
+                                    </div>
+                                    <div class="form-group"><label for="inputKlant">Klant</label> 
+                                        <select id="inputKlant" class="form-control">
+                                            <option selected="selected">Klant...</option>
+                                            <option>...</option>
                                         </select>
+                                    </div>                                  
+                                    <div class="form-group"><label for="inputTrackAndTrace">Track & Trace</label> <input type="text" class="form-control" id="inputTrackAndTrace"></div>
+                                    <div class="form-group">
+                                        <label class="fw-500">Datum van Bestelling</label>
+                                        <div class="timepicker-input input-icon form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon bgc-white bd bdwR-0">
+                                                    <i class="ti-calendar"></i>
+                                                </div>
+                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Datum van Bestelling" data-provide="datepicker">
+                                            </div>
+                                        </div>
                                     </div>                                     
-                                    <div class="inputfield-spacing">
-                                        Track & Trace
-                                        <input class="form-control" type="text">
-                                    </div>                                     
-                                    <div class="inputfield-spacing">
-                                        Datum van Bestelling
-                                        <input class="form-control" type="text">
-                                    </div>                                     
-                                    <div>
-                                        Datum van Verzending
-                                        <input class="form-control" type="text">
+                                    <div class="form-group">
+                                        <label class="fw-500">Datum van Verzending</label>
+                                        <div class="timepicker-input input-icon form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon bgc-white bd bdwR-0">
+                                                    <i class="ti-calendar"></i>
+                                                </div>
+                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Datum van Verzending" data-provide="datepicker">
+                                            </div>
+                                        </div>
                                     </div>         
-
                                 </div>
                             </div>
                             </div>
                             <div class="col-sm-3">
                             <div class="card">
-                                <div class="card-body">                                     
-                                    <div>
-                                        Product
-                                        <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
-                                            <option selected>Product</option>
+                                <div class="card-body">                                    
+                                   <label for="inputProduct">Product</label> 
+                                        {{-- <select id="inputProduct" id="inputGroupSelect03" class="form-control"> --}}
+                                            <select id="inputKlant" class="form-control">
+                                            <option selected="selected">Product...</option>
                                             <option value="1">Fiets</option>
                                             <option value="2">Fietsje</option>
                                             <option value="3">Grote fiets</option>
                                         </select>
-                                        <div>
-                                            <a class="btn btn-add-product" onclick="addRow('dataTable')">Voeg toe aan lijst</a>
-                                        </div>
-                                    </div>                                         
+                                    </div> 
+                                    <div>
+                                        <a class="btn btn-add-product" onclick="addRow('dataTable')">Voeg toe aan lijst</a>
+                                    </div>                               
                                 </div>
                             </div>
-                            </div>
+
                             <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
@@ -85,7 +87,7 @@
                                                 <th></th>
                                                 <th>Productnaam</th>
                                                 <th>Hoeveelheid</th>
-                                                <th>Prijs</th>
+                                                <th>Prijs</th>                                                
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -93,7 +95,7 @@
                                                 <th></th>
                                                 <th>Productnaam</th>
                                                 <th>Hoeveelheid</th>
-                                                <th>Prijs</th>
+                                                <th>Prijs</th>                                                
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -114,9 +116,9 @@
                             </div>
                             </div>
                         </div>   
-                        <div class="submit-newsletter">
-                            <input type="submit" value="Aanmaken bestelling" class="btn btn-primary">
-                        </div>                     
+                        <div class="btn-add-newsletter-layout">
+                            <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Bestelling aanpassen</button></a> 
+                        </div>                    
                         
                     {{-- EIND Orders toevoegen--}}
                 </form>
