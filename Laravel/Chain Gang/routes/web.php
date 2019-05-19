@@ -33,3 +33,21 @@ Route::get('/products', function ()
 {
     return view('klant.body.products.products');
 });
+
+/*
+        Products details
+*/
+
+Route::get('/products/category/fiets', function () 
+{
+    return view('klant.body.product-details.products-details');
+});
+
+/*
+        Contact
+*/
+
+Route::get('/contact', function () 
+{
+    return view('klant.body.contact.contact');
+});

@@ -9,7 +9,7 @@
                         <span>New</span>
                         <span class="sale">-20%</span>
                     </div>
-                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                    <a href="{{ url('/products/category/fiets') }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
                     <img src="{{ asset('images/initial/images/product01.jpg') }}" alt="">
                 </div>
                 <div class="product-body">

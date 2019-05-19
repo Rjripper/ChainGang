@@ -7,10 +7,10 @@
 				<div class="category-nav show-on-click">
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						<li><a href="#">Elektrische Fietsen</a></li>
-						<li><a href="#">Heren fietsen</a></li>
-						<li><a href="#">Dames fietsen</a></li>
-						<li><a href="#">Kinder fietsen</a></li>
+						<li><a href="{{ url('/products') }}">Elektrische Fietsen</a></li>
+						<li><a href="{{ url('/products') }}">Heren fietsen</a></li>
+						<li><a href="{{ url('/products') }}">Dames fietsen</a></li>
+						<li><a href="{{ url('/products') }}">Kinder fietsen</a></li>
 					</ul>
 				</div>
 				<!-- /category nav -->
