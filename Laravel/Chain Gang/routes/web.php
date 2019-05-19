@@ -14,7 +14,7 @@
 
 Route::get('/', function () 
 {
-    return view('klant.body.home.index');
+    return view('klant.body.home.home');
 });
 
 // route naar de mijn account
@@ -29,16 +29,26 @@ Route::get('/checkout', function()
     return view('klant.body.checkout.checkout');
 });
 
+/*
+    login
+*/
+
 // route naar de login
 Route::get('/login', function()
 {
     return view('klant.body.login.login');
 });
 
-/*
-    Home
-*/
-Route::get('/home', function () 
+// route naar de forgotpassword 
+Route::get('/forgotPassword', function()
 {
-    return view('klant.body.home.home');
+    return view('klant.body.login.forgotPassword');
+});
+
+/*
+        About 
+*/
+Route::get('/about', function () 
+{
+    return view('klant.body.about.about');
 });

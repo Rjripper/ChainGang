@@ -27,16 +27,9 @@
                                         <input class="input" type="text" name="email" placeholder="E-mail adres">
                                     </div>
                                     <div class="form-group">
-                                            <input class="input" type="pasword" name="password" placeholder="Wachtwoord">
+                                        <input class="input main-btn" type="submit" name="request" value="Reset wachtwoord">
                                     </div>
-                                    <div class="form-group">
-                                            <input class="input-checkbox" type="checkbox" name="login"> &nbsp; Onthoud mij &nbsp; 
-                                            <span class="text-right"><a href="{{url('/forgotPassword')}}">Wachtwoord vergeten?</a></span>
-                                        </div>
-                                    <div class="form-group">
-                                        <input class="input main-btn" type="submit" name="login" value="Inloggen">
-                                    </div>
-                                    Heb je nog geen account? <a href="{{url('#')}}">Registreer hier</a>
+                                    heb je al een accoutn? <a href="{{url('/login')}}">Login</a>
                                  {{-- end form login --}}
                                 </form>
                             </div>

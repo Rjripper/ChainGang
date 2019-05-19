@@ -21,8 +21,8 @@
 						<ul class="footer-social">
 							<li><a href="https://facebook.com" target="blanck"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="https://twitter.com" target="blanck"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li><a href="https://instagram.com" target="blanck"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="https://pinterest.com" target="blanck"><i class="fa fa-pinterest"></i></a></li>
 						</ul>
 						<!-- /footer social -->
 					</div>
