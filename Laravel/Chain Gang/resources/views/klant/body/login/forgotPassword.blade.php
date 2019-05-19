@@ -5,7 +5,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                    <li class="active">Checkout</li>
+                    <li class="active">Wachtwoord vergeten</li>
                 </ul>
             </div>
         </div>
