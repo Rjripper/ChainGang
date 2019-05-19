@@ -56,14 +56,14 @@
 									<input type="checkbox" id="register">
 									<label class="font-weak" for="register">Account aanmaken?</label>
 									<div class="caption">
-                                        <p>Lorem Bla die bla opvul tekst iets kijken waar dit staat enzo later!.</p>
+                                        <p>Vul hieronder een wachtwoord voor uw account in.</p>
                                         <input class="input" type="password" name="password" placeholder="Vul uw wachtwoord in">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+					{{-- verzend methoden --}}
 					<div class="col-md-6">
 						<div class="shiping-methods">
 							<div class="section-title">
@@ -71,35 +71,46 @@
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="shipping" id="shipping-1" checked>
-								<label for="shipping-1">Gratis verzending - €0.00</label>
+								<label for="shipping-1">Standaard verzending - €3.95</label>
 								<div class="caption">
 									<p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+											Standaard verzenden wij onze bestellingen verzekerd via PostNL. Zodra wij je bestelling hebben ingepakt melden we je zending bij PostNL en krijg je een Track & Trace-code toegestuurd waarmee je je bestelling kunt volgen. De verzendkosten die wij in rekening brengen zijn in de regel € 3,95 voor standaardpakketten binnen Nederland. In sommige gevallen zoals palletzendingen verzenden wij via DHL, hier kunnen additionele kosten aan verbonden zijn.
                                     </p>
 								</div>
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="shipping" id="shipping-2">
-								<label for="shipping-2">Standaard - €4.00</label>
+								<label for="shipping-2">Rembours - €15.00</label>
 								<div class="caption">
 									<p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+											Bij verzending onder rembours betaal je het volledige factuurbedrag en de bijkomende rembourskosten via PIN aan de postbode. Bij orders met een waarde boven € 500,- zal de bestelling bezorgd worden bij een PostNL-locatie bij jou in de buurt. Houd er rekening mee dat rembourszendingen niet op zaterdagen geleverd worden en alleen mogelijk zijn voor afleveradressen binnen Nederland. Ook kan het voorkomen dat een rembourszending een dag later verzonden wordt. <br>
+											De bijkomende kosten bij een rembourszending zijn € 15,- per bestelling.
                                     </p>
 								</div>
 							</div>
+							<div class="input-checkbox">
+									<input type="radio" name="shipping" id="shipping-3">
+									<label for="shipping-2">Pakje gemak</label>
+									<div class="caption">
+										<p>
+											Wil je je bestelling afhalen bij een PakjeGemakpunt? Kies dan voor standaardverzending en selecteer als verzendadres een PakjeGemakpunt. Waar je je bestelling normaal thuisbezorgd krijgt, kun je deze met PakjeGemak afhalen op een van de vele afhaalpunten.
+										</p>
+									</div>
+								</div>
 						</div>
+						{{-- einde verzend methoden --}}
 
+						{{-- betaal mogelijkheden --}}
 						<div class="payments-methods">
 							<div class="section-title">
 								<h4 class="title">Betaal mogelijkheden</h4>
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="payments" id="payments-1" checked>
-								<label for="payments-1">Directe bank overboeking</label>
+								<label for="payments-1">Vooruitbetalen</label>
 								<div class="caption">
 									<p>
-                                        Als u kiest voor bank overschrijving duurt het 1 tot 2 werkdagen voor het geld op onze rekening staat. Wij zullen met uw order aan de slag gaan op het moment dat het geld op onze rekening staat.
+                                        Als je ervoor kiest om het factuurbedrag vooraf via bankoverschrijving te voldoen, dan krijg je na het plaatsen van je order een bevestigingsemail met betalingsinstructies. Bij vooruitbetaling dien je altijd rekening te houden met minimaal een werkdag vertraging van je order (minimaal twee werkdagen bij een overschrijving van buiten Nederland). Wij kunnen je order pas verder verwerken zodra je betaling bij ons binnen is. Wij raden je dan ook aan om, indien mogelijk, gebruik te maken van een directere betaalmethode zoals iDeal. Aan het gebruik van deze betaalmethode zijn geen verdere kosten verbonden.
                                     </p>
 								</div>
 							</div>
@@ -108,7 +119,7 @@
 								<label for="payments-2">Ideal</label>
 								<div class="caption">
 									<p>
-                                        Als u met Ideal betaald staat het geld direct op onze rekening, en zullen we ook direct met uw order aan de slag gaan.
+                                        De meest gebruikte betaalmethode is iDeal. Als je betaalt via iDeal kunnen wij je betaling direct automatisch verwerken en uw order zo snel mogelijk uitleveren. Aan het gebruik van deze betaalmethode zijn geen verdere kosten verbonden.
                                     </p>
 								</div>
 							</div>
@@ -117,12 +128,13 @@
 								<label for="payments-3">Paypal</label>
 								<div class="caption">
 									<p>
-                                        Als u met PayPal betaald staat het geld direct bij ons op de rekening, en zullen we ook direct met uw order aan de slag gaan.
+                                        Je kunt bij ons betalen met PayPal. Aan het gebruik van deze betaalmethode zijn geen verdere kosten verbonden.
                                     </p>
 								</div>
 							</div>
 						</div>
 					</div>
+					{{-- einde betaal mogelijkheden --}}
 
 					<div class="col-md-12">
 						<div class="order-summary clearfix">

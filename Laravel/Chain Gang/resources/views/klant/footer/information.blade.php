@@ -9,13 +9,18 @@
 					<div class="footer">
 						<!-- footer logo -->
 						<div class="footer-logo">
-							<a class="logo" href="#">
-		            <img src="{{ asset('images/logo.png') }}" alt="logo">
-		          </a>
+							<a class="logo" href="{{url('/')}}"><img src="{{ asset('images/logo.png') }}" alt="logo"></a>
 						</div>
 						<!-- /footer logo -->
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+						<p>
+							Chain Gang <br>
+							Fietsstraat 1 <br>
+							3324 AA Amsterdam <br>
+							BTW nr: NL 4587.25.785.B02 <br>
+							KvK nr: 5874692 <br>
+							Tel: 020-254789
+						</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
