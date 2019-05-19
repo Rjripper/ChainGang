@@ -23,3 +23,13 @@ Route::get('/about', function ()
 {
     return view('klant.body.about.about');
 });
+
+/*
+        Products
+*/
+// link zou dan /products/herenfietsen worden
+// '/products/{$category}'
+Route::get('/products', function () 
+{
+    return view('klant.body.products.products');
+});
