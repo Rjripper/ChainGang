@@ -17,10 +17,19 @@ Route::get('/', function ()
     return view('klant.body.home.home');
 });
 
+/*
+    Account
+ */
 // route naar de mijn account
-Route::get('/myaccount', function()
+Route::get('/my-account', function()
 {
-    return view('klant.body.user-details.myaccount');
+    return view('klant.body.user-details.my-account');
+});
+
+// route naar mijn orders
+Route::get('my-orders',function()
+{
+    return view('klant.body.user-details.my-orders');
 });
 
 // route naar de checkout
@@ -42,7 +51,13 @@ Route::get('/login', function()
 // route naar de forgotpassword 
 Route::get('/forgotPassword', function()
 {
-    return view('klant.body.login.forgotPassword');
+    return view('klant.body.forgot-password.forgot-password');
+});
+
+// route naar de registratie pagina
+Route::get('/registreer',function()
+{
+    return view('klant.body.register.register');
 });
 
 /*

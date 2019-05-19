@@ -22,12 +22,12 @@
                               {{-- form login --}}
                             <form id="login" class="clearfix">
                                 @csrf
-                                    <h1> login </h1>
+                                    <h1> Login </h1>
                                     <div class="form-group">
-                                        <input class="input" type="text" name="email" placeholder="E-mail adres">
+                                        <input class="input" type="email" name="email" placeholder="E-mail adres">
                                     </div>
                                     <div class="form-group">
-                                            <input class="input" type="pasword" name="password" placeholder="Wachtwoord">
+                                            <input class="input" type="password" name="password" placeholder="Wachtwoord">
                                     </div>
                                     <div class="form-group">
                                             <input class="input-checkbox" type="checkbox" name="login"> &nbsp; Onthoud mij &nbsp; 
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <input class="input main-btn" type="submit" name="login" value="Inloggen">
                                     </div>
-                                    Heb je nog geen account? <a href="{{url('#')}}">Registreer hier</a>
+                                    Heb je nog geen account? <a href="{{url('/registreer')}}">Registreer hier</a>
                                  {{-- end form login --}}
                                 </form>
                             </div>

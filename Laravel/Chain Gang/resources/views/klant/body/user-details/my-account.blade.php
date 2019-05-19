@@ -25,9 +25,9 @@
                         {{-- <h1> mijn account </h1> --}}
                         <div class="card" style="width:50%;">
                             <ul class="list-group list-group-flush list-links">
-                            <li class="list-group-item"><a href="{{url('/myaccount')}}">Details</a></li>
-                            <li class="list-group-item"><a href="{{url('/myaccount')}}">Orders</a></li>
-                            <li class="list-group-item"><a href="{{url('/myaccount')}}">Logout</a></li>
+                            <li class="list-group-item"><a href="{{url('/my-account')}}">Details</a></li>
+                            <li class="list-group-item"><a href="{{url('/my-orders')}}">Orders</a></li>
+                            <li class="list-group-item"><a href="{{url('/my-account')}}">Logout</a></li>
                         </ul>
                     </div>
                     </div>

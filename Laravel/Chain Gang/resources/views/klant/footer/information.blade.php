@@ -34,7 +34,7 @@
 					<div class="footer">
 						<h3 class="footer-header">Mijn Account</h3>
 						<ul class="list-links">
-						<li><a href="{{url('/myaccount')}}">Mijn account</a></li>
+						<li><a href="{{url('/my-account')}}">Mijn account</a></li>
 							<li><a href="{{url('/checkout')}}">Checkout</a></li>
 							<li><a href="{{url('/login')}}">Login</a></li>
 						</ul>
