@@ -10908,7 +10908,7 @@ hr {
   display: none;
 }
 
-.sidebar-menu .sidebar-link.active::before {
+.sidebar-menu .sidebar-link.actived::before {
   background: #2196f3;
   border-radius: 50%;
   content: "";
@@ -11002,8 +11002,8 @@ hr {
   color: #313435;
 }
 
-.sidebar-menu > li.dropdown ul.dropdown-menu > li.active a {
-  color: #313435 !important;
+.sidebar-menu > li.dropdown ul.dropdown-menu > li.actived a {
+  color: #313435;
 }
 
 .sidebar-menu > li > a {
