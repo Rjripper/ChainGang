@@ -60,6 +60,18 @@ Route::get('/registreer',function()
     return view('klant.body.register.register');
 });
 
+// Route naar verzenden en reoutneren
+Route::get('/shipping-retour', function()
+{
+    return view('klant.body.shipping-retour.shipping-retour');
+});
+
+// Route naar de FAQ
+Route::get('/faq', function()
+{
+    return view('klant.body.faq.faq');
+});
+
 /*
         About 
 */

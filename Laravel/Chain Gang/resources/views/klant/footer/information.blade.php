@@ -15,8 +15,8 @@
 
 						<p>
 							Chain Gang <br>
-							Fietsstraat 1 <br>
-							3324 AA Amsterdam <br>
+							J.F Kenedylaan 49 <br>
+							7001 EA Doetinchem <br>
 							BTW nr: NL 4587.25.785.B02 <br>
 							KvK nr: 5874692 <br>
 							Tel: 020-254789
@@ -55,9 +55,8 @@
 						<h3 class="footer-header">Klanten Service</h3>
 						<ul class="list-links">
 							<li><a href="{{url('/about')}}">Over ons</a></li>
-							<li><a href="#">Verzenden & retouneren</a></li>
-							<li><a href="#">Verzend gids</a></li>
-							<li><a href="#">Veel gestelde vragen</a></li>
+							<li><a href="{{url('/shipping-retour')}}">Verzenden & retouneren</a></li>
+							<li><a href="{{url('/faq')}}">Veel gestelde vragen</a></li>
 						</ul>
 					</div>
 				</div>
