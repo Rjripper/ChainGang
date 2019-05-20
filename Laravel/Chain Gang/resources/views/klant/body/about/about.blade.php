@@ -6,8 +6,9 @@
     <div class="container"> 
         <div class="row">
             <div class="col-12">
-                
-                <h1>Missie: samen groeien</h1>
+                <div class="section-title">
+                    <h1 class="title">Missie: samen groeien</h1>
+                </div> 
                 <br>
                 <h2>Waarom</h2>
                 <br>
