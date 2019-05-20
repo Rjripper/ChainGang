@@ -11,6 +11,43 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
+Route::get('/', function () 
+{
+    return view('klant.body.home.home');
+});
+
+/*
+        About 
+*/
+Route::get('/about', function () 
+{
+    return view('klant.body.about.about');
+});
+
+/*
+        Products
+*/
+// link zou dan /products/herenfietsen worden
+// '/products/{$category}'
+Route::get('/products', function () 
+{
+    return view('klant.body.products.products');
+});
+
+/*
+        Products details
+*/
+
+Route::get('/products/category/fiets', function () 
+{
+    return view('klant.body.product-details.products-details');
+});
+
+/*
+        Contact
+*/
+
+Route::get('/contact', function () 
+{
+    return view('klant.body.contact.contact');
 });
