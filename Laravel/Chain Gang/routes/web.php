@@ -174,3 +174,7 @@ Route::get('/review/edit/1', function() {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
