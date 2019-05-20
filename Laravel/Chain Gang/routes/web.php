@@ -17,6 +17,14 @@ Route::get('/', function ()
 });
 
 /*
+        Auth 
+*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/*
         About 
 */
 Route::get('/about', function () 
