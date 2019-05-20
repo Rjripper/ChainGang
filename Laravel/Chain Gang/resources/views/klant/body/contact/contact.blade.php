@@ -30,11 +30,11 @@
                         <h2 class="title">Addres gegevens</h2>
                     </div>
                     <h3><a href="mailto:info@chaingang.nl"><i class="fa fa-envelope"></i> info@chaingang.nl</a></h3>
-                    <h3><i class="fa fa-phone"></i>&nbsp;&nbsp;0545 - 123455</h3>
+                    <h3><i class="fa fa-phone"></i>&nbsp;&nbsp;020 - 254789</h3>
                     <h3><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;J.F Kenedylaan 49,<br>&nbsp;&nbsp;&nbsp;&nbsp; 7001 EA Doetinchem</h3>
+                    <h3><i class="fa fa-info"></i>&nbsp;&nbsp;&nbsp;BTW nr: NL 4587.25.785.B02</h3>
+                    <h3><i class="fa fa-info"></i>&nbsp;&nbsp;&nbsp;KvK nr: 5874692</h3>
                 </div>
-
-                
             </div>
 
             <div class="row">
