@@ -1,0 +1,87 @@
+.sidepanel-logo {
+    width: 50px;
+    height: 50px;
+    margin-top: 6px;
+    margin-left: 5px;
+}
+
+.user-table-avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tables-function-button {
+    display: inline-block;
+    margin-left: auto;
+    margin-top: 10px;
+
+    padding: 6px 12px;
+    border-radius: 2px;
+    margin-right: 10px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+
+    color: $white;
+    background-color: $royal-blue;
+
+    cursor: pointer;
+}
+
+    .tables-function-button:hover {
+        background-color: $royal-blue-hover;
+    }
+
+
+.tables-icons {
+    margin-right:10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+    // View
+    .tables-icons:first-child:hover {
+        color: $pastel-green;
+    }
+
+    // Edit
+    .tables-icons:nth-child(2):hover {
+        color: $royal-blue;
+    }
+
+    // Delete
+    .tables-icons:last-child:hover {
+        color: $cinnabar;
+    }
+
+.table-icon-link {
+    color: $black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.user-upload-image {
+    border: 3px $royal-blue-hover dashed;
+    cursor: pointer;
+}
+
+    .user-upload-plus {
+        display: block;
+        padding-top: 0.5em;
+        color: $royal-blue-hover;
+        font-size: 6em;
+    }
+
+    .user-upload-text {
+        padding-top: 0.25em;
+        color: $royal-blue;
+    }
+
+.table-detail-text {
+    padding-left: 10px;
+}
+
+.table-user-image {
+    width: 100%;
+}

@@ -23,7 +23,8 @@
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "sweetalert2": "^8.11.0"
   },
   "dependencies": {
     "vue-template-compiler": "^2.6.10",
@@ -44,6 +45,7 @@
     "moment": "^2.19.1",
     "perfect-scrollbar": "^1.1.0",
     "popper.js": "^1.12.6",
-    "skycons": "^1.0.0"
+    "skycons": "^1.0.0",
+    "sweetalert2": "^8.11.0"
   }
 }
