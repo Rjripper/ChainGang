@@ -13,7 +13,7 @@ class TypeTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('Types')->insert([
+        DB::table('types')->insert([
             'title' => 'Gazelle',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
