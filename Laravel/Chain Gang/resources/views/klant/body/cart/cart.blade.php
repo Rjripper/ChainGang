@@ -113,6 +113,7 @@
                                                 <td class="price text-center"><strong>&euro;{{$product->price}}</strong></td>
                                             @endif
 
+                                            {{-- Calculate with jQuery --}}
                                             <td class="qty text-center"><input class="input" type="number" value="1"></td>
                                             <td class="total text-center"><strong class="primary-color">€32.50</strong></td>
                                             <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
