@@ -80,6 +80,7 @@
                     <h3 class="title">Blijf op de hoogte</h3>
                     <p>Dit is de nieuwsbrief, die moet nog ergens anders naar toe!!</p>
                     <form>
+                        @csrf
                         <div class="form-group">
                             <input class="input nieuwsbrief-form" placeholder="Vul e-mail adres in">
                         </div>

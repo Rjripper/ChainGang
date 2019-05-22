@@ -10,78 +10,208 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// route naar de index 
 
-Route::get('/', function () 
-{
+Auth::routes();
+
+Route::get('/', function () {
     return view('klant.body.home.home');
-});
+})->name('home');
 
-/*
-    Account
+
+/**
+ *  Customer Routes (Group -> Customers)
  */
-// route naar de mijn account
-Route::get('/my-account', function()
-{
-    return view('klant.body.user-details.my-account');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/account/overzicht', 'CustomerController@index');
+    Route::get('/account/bestellingen', 'CustomerController@orders');
 });
 
-// route naar mijn orders
-Route::get('my-orders',function()
-{
-    return view('klant.body.user-details.my-orders');
-});
 
-// route naar de checkout
-Route::get('/checkout', function()
-{
-    return view('klant.body.checkout.checkout');
-});
+/**
+ *  Standard Routes
+ */
+Route::get('/faq', 'HomeController@faq');
+Route::get('/shipping-retour', 'HomeController@shippingAndReturn');
+Route::get('/overons', 'HomeController@about');
+Route::get('/contact', 'HomeController@contact');
+
+
+/**
+ *  Products Routes -> Get, Post, Patch
+ */
+Route::get('/producten', 'ProductController@index');
+Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
+Route::get('/product/{product}', 'ProductController@show');
+
+
+/**
+ * Cart Routes -> Get, Post, Patch + Checkout
+ */
+Route::get('/betalen', 'HomeController@checkout'); // -> Checkout
+Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
+
+Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
+Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
+
+
+
+
+//========= ADMIN ==========//
+//Sidepanels
+Route::get('/admin/dashboard', function () {
+    return view('dashboard.body.home.view');
+})->name('dashboard');
+
+Route::get('/admin/users', function() {
+    return view('dashboard.body.users.index');
+})->name('users');
+
+Route::get('/admin/customers', function() {
+    return view('dashboard.body.customers.index');
+})->name('customers');
+
+Route::get('/admin/products', function() {
+    return view('dashboard.body.products.index');
+})->name('products');
+
 
 /*
-    login
+    Users
 */
-
-// route naar de login
-Route::get('/login', function()
-{
-    return view('klant.body.login.login');
+Route::get('/user/create/', function() {
+    return view('dashboard.body.users.create');
 });
 
-// route naar de forgotpassword 
-Route::get('/forgotPassword', function()
-{
-    return view('klant.body.forgot-password.forgot-password');
+Route::get('/user/edit/1/', function() {
+    return view('dashboard.body.users.update');
 });
 
-// route naar de registratie pagina
-Route::get('/registreer',function()
-{
-    return view('klant.body.register.register');
+Route::get('/user/1/', function() {
+    return view('dashboard.body.users.view');
 });
 
-// Route naar verzenden en reoutneren
-Route::get('/shipping-retour', function()
-{
-    return view('klant.body.shipping-retour.shipping-retour');
+Route::get('/user/delete/', function() {
+    return view('dashboard.body.users.delete');
 });
 
-// Route naar de FAQ
-Route::get('/faq', function()
-{
-    return view('klant.body.faq.faq');
-});
-
-// Route naar Cart
-Route::get('/cart', function()
-{
-    return view('klant.body.cart.cart');
-});
 
 /*
-        About 
+    Customers
 */
-Route::get('/about', function () 
-{
-    return view('klant.body.about.about');
+Route::get('/customer/create/', function() {
+    return view('dashboard.body.customers.create');
+});
+
+Route::get('/customer/edit/1/', function() {
+    return view('dashboard.body.customers.update');
+});
+
+Route::get('/customer/1/', function() {
+    return view('dashboard.body.customers.view');
+});
+
+Route::get('/customer/delete/', function() {
+    return view('dashboard.body.customers.delete');
+});
+
+
+/*
+    Products
+*/
+Route::get('/product/create/', function() {
+    return view('dashboard.body.products.create');
+});
+
+Route::get('/product/edit/1/', function() {
+    return view('dashboard.body.products.update');
+});
+
+Route::get('/product/1/', function() {
+    return view('dashboard.body.products.view');
+});
+
+Route::get('/product/delete/', function() {
+    return view('dashboard.body.products.delete');
+});
+
+
+
+//== RJ's Routes
+/*
+    Newsletters
+*/
+Route::get('/newsletters', function() {
+    return view('dashboard.body.newsletters.index');
+})->name('newsletters');
+
+Route::get('/newsletter/create', function() {
+    return view('dashboard.body.newsletters.create');
+});
+
+Route::get('/newsletter/1/', function() {
+    return view('dashboard.body.newsletters.view');
+});
+
+Route::get('/newsletter/edit/1', function() {
+    return view('dashboard.body.newsletters.update');
+});
+
+
+/*
+    Orders
+*/
+Route::get('/orders', function() {
+    return view('dashboard.body.orders.index');
+})->name('orders');
+
+Route::get('/order/create', function() {
+    return view('dashboard.body.orders.create');
+});
+
+Route::get('/order/1/', function() {
+    return view('dashboard.body.orders.view');
+});
+
+Route::get('/order/edit/1', function() {
+    return view('dashboard.body.orders.update');
+});
+
+
+/*
+    Sales
+*/
+Route::get('/sales', function() {
+    return view('dashboard.body.sales.index');
+})->name('sales');
+
+Route::get('/sale/create', function() {
+    return view('dashboard.body.sales.create');
+});
+
+Route::get('/sale/1/', function() {
+    return view('dashboard.body.sales.view');
+});
+
+Route::get('/sale/edit/1', function() {
+    return view('dashboard.body.sales.update');
+});
+
+
+/*
+    Reviews
+*/
+Route::get('/reviews', function() {
+    return view('dashboard.body.reviews.index');
+})->name('reviews');
+
+Route::get('/review/create', function() {
+    return view('dashboard.body.reviews.create');
+});
+
+Route::get('/review/1/', function() {
+    return view('dashboard.body.reviews.view');
+});
+
+Route::get('/review/edit/1', function() {
+    return view('dashboard.body.reviews.update');
 });

@@ -5,7 +5,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                    <li class="active">Mijn orders</li>
+                    <li class="active">Mijn Bestellingen</li>
                 </ul>
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <div class="row">
                     {{-- col --}}
                     <div class="col">
-                        <h1> mijn orders </h1>
+                        <h1>Mijn Bestellingen</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -26,11 +26,11 @@
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <div class="card" style="width:50%;">
                             <ul class="list-group list-group-flush list-links">
-                            <li class="list-group-item"><a href="{{url('/my-account')}}">Details</a></li>
-                            <li class="list-group-item"><a href="{{url('/my-orders')}}">Orders</a></li>
-                            <li class="list-group-item"><a href="{{url('#')}}">Logout</a></li>
-                        </ul>
-                    </div>
+                                <li class="list-group-item"><a href="{{ url('/account/overzicht') }}">Details</a></li>
+                                <li class="list-group-item"><a href="{{ url('/account/orders') }}">Orders</a></li>
+                                <li class="list-group-item"><a href="{{ route('logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                     {{-- Einde klant menu --}}
                     <div class="col-md-8 col-sm-6 col-xs-6">
@@ -38,16 +38,26 @@
                     <table class="table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Order nummer</th>
-                                <th>Datum</th>
+                                <th>Factuur Nummer</th>
+                                <th>Bestellings Datum</th>
                                 <th>Status</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
+                            @if($orders->count() > 0)
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $order->status_id }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            @endif
                         </tbody>
                   </table>
                   {{-- Einde order tabel --}}
