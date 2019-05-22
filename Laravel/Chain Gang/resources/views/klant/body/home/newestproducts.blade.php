@@ -79,7 +79,11 @@
 								</div>
 								<h2 class="product-name">{{ $newest_product->product_name }}</h2>
 								<div class="product-btns">
-									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
+									<form action="">
+										@method('POST')
+										@csrf
+										<button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$newest_product->id}}"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -92,5 +96,31 @@
 		</div>
 	</div>
 </div>
+<script>
+function addItemToCart(product_id) {
+
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+	var form_data = new FormData();
+	form_data.append('_method', 'POST');
+	form_data.append('_token', CSRF_TOKEN);
+
+	event.preventDefault();
+
+	$.ajax({
+		url: '/product/add/cart/' + product_id,
+		dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+		success: function(data) {
+			console.log(data);
+		}
+	});
+	console.log(product_id.getAttribute('data-id'));
+}
+</script>
 
 
