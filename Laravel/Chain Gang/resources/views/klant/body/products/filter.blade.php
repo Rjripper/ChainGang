@@ -38,13 +38,13 @@
             <div class="noUi-base">
                 <div class="noUi-origin" style="left: 0%;">
                     <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="1.00$" style="z-index: 5;">
-                        <div class="noUi-tooltip">1.00$</div>
+                        <div class="noUi-tooltip">€1.00</div>
                     </div>
                 </div>
                 <div class="noUi-connect" style="left: 0%; right: 0%;"></div>
                 <div class="noUi-origin" style="left: 100%;">
                     <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="999.00$" style="z-index: 4;">
-                        <div class="noUi-tooltip">999.00$</div>
+                        <div class="noUi-tooltip">€9999.00</div>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
         <h3 class="aside-title">Filter op merk</h3>
         <ul class="list-links">
             @foreach ($brands as $brand)
-                <li class="active"><a href="#">{{$brand->title}}</a></li>
+                <li><a href="{{url('/producten', $brand->id)}}">{{$brand->title}}</a></li>
             @endforeach
             {{-- <li><a href="#">Nike</a></li>
             <li><a href="#">Adidas</a></li>
@@ -111,8 +111,8 @@
     <div class="aside">
         <h3 class="aside-title">Filter op geslacht</h3>
         <ul class="list-links">
-            {{-- <li class="active"><a href="#">Men</a></li>
-            <li><a href="#">Women</a></li> --}}
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
         </ul>
     </div>
     <!-- /aside widget -->
@@ -122,7 +122,7 @@
         <h3 class="aside-title">Filter op categorie</h3>
         <ul class="list-links">
             @foreach ($categories as $categorie)
-            <li class="active"><a href="#">{{ $categorie->title }}</a></li>
+            <li><a href="{{url('/producten/categorie', $categorie->id)}}">{{ $categorie->title }}</a></li>
             @endforeach
         </ul>
     </div>
@@ -132,7 +132,7 @@
         <h3 class="aside-title">Filter op type</h3>
         <ul class="list-links">
             @foreach ($types as $type)
-                <li class="active"><a href="#">{{ $type->title }}</a></li>    
+                <li><a href="#">{{ $type->title }}</a></li>    
             @endforeach
         </ul>
     </div>

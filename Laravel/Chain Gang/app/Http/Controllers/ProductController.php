@@ -22,13 +22,16 @@ class ProductController extends Controller
         $products = Product::paginate(9);
 
         // get all brands
-        $brands = Brand::all();
+        $brands = Brand::orderBy('title', 'asc')->get();
 
         // get all categories
-        $categories = Category::all();
+        $categories = Category::orderBy('title', 'asc')->get();
 
         // get all types
-        $types = Type::all();
+        $types = Type::orderBy('title', 'asc')->get();
+
+        // Get products by brand
+        Product::where('brand_id',2)->paginate(3);
 
         return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
@@ -41,10 +44,12 @@ class ProductController extends Controller
         return view('klant.body.product-details.details', compact('product'));
     }
 
-    // public function getBrands()
-    // {
-    //     $brands = Brand::all();
+    public function category($id)
+    {
+        // Get the categories by id
+        // Return the vieuw with only the selected categories
+        $categories = Category::where('id', $id);
 
-    //     return view('klant.body.products.products', compact('brands'));
-    // }
+        return view('klant.body.products.products', compact('categories'));
+    }
 }
