@@ -5,7 +5,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                    <li class="active">Wachtwoord vergeten</li>
+                    <li class="active">Login</li>
                 </ul>
             </div>
         </div>
@@ -19,18 +19,25 @@
                               
                             </div>
                             <div class="col-sm-4">
-                              {{-- form forgot-password --}}
-                            <form id="forgot-password" class="clearfix">
+                              {{-- form login --}}
+                            <form id="login" class="clearfix">
                                 @csrf
-                                    <h1> Reset wachtwoord </h1>
+                                    <h1> Login </h1>
                                     <div class="form-group">
                                         <input class="input" type="email" name="email" placeholder="E-mail adres">
                                     </div>
                                     <div class="form-group">
-                                        <input class="input main-btn" type="submit" name="request" value="Reset wachtwoord">
+                                            <input class="input" type="password" name="password" placeholder="Wachtwoord">
                                     </div>
-                                    heb je al een accoutn? <a href="{{ route('login')}}">Login</a>
-                                 {{-- end form forgot-password --}}
+                                    <div class="form-group">
+                                            <input class="input-checkbox" type="checkbox" name="login"> &nbsp; Onthoud mij &nbsp; 
+                                            <span class="text-right"><a href="{{ route('forgot-password') }}">Wachtwoord vergeten?</a></span>
+                                        </div>
+                                    <div class="form-group">
+                                        <input class="input main-btn" type="submit" name="login" value="Inloggen">
+                                    </div>
+                                    Heb je nog geen account? <a href="{{url('/registreer')}}">Registreer hier</a>
+                                 {{-- end form login --}}
                                 </form>
                             </div>
                             <div class="col-sm-4">                              
