@@ -16,11 +16,6 @@
 	<div class="row">
 		<div id="product-slick-2" class="product-slick">
 			{{-- single product --}}
-			@php
-				//Get Products in Sale, 6
-				//Fill their data
-				$products_in_sale = App\Sale::paginate(6);
-			@endphp
 			@if($products_in_sale != null)
 				@foreach($products_in_sale as $product_in_sale)
 
@@ -28,6 +23,7 @@
 						$product_to_show = App\Product::where('id', $product_in_sale->product_id)->first();
 						$product_to_show_image = App\ProductImage::where('product_id', $product_to_show->id)->first();
 					@endphp
+					
 					<!-- Product Single -->
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="product product-single">

@@ -13,10 +13,8 @@
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('klant.body.home.home');
-})->name('home');
 
+Route::get('/', 'HomeController@index')->name('home');
 
 /**
  *  Customer Routes (Group -> Customers)

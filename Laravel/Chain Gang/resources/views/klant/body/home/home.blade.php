@@ -55,7 +55,11 @@
         <!-- container -->
         <div class="container">
             <div class="row">
-                @include('klant.body.home.newestproducts')
+                @if ($newest_products)
+                    @include('klant.body.home.newestproducts', $newest_products)
+                @else
+                    @include('klant.body.home.newestproducts')
+                @endif
             </div>
         </div>
     </div>
@@ -90,7 +94,11 @@
             <!-- container -->
         <div class="container">
             <div class="row">
-                @include('klant.body.home.bestsales')
+                @if($products_in_sale != null)
+                    @include('klant.body.home.bestsales', $products_in_sale)
+                @else
+                    @include('klant.body.home.bestsales')
+                @endif
             </div>
         </div>
     </div>
@@ -101,7 +109,11 @@
             <!-- container -->
         <div class="container">
             <div class="row">
-                @include('klant.body.home.reviews')
+                @if($reviews != null)
+                    @include('klant.body.home.reviews', $reviews)
+                @else
+                    @include('klant.body.home.reviews')
+                @endif
             </div>
         </div>
     </div>
