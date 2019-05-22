@@ -12,103 +12,49 @@
 */
 // route naar de index 
 
-Route::get('/', function () 
-{
+Auth::routes();
+
+Route::get('/', function () {
     return view('klant.body.home.home');
 })->name('home');
 
-/*
-    About 
-    Account
+
+/**
+ *  Customer Routes (Group -> Customers)
  */
-// route naar de mijn account
-Route::get('/my-account', function()
-{
-    return view('klant.body.user-details.my-account');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/account/overzicht', 'CustomerController@index');
+    Route::get('/account/bestellingen', 'CustomerController@orders');
 });
 
-// route naar mijn orders
-Route::get('my-orders',function()
-{
-    return view('klant.body.user-details.my-orders');
-});
 
-// route naar de checkout
-Route::get('/checkout', function()
-{
-    return view('klant.body.checkout.checkout');
-});
+/**
+ *  Standard Routes
+ */
+Route::get('/betalen', 'HomeController@checkout');
+Route::get('/winkelwagen', 'HomeController@cart');
+Route::get('/faq', 'HomeController@faq');
+Route::get('/shipping-retour', 'HomeController@shippingAndReturn');
+Route::get('/overons', 'HomeController@about');
+Route::get('/contact', 'HomeController@contact');
 
-/*
-    login
-*/
 
-// route naar de login
-Route::get('/login', function()
-{
-    return view('klant.body.login.login');
-});
+/**
+ *  Products Routes -> Get, Post, Patch
+ */
+Route::get('/producten', 'ProductsController@index');
+Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
+Route::get('/product/{product}', 'ProductController@show');
 
-// route naar de forgotpassword 
-Route::get('/forgotPassword', function()
-{
-    return view('klant.body.forgot-password.forgot-password');
-});
 
-// route naar de registratie pagina
-Route::get('/registreer',function()
-{
-    return view('klant.body.register.register');
-});
-
-// Route naar verzenden en reoutneren
-Route::get('/shipping-retour', function()
-{
-    return view('klant.body.shipping-retour.shipping-retour');
-});
-
-// Route naar de FAQ
-Route::get('/faq', function()
-{
-    return view('klant.body.faq.faq');
-});
-
-/*
-        About 
-*/
-Route::get('/about', function () 
-{
-    return view('klant.body.about.about');
-});
-
-/*
-    Products
-*/
-Route::get('/products', function () 
-{
-    return view('klant.body.products.products');
-});
-
-/*
-    Products details
-*/
-Route::get('/products/category/fiets', function () 
-{
-    return view('klant.body.product-details.products-details');
-});
-
-/*
-    Contact
-*/
-Route::get('/contact', function () 
-{
-    return view('klant.body.contact.contact');
-});
-
+/**
+ *  Product add cart
+ */
+Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
+Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
 
 
 //========= ADMIN ==========//
-
 //Sidepanels
 Route::get('/admin/dashboard', function () {
     return view('dashboard.body.home.view');

@@ -25,4 +25,30 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Display Checkout Resource
+    */
+    public function checkout()
+    {
+        return view('klant.body.checkout.checkout');
+    }
+
+    /**
+     * Display Cart Resource
+     */
+    public function cart()
+    {
+        return view('klant.body.cart.cart');
+    }
+
+    public function faq()
+    {
+        return view('klant.body.faq.faq');
+    }
+    
+    public function shippingAndReturn()
+    {
+        return view('klant.body.shipping-retour.shipping-retour');
+    }
 }
