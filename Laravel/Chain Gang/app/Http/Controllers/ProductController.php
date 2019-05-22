@@ -18,7 +18,7 @@ class ProductController extends Controller
 
         $products = Product::paginate(9);
 
-        return view('', compact('products'));
+        return view('klant.body.products.products', compact('products'));
     }
 
     public function show(Request $request, Product $product)
