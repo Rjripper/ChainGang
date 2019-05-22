@@ -1,3 +1,6 @@
+@extends('klant.index')
+
+@section('body')
  {{-- big images --}}
  <div id="product-main-view">
     @for ($i = 0; $i < 4; $i++) 
@@ -15,3 +18,4 @@
         </div>
     @endfor
 </div>
+@endsection

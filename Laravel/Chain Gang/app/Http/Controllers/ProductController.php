@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Review;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,9 @@ class ProductController extends Controller
     {
         //Get Product to show from route {product}
         //Return the view with the product id
+        $reviews = Review::where('product_id', $product->id)->get();
+        
 
-        return view('klant.body.product-details.details', compact('product'));
+        return view('klant.body.product-details.products-details', compact('product', 'reviews'));
     }
 }

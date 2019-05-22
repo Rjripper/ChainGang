@@ -1,3 +1,6 @@
+@extends('klant.index')
+
+@section('body')
 <!-- section title -->
 <div class="col-md-12">
         <div class="section-title">
@@ -37,3 +40,5 @@
 </div>
 <!-- /Product Single -->
 @endfor
+
+@endsection
