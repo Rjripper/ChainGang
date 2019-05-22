@@ -49,15 +49,6 @@
     </div>
     <!-- /HOME -->
     {{-- end slider --}}
-
-    {{-- product tumbnail --}}
-    <div class="container">
-        <div class="section">
-            <div class="row">
-            @include('klant.body.home.newest')
-        </div>
-    </div>
-    {{-- end product tumbnail --}}
     
     {{-- nieuwste producten --}}
     <div class="section">

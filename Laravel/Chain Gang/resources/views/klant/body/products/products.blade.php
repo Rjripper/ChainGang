@@ -21,7 +21,11 @@
                     @include('klant.body.products.sort')
                     
                     <div id="store">
-                        @include('klant.body.products.products-section')
+                        @if($products != null)
+                            @include('klant.body.products.products-section', $products)
+                        @else
+                            @include('klant.body.products.products-section')
+                        @endif
                     </div>
                 
                     @include('klant.body.products.sort')
