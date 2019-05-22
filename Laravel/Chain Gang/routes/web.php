@@ -12,6 +12,14 @@
 */
 // route naar de index 
 
+/*
+        Auth 
+*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/', function () 
 {
     return view('klant.body.home.home');
@@ -39,27 +47,12 @@ Route::get('/checkout', function()
     return view('klant.body.checkout.checkout');
 });
 
-/*
-    login
-*/
-
-// route naar de login
-Route::get('/login', function()
-{
-    return view('klant.body.login.login');
-});
-
 // route naar de forgotpassword 
 Route::get('/forgotPassword', function()
 {
     return view('klant.body.forgot-password.forgot-password');
 });
 
-// route naar de registratie pagina
-Route::get('/registreer',function()
-{
-    return view('klant.body.register.register');
-});
 
 // Route naar verzenden en reoutneren
 Route::get('/shipping-retour', function()
@@ -72,14 +65,6 @@ Route::get('/faq', function()
 {
     return view('klant.body.faq.faq');
 });
-
-/*
-        Auth 
-*/
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 /*
         About 
@@ -112,7 +97,6 @@ Route::get('/contact', function ()
 {
     return view('klant.body.contact.contact');
 });
-
 
 
 //========= ADMIN ==========//
