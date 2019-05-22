@@ -25,10 +25,7 @@
         </div>
         <ul class="store-pages">
             <li><span class="text-uppercase">Page:</span></li>
-            <li class="active">1</li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+             <li {{ $products->links() }} </li>
         </ul>
     </div>
 </div>

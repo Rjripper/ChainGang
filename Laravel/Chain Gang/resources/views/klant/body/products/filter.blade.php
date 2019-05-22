@@ -1,6 +1,6 @@
 <div id="aside" class="col-md-3">
     <!-- aside widget -->
-    <div class="aside">
+    {{-- <div class="aside">
         <h3 class="aside-title">Shop by:</h3>
         <ul class="filter-list">
             <li><span class="text-uppercase">color:</span></li>
@@ -28,12 +28,12 @@
         </ul>
 
         <button class="primary-btn">Clear All</button>
-    </div>
+    </div> --}}
     <!-- /aside widget -->
 
     <!-- aside widget -->
     <div class="aside">
-        <h3 class="aside-title">Filter by Price</h3>
+        <h3 class="aside-title">Filter op prijs</h3>
         <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal">
             <div class="noUi-base">
                 <div class="noUi-origin" style="left: 0%;">
@@ -53,7 +53,7 @@
     <!-- aside widget -->
 
     <!-- aside widget -->
-    <div class="aside">
+    {{-- <div class="aside">
         <h3 class="aside-title">Filter By Color:</h3>
         <ul class="color-option">
             <li>
@@ -78,44 +78,67 @@
                 <a href="#" style="background-color:#D5B47B;"></a>
             </li>
         </ul>
-    </div>
+    </div> --}}
     <!-- /aside widget -->
 
     <!-- aside widget -->
-    <div class="aside">
+    {{-- <div class="aside">
         <h3 class="aside-title">Filter By Size:</h3>
         <ul class="size-option">
             <li class="active"><a href="#">S</a></li>
             <li class="active"><a href="#">XL</a></li>
             <li><a href="#">SL</a></li>
         </ul>
-    </div>
+    </div> --}}
     <!-- /aside widget -->
 
     <!-- aside widget -->
     <div class="aside">
-        <h3 class="aside-title">Filter by Brand</h3>
+        <h3 class="aside-title">Filter op merk</h3>
         <ul class="list-links">
-            <li><a href="#">Nike</a></li>
+            @foreach ($brands as $brand)
+                <li class="active"><a href="#">{{$brand->title}}</a></li>
+            @endforeach
+            {{-- <li><a href="#">Nike</a></li>
             <li><a href="#">Adidas</a></li>
             <li><a href="#">Polo</a></li>
-            <li><a href="#">Lacost</a></li>
+            <li><a href="#">Lacost</a></li> --}}
         </ul>
     </div>
     <!-- /aside widget -->
 
     <!-- aside widget -->
     <div class="aside">
-        <h3 class="aside-title">Filter by Gender</h3>
+        <h3 class="aside-title">Filter op geslacht</h3>
         <ul class="list-links">
-            <li class="active"><a href="#">Men</a></li>
-            <li><a href="#">Women</a></li>
+            {{-- <li class="active"><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li> --}}
         </ul>
     </div>
     <!-- /aside widget -->
 
-    <!-- aside widget -->
+    <!-- category -->
     <div class="aside">
+        <h3 class="aside-title">Filter op categorie</h3>
+        <ul class="list-links">
+            @foreach ($categories as $categorie)
+            <li class="active"><a href="#">{{ $categorie->title }}</a></li>
+            @endforeach
+        </ul>
+    </div>
+    <!-- einde category -->
+
+    <div class="aside">
+        <h3 class="aside-title">Filter op type</h3>
+        <ul class="list-links">
+            @foreach ($types as $type)
+                <li class="active"><a href="#">{{ $type->title }}</a></li>    
+            @endforeach
+        </ul>
+    </div>
+
+    <!-- aside widget -->
+    {{-- <div class="aside">
         <h3 class="aside-title">Top Rated Product</h3>
         <!-- widget product -->
         <div class="product product-widget">
@@ -154,6 +177,6 @@
             </div>
         </div>
         <!-- /widget product -->
-    </div>
+    </div> --}}
     <!-- /aside widget -->
 </div>

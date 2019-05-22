@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Brand;
+use App\Category;
+use App\Type;
 
 class ProductController extends Controller
 {
@@ -18,7 +21,16 @@ class ProductController extends Controller
 
         $products = Product::paginate(9);
 
-        return view('klant.body.products.products', compact('products'));
+        // get all brands
+        $brands = Brand::all();
+
+        // get all categories
+        $categories = Category::all();
+
+        // get all types
+        $types = Type::all();
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 
     public function show(Request $request, Product $product)
@@ -28,4 +40,11 @@ class ProductController extends Controller
 
         return view('klant.body.product-details.details', compact('product'));
     }
+
+    // public function getBrands()
+    // {
+    //     $brands = Brand::all();
+
+    //     return view('klant.body.products.products', compact('brands'));
+    // }
 }
