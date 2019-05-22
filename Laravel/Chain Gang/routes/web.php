@@ -72,6 +72,12 @@ Route::get('/faq', function()
     return view('klant.body.faq.faq');
 });
 
+// Route naar Cart
+Route::get('/cart', function()
+{
+    return view('klant.body.cart.cart');
+});
+
 /*
         About 
 */
