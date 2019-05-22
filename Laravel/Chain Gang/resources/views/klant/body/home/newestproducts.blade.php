@@ -16,13 +16,8 @@
 	<div class="row">
 		<div id="product-slick-1" class="product-slick">
 			{{-- single product --}}
-			@php
-				//Get 6 Products that are added the newest
-				$newest_products = App\Product::paginate(6);
-			@endphp
 			@if($newest_products->count() > 0)
 				@foreach($newest_products as $newest_product)
-
 					@php
 						//Get Product image
 						$newest_product_image = App\ProductImage::where('product_id', $newest_product->id)->first();
@@ -38,12 +33,23 @@
 
 							<div class="product-body">
 								@php
-									//Get price of product in sale
-									$sale_percentage = $product_in_sale->sale;
-									$price_off = $newest_product->price / 100 * 20;
-									$new_price = $newest_product->price - $price_off;
+
+									$product_in_sale = App\Sale::where('product_id', $newest_product->id)->first();
+
+									$new_price = null;
+									if($product_in_sale != null) {
+
+										//Get price of product in sale
+										$sale_percentage = $newest_product->sale;
+										$price_off = ceil($newest_product->price / 100 * 20, 2);
+										$new_price = $newest_product->price - $price_off;
+									}
 								@endphp
-								<h3 class="product-price">&euro;{{$new_price}}</h3>
+								@if($new_price != null)
+									<h3 class="product-price">&euro;{{$new_price}}</h3>
+								@else
+									<h3 class="product-price">&euro;{{$newest_product->price}}</h3>
+								@endif
 								<div class="product-rating">
 									@php
 										// Get Reviews for Product
@@ -64,22 +70,33 @@
 
 										$rating = 5;
 
-										$star_rating = ceil($star_rating / $reviews_count);
+										if($reviews_count > 0) {
+											$star_rating = ceil($star_rating / $reviews_count);
+											$rating -= $star_rating;
+										} else {
+											$rating = 0;
+										}
 
-										$rating -= $star_rating;
 									@endphp
-									@for ($i = 1; $i <= $star_rating; $i++)
-										<i class="fa fa-star"></i>
-									@endfor
-									@if ($rating <= 4)
-										@for ($i = 1; $i < $rating; $i++)
+									@if($rating > 0)
+										@for ($i = 1; $i <= $star_rating; $i++)
+											<i class="fa fa-star"></i>
+										@endfor
+										@if ($rating <= 4)
+											@for ($i = 1; $i < $rating; $i++)
+												<i class="fa fa-star-o empty"></i>
+											@endfor
+										@endif
+									@else
+										@for ($i = 1; $i <= 5; $i++)
 											<i class="fa fa-star-o empty"></i>
 										@endfor
 									@endif
 								</div>
-								<h2 class="product-name"><a href="{{ url('/product/'. $newest_product->id )}}">{{ $newest_product->product_name }}</a></h2>
+								<h2 class="product-name">{{ $newest_product->product_name }}</h2>
 								<div class="product-btns">
-									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+									<a href="{{ url('/product/'. $newest_product->id )}}"><button class="primary-btn add-to-cart">Meer Info...</button></a>
+									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>Voeg Toe</button>
 								</div>
 							</div>
 						</div>
