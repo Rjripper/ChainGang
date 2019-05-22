@@ -19,5 +19,40 @@ class BrandTableSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        DB::table('brands')->insert([
+            'title' => 'Union',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('brands')->insert([
+            'title' => 'Batavus',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('brands')->insert([
+            'title' => 'Sparta',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('brands')->insert([
+            'title' => 'Giant',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('brands')->insert([
+            'title' => 'Peugeot',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 }
