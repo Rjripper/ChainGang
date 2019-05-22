@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// route naar de index 
 
 Auth::routes();
 
@@ -31,8 +30,6 @@ Route::middleware(['auth'])->group(function(){
 /**
  *  Standard Routes
  */
-Route::get('/betalen', 'HomeController@checkout');
-Route::get('/winkelwagen', 'HomeController@cart');
 Route::get('/faq', 'HomeController@faq');
 Route::get('/shipping-retour', 'HomeController@shippingAndReturn');
 Route::get('/overons', 'HomeController@about');
@@ -42,16 +39,21 @@ Route::get('/contact', 'HomeController@contact');
 /**
  *  Products Routes -> Get, Post, Patch
  */
-Route::get('/producten', 'ProductsController@index');
+Route::get('/producten', 'ProductController@index');
 Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
 Route::get('/product/{product}', 'ProductController@show');
 
 
 /**
- *  Product add cart
+ * Cart Routes -> Get, Post, Patch + Checkout
  */
+Route::get('/betalen', 'HomeController@checkout'); // -> Checkout
+Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
+
 Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
 Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
+
+
 
 
 //========= ADMIN ==========//
