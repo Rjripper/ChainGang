@@ -11,4 +11,8 @@ class OrderItem extends Model
         'amount', 'created_at', 'updated_at', 'deleted_at'
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
