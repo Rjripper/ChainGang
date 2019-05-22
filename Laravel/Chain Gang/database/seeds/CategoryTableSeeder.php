@@ -15,10 +15,21 @@ class CategoryTableSeeder extends Seeder
     {
         //
         DB::table('categories')->insert([
-            'title' => 'Fietsje',
+            'title' => 'Mannen',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('categories')->insert([
+            'title' => 'Vrouwen',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('categories')->insert([
+            'title' => 'Kinderen',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
     }

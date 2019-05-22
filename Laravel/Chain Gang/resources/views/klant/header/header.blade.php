@@ -15,8 +15,7 @@
 						<!-- Search -->
 						<div class="header-search">
 							<form>
-								<input class="input search-input" type="text" placeholder="Enter your keyword">
-								
+								<input class="input" type="text" placeholder="Enter your keyword">
 								<button class="search-btn"><i class="fa fa-search"></i></button>
 							</form>
 						</div>
@@ -30,14 +29,14 @@
 									<div class="header-btns-icon">
 										<i class="fa fa-user-o"></i>
 									</div>
-									<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+									<strong class="text-uppercase">Mijn Account <i class="fa fa-caret-down"></i></strong>
 								</div>
-								<a href="{{ url('/login') }}" class="text-uppercase">Login</a> / <a href="{{ url('/registreer') }}" class="text-uppercase">Join</a>
+								<a href="{{ url('/login') }}" class="text-uppercase">Login</a> / <a href="{{ url('/register') }}" class="text-uppercase">Aanmelden</a>
 								<ul class="custom-menu">
-									<li><a href="{{ url('/my-account') }}"><i class="fa fa-user-o"></i> My Account</a></li>
-									<li><a href="{{ url('/checkout') }}"><i class="fa fa-check"></i> Checkout</a></li>
+									<li><a href="{{ url('/account/gegevens') }}"><i class="fa fa-user-o"></i> Mijn Account</a></li>
+									<li><a href="{{ url('/betalen') }}"><i class="fa fa-check"></i> Checkout</a></li>
 									<li><a href="{{ url('/login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
-									<li><a href="{{ url('/registreer') }}"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+									<li><a href="{{ url('/register') }}"><i class="fa fa-user-plus"></i> Aanmelden</a></li>
 								</ul>
 							</li>
 							<!-- /Account -->
@@ -49,7 +48,7 @@
 										<i class="fa fa-shopping-cart"></i>
 										<span class="qty">3</span>
 									</div>
-									<strong class="text-uppercase">My Cart:</strong>
+									<strong class="text-uppercase">Winkelwagen:</strong>
 									<br>
 									<span>35.20$</span>
 								</a>
@@ -78,8 +77,8 @@
 											</div>
 										</div>
 										<div class="shopping-cart-btns">
-											<button class="main-btn">View Cart</button>
-											<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+											<a href="{{ url('/winkelwagen') }}"><button class="main-btn">Winkelwagen</button></a>
+											<a href="{{ url('/betalen') }}"><button class="primary-btn">Betalen <i class="fa fa-arrow-circle-right"></i></button></a>
 										</div>
 									</div>
 								</div>

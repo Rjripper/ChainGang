@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <input class="input main-btn" type="submit" name="login" value="Inloggen">
                                     </div>
-                                    Heb je nog geen account? <a href="{{url('/registreer')}}">Registreer hier</a>
+                                    Heb je nog geen account? <a href="{{url('/register')}}">Registreer hier</a>
                                  {{-- end form login --}}
                                 </form>
                             </div>
