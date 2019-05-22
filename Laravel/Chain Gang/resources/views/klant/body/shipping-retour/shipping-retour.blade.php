@@ -47,10 +47,10 @@
                                         Ons beleid is dat u binnen 15 dagen producten retour kunt sturen zonder opgaaf van reden. Als de 15 dagen voor bij zijn kunnen wij uw retour helaas niet meer aannemen<br>
                                         Om in aanmerking te komen voor het ontvangen van een vervangend product of uw geld retour, moet het product in orginele en ongeopende verpakking aan ons retour gestuurd worden.<br>
                                         <strong> producten die niet in aanmerking komen voor retour</strong>
-                                        <ul>
-                                            <li><strong>*</strong> Cadobonnen kunnen niet geruild worden en kunnen wij ook geen geld voor terug geven.</li>
-                                            <li><strong>*</strong> Kapotte producten die niet door transportschade stuk zijn gegaan, kunnen wij niet terug in ontvangst nemen</li>
-                                            <li><strong>*</strong> Producten die retour gestuurd worden na de 15 dagen na ontvangst</li>
+                                        <ul style="padding:20px;">
+                                            <li>Cadobonnen kunnen niet geruild worden en kunnen wij ook geen geld voor terug geven.</li>
+                                            <li>Kapotte producten die niet door transportschade stuk zijn gegaan, kunnen wij niet terug in ontvangst nemen</li>
+                                            <li>Producten die retour gestuurd worden na de 15 dagen na ontvangst</li>
                                         </ul>
                                     </p>
 

@@ -37,13 +37,15 @@
                                     <strong> Mijn betaling is mislukt, hoe kan ik alsnog betalen? </strong>
                                     <p>
                                             indien uw iDeal-, creditcard-, of PayPal-betaling niet goed is gegaan kunt u de betaling via uw account alsnog voldoen. Volg hiervoor de onderstaande stappen.<br>
-                                            <ul>
-                                                <li>&nbsp;&nbsp;&nbsp;&nbsp;* Log in</li>
-                                                <li>&nbsp;&nbsp;&nbsp;&nbsp;* Navigeer naar 'Orders'<li>
-                                                <li>&nbsp;&nbsp;&nbsp;&nbsp;* Selecteer de juiste order</li>
-                                                <li>&nbsp;&nbsp;&nbsp;&nbsp;* Klik op de link bij 'Betaalwijze'</li>
-                                                <li>&nbsp;&nbsp;&nbsp;&nbsp;* U kunt nu de betaling alsnog voldoen via de bekende beveiligde omgeving</li>
-                                            </ul>
+                                            {{-- <div class="card" style="width:50%"> --}}
+                                                <ul style="padding:20px;">
+                                                    <li>Log in</li>
+                                                    <li>Navigeer naar 'Orders'<li>
+                                                    <li>Selecteer de juiste order</li>
+                                                    <li>Klik op de link bij 'Betaalwijze'</li>
+                                                    <li>U kunt nu de betaling alsnog voldoen via de bekende beveiligde omgeving</li>
+                                                </ul>
+                                            {{-- </div> --}}
                                             Wilt u uw betaling op een andere manier voldoen? Neem dan contact met ons op en wij zorgen dat de betalingsmethode wordt aangepast.
                                     </p>
                         {{-- end col --}}
