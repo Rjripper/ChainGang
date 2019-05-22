@@ -22,7 +22,13 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function(){
     Route::get('/account/overzicht', 'CustomerController@index');
     Route::get('/account/bestellingen', 'CustomerController@orders');
+    // Route::post('/review/create/{product}', 'ReviewController@store');
+    
 });
+
+// DIT MOET NOG IN DE AUTH MAAR OMDAT DE AUTH NOG NIET KLAAR IS
+// NOG NIET MET AUTH
+Route::post('/review/create/{product}', 'ReviewController@store');
 
 
 /**

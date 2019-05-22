@@ -36,55 +36,42 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="product-reviews">
-                     
+                        @php
+                         @endphp
                         {{-- Review loop --}}
                             @foreach ($reviews as $review)                           
                                 <div class="single-review">
                                     <div class="review-heading">
-                                    <div><a href="#"><i class="fa fa-user-o"></i> {{ $review->customer->first_name}}</a></div>
+                                    <div><a href="#"><i class="fa fa-user-o"></i> {{$review->customer->first_name}}</a></div>
                                         <div><a href="#"><i class="fa fa-clock-o"></i>{{ $review->created_at}}</a></div>
                                         <div class="review-rating pull-right">
-                                                @php
-                                                // Get Reviews for Product
-                                                // Count how many reviews there are
-                                                // Add the amount of rating
-                                                // Divide Rating by amount of reviews
-                                                // Count ratings up
-                                                // For int amount of ratings, create fa-star
-                                                // if less then or is 4 then create fa-star-o empty
-                                                $reviews = App\Review::where('product_id', $product->id)->where('deleted_at', null)->get();
-                                                $reviews_count = $reviews->count();
-        
-                                                $star_rating = 1;
-        
-                                                foreach ($reviews as $review) {
-                                                    $star_rating += $review->rating;
+                                            @php
+                                            $MAX_RATING = 5;
+    
+                                            $reviews = App\Review::where('product_id', $product->id)->get();
+                                            $reviews_count = $reviews->count();
+    
+                                            $reviews_amount_added = null;
+                                            if($reviews->count() > 0) {
+                                                foreach($reviews as $review) {
+                                                    $reviews_amount_added += $review->rating;
                                                 }
-        
-                                                $rating = 5;
-        
-                                                if($reviews_count > 0) {
-                                                    $star_rating = ceil($star_rating / $reviews_count);
-                                                    $rating -= $star_rating;
-                                                } else {
-                                                    $rating = 0;
+                                                if($reviews_amount_added > 0) {
+                                                    $review_average = ceil($reviews_amount_added / $reviews_count);
+                                                    $uncolored_review = $MAX_RATING - $review_average;
                                                 }
-        
-                                            @endphp
-                                            @if($rating > 0)
-                                                @for ($i = 1; $i <= $star_rating; $i++)
-                                                    <i class="fa fa-star"></i>
-                                                @endfor
-                                                @if ($rating <= 4)
-                                                    @for ($i = 1; $i < $rating; $i++)
-                                                        <i class="fa fa-star-o empty"></i>
-                                                    @endfor
-                                                @endif
-                                            @else
-                                                @for ($i = 1; $i <= 5; $i++)
-                                                    <i class="fa fa-star-o empty"></i>
-                                                @endfor
-                                            @endif
+                                            } else {
+                                                $review_average = 0;
+                                                $uncolored_review = 5;
+                                            }
+    
+                                        @endphp
+                                        @for ($i = 1; $i <= $review_average; $i++)
+                                            <i class="fa fa-star"></i>
+                                        @endfor
+                                        @for ($i = 1; $i <= $uncolored_review; $i++)
+                                            <i class="fa fa-star-o empty"></i>
+                                        @endfor
                                         </div>
                                     </div>
                                     <div class="review-body">
@@ -102,16 +89,13 @@
                     <h4 class="text-uppercase">Write Your Review</h4>
                     <p>Your email address will not be published.</p>
                     {{-- review form --}}
-                    <form class="review-form">
+                    <form action="{{ url('/review/create/'. $product->id) }} "method="POST" enctype="multipart/form-data" class="review-form">
                         @csrf
                         <div class="form-group">
-                            <input class="input" type="text" placeholder="Your Name" />
+                            <input class="input" name="title" id="title" type="text" placeholder="Title" />
                         </div>
                         <div class="form-group">
-                            <input class="input" type="email" placeholder="Email Address" />
-                        </div>
-                        <div class="form-group">
-                            <textarea class="input" placeholder="Your review"></textarea>
+                            <textarea class="input" name="message"  id="message" placeholder="Your review"></textarea>
                         </div>
                         <div class="form-group">
                             <div class="input-rating">

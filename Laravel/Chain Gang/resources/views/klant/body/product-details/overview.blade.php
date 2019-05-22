@@ -1,6 +1,4 @@
-@extends('klant.index')
 
-@section('body')
 <div class="product-body">
     <div class="product-label">
         <span>New</span>
@@ -58,4 +56,3 @@
         </div>
     </div>
 </div>
-@endsection

@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
             'address' => 'tirol',
             'zip_code' => '3838TI',
             'city' => 'Duutslan',
-            'email' => 'austirolgmail.com',
+            'email' => 'austirol@gmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'phonenumber' => '09000000',
             'password' => bcrypt('secret'),
