@@ -17,14 +17,8 @@
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('/', function () 
-{
-    return view('klant.body.home.home');
-})->name('home');
-
+Route::get('/', 'HomeController@index')->name('home');
 
 /**
  *  Customer Routes (Group -> Customers)
