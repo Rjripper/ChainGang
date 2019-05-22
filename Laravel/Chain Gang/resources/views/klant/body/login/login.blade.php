@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="form-group">
                                             <input class="input-checkbox" type="checkbox" name="login"> &nbsp; Onthoud mij &nbsp; 
-                                            <span class="text-right"><a href="{{url('/forgotPassword')}}">Wachtwoord vergeten?</a></span>
+                                            <span class="text-right"><a href="{{ route('forgot-password') }}">Wachtwoord vergeten?</a></span>
                                         </div>
                                     <div class="form-group">
                                         <input class="input main-btn" type="submit" name="login" value="Inloggen">

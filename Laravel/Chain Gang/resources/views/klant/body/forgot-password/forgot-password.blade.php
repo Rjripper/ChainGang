@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <input class="input main-btn" type="submit" name="request" value="Reset wachtwoord">
                                     </div>
-                                    heb je al een accoutn? <a href="{{url('/login')}}">Login</a>
+                                    heb je al een accoutn? <a href="{{ route('login')}}">Login</a>
                                  {{-- end form forgot-password --}}
                                 </form>
                             </div>

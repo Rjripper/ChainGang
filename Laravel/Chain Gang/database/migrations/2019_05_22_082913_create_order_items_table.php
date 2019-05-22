@@ -15,9 +15,9 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('amount');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-            $table->integer('amount');
         });
     }
 

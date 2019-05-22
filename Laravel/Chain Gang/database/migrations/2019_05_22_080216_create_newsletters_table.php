@@ -15,11 +15,11 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
             $table->string('title');
             $table->string('reference');
             $table->string('message');
+            $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

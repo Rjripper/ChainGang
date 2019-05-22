@@ -15,11 +15,11 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
-            $table->integer('rating',5);
+            $table->integer('rating', 5);
             $table->string('title');
             $table->string('message');
+            $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
         });
     }
 

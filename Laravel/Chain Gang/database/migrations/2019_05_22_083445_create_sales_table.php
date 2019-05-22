@@ -15,11 +15,11 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('sale');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-            $table->string('sale');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
         });
     }
 

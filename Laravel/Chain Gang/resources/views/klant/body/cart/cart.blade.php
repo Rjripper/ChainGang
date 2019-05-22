@@ -74,7 +74,7 @@
                         </table>
                         {{-- Einde inhoud van de winkelwagen --}}
                         <div class="pull-right">
-                            <button class="primary-btn"><a href="{{url('/checkout')}}">Plaats bestelling</a></button>
+                            <button class="primary-btn"><a href="{{url('/winkelwagen')}}">Plaats bestelling</a></button>
                         </div>
                     </div>
 
