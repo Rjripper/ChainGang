@@ -19,48 +19,65 @@
 			<!-- row -->
 			<div class="row">
 				{{-- Start checkout-form --}}
-				<form id="checkout-form" class="clearfix">
+				<form action="{{ url('/order/create') }}" id="checkout-form" class="clearfix" method="POST">
 					@csrf
 					<div class="col-md-6">
 						<div class="Adres gegevens">
-							<p>Bent u al klant ? <a href="#">Login</a></p>
+							@if(!Auth::check())
+								<p>Bent u al klant ? <a href="#">Login</a></p>
+								<div class="section-title">
+									<h3 class="title">Adres gegevens</h3>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="first-name" placeholder="Peter">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="last-name" placeholder="van Hagen">
+								</div>
+								<div class="form-group">
+									<input class="input" type="email" name="email" placeholder="petervh@google.com">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="address" placeholder="Aardappelstraat 23">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="city" placeholder="Amsterdam">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="zip-code" placeholder="1231 AA">
+								</div>
+								<div class="form-group">
+									<input class="input" type="tel" name="tel" placeholder="+31649372483">
+								</div>
+							@else
+							@php
+								$user = Auth::user();
+							@endphp
 							<div class="section-title">
 								<h3 class="title">Adres gegevens</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Voornaam">
+								<input class="input" type="text" name="first-name" value="{{ $user->first_name }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Achternaam">
+								<input class="input" type="text" name="last-name" value="{{ $user->last_name }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input class="input" type="email" name="email" value="{{ $user->email }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Adres">
+								<input class="input" type="text" name="address" value="{{ $user->address }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="Woonplaats">
+								<input class="input" type="text" name="city" value="{{ $user->city }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="country" placeholder="Land">
+								<input class="input" type="text" name="zip-code" value="{{ $user->zip_code }}">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="zip-code" placeholder="Postcode">
+								<input class="input" type="tel" name="tel" value="{{ $user->phonenumber }}">
 							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="Telefoon">
-							</div>
-							<div class="form-group">
-								<div class="input-checkbox">
-									<input type="checkbox" id="register">
-									<label class="font-weak" for="register">Account aanmaken?</label>
-									<div class="caption">
-                                        <p>Vul hieronder een wachtwoord voor uw account in.</p>
-                                        <input class="input" type="password" name="password" placeholder="Vul uw wachtwoord in">
-									</div>
-								</div>
-							</div>
+							@endif
 						</div>
 					</div>
 					{{-- verzend methoden --}}
@@ -71,32 +88,22 @@
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="shipping" id="shipping-1" checked>
-								<label for="shipping-1">Standaard verzending - €3.95</label>
+								<label for="shipping-1">Standaard verzending - Gratis</label>
 								<div class="caption">
 									<p>
-											Standaard verzenden wij onze bestellingen verzekerd via PostNL. Zodra wij je bestelling hebben ingepakt melden we je zending bij PostNL en krijg je een Track & Trace-code toegestuurd waarmee je je bestelling kunt volgen. De verzendkosten die wij in rekening brengen zijn in de regel € 3,95 voor standaardpakketten binnen Nederland. In sommige gevallen zoals palletzendingen verzenden wij via DHL, hier kunnen additionele kosten aan verbonden zijn.
+										Standaard verzenden wij onze bestellingen verzekerd via PostNL. Zodra wij je bestelling hebben ingepakt melden we je zending bij PostNL en krijg je een Track & Trace-code toegestuurd waarmee je je bestelling kunt volgen. De verzendkosten die wij in rekening brengen zijn in de regel € 3,95 voor standaardpakketten binnen Nederland. In sommige gevallen zoals palletzendingen verzenden wij via DHL, hier kunnen additionele kosten aan verbonden zijn.
                                     </p>
 								</div>
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="shipping" id="shipping-2">
-								<label for="shipping-2">Rembours - €15.00</label>
+								<label for="shipping-2">Ophalen - Gratis</label>
 								<div class="caption">
 									<p>
-											Bij verzending onder rembours betaal je het volledige factuurbedrag en de bijkomende rembourskosten via PIN aan de postbode. Bij orders met een waarde boven € 500,- zal de bestelling bezorgd worden bij een PostNL-locatie bij jou in de buurt. Houd er rekening mee dat rembourszendingen niet op zaterdagen geleverd worden en alleen mogelijk zijn voor afleveradressen binnen Nederland. Ook kan het voorkomen dat een rembourszending een dag later verzonden wordt. <br>
-											De bijkomende kosten bij een rembourszending zijn € 15,- per bestelling.
+											Bij Ophalen kun je de bestellingen ophalen bij onze vestiging. Graafschap College Doetinchem.
                                     </p>
 								</div>
 							</div>
-							<div class="input-checkbox">
-									<input type="radio" name="shipping" id="shipping-3">
-									<label for="shipping-2">Pakje gemak</label>
-									<div class="caption">
-										<p>
-											Wil je je bestelling afhalen bij een PakjeGemakpunt? Kies dan voor standaardverzending en selecteer als verzendadres een PakjeGemakpunt. Waar je je bestelling normaal thuisbezorgd krijgt, kun je deze met PakjeGemak afhalen op een van de vele afhaalpunten.
-										</p>
-									</div>
-								</div>
 						</div>
 						{{-- einde verzend methoden --}}
 
@@ -154,42 +161,112 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-										<td class="details">
-											<a href="#">Product naam komt hier</a>
-											<ul>
-												<li><span>Maat: XL</span></li>
-												<li><span>Kleur: Camelot</span></li>
-											</ul>
-										</td>
-										<td class="price text-center"><strong>€32.50</strong><br><del class="font-weak"><small>€40.00</small></del></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">€32.50</strong></td>
-										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<th class="empty" colspan="3"></th>
-										<th>SUBTOTAAL</th>
-										<th colspan="2" class="sub-total">$97.50</th>
-									</tr>
-									<tr>
-										<th class="empty" colspan="3"></th>
-										<th>VERZENDKOSTEN</th>
-										<td colspan="2">Free Shipping</td>
-									</tr>
-									<tr>
-										<th class="empty" colspan="3"></th>
-										<th>TOTAAL</th>
-										<th colspan="2" class="total">$97.50</th>
-									</tr>
-								</tfoot>
+                                @php
+                                    $products = array();
+
+                                    $cart_session = session('cart_session');
+                                    if($cart_session != null) {
+
+                                        //New
+                                        foreach ($cart_session as $key => $e) {
+                                            $product = App\Product::where('id', $key)->first();
+                                            $product->amount = $cart_session[$key]['amount'];
+                                            array_push($products, $product);
+                                        }
+                                    }
+
+                                    $total_amount = 0;
+
+                                @endphp
+                                {{-- Loop with Items in Cart --}}
+                                @if($products != null)
+                                    @if(count($products) > 0)
+                                        @foreach ($products as $product)
+                                            <tr>
+                                                @php
+                                                    //Get Image for product 
+                                                    $product_image = App\ProductImage::where('product_id', $product->id)->first();
+                                                @endphp
+                                                {{-- $product_image->image --}}
+                                                <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
+                                                <td class="details">
+                                                    <a href="{{ url('/product/' . $product->id) }}">{{ $product->product_name }}</a>
+                                                    <ul>
+                                                        <li><span>{{ $product->specifications }}</span></li>
+                                                    </ul>
+                                                </td>
+                                                @php
+                                                    //Check if product has a sale
+
+                                                    $sale = App\Sale::where('product_id', $product->id)->first();
+
+                                                    if($sale != null) {
+
+                                                        $sale_percentage = $sale->sale;
+                                                        $price_off = round($product->price / 100 * 20, 2);
+                                                        $new_price = $product->price - $price_off;
+                                                    }
+                                                @endphp
+                                                @if($sale != null)
+                                                    <td class="price text-center"><strong>&euro;{{$new_price}}</strong>
+                                                        <br>
+                                                        <del class="font-weak"><small>&euro;{{$product->price}}</small></del>
+                                                    </td>
+                                                @else
+                                                    <td class="price text-center"><strong>&euro;{{$product->price}}</strong></td>
+                                                @endif
+
+                                                {{-- Calculate with jQuery --}}
+                                                <td class="qty text-center"><input class="input" type="number" value="{{ $product->amount }}"></td>
+                                                @if($sale != null)
+                                                    <td class="total text-center"><strong class="primary-color">&euro;{{round($product->amount * $new_price, 2)}}</strong></td>
+                                                    @php
+                                                        $total_amount += round($product->amount * $new_price, 2);
+                                                    @endphp
+                                                @else
+                                                    <td class="total text-center"><strong class="primary-color">&euro;{{round($product->amount * $product->price, 2)}}</strong></td>
+                                                    @php
+                                                        $total_amount += round($product->amount * $product->price, 2);
+                                                    @endphp
+                                                @endif
+                                                <td class="text-right">
+                                                    <button onclick="removeItemFromCart(this.getAttribute('data-id'))" data-id="{{ $product->id }}" class="main-btn icon-btn"><i class="fa fa-close"></i></button>
+                                                </td>
+                                            </tr>
+                                            @endforeach  
+                                        @endif
+                                    @endif
+                                {{-- Loop with Items in Cart --}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>SUBTOTAAL</th>
+                                    @if($total_amount != null)
+                                        <th colspan="2" class="sub-total">&euro;{{$total_amount}}</th>
+                                    @else
+                                        <th colspan="2" class="sub-total">&euro;00.00</th>
+                                    @endif
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>VERZENDKOSTEN</th>
+                                    <td colspan="2">Gratis Verzending</td>
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>TOTAAL</th>
+                                    @if($total_amount != null)
+                                        <th colspan="2" class="total">&euro;{{$total_amount}}</th>
+                                    @else
+                                        <th colspan="2" class="total">&euro;00.00</th>
+                                    @endif
+                                </tr>
+                            </tfoot>
 							</table>
 							{{-- Einde inhoud van de winkelwagen --}}
 							<div class="pull-right">
-								<button class="primary-btn">Plaats bestelling</button>
+								<button type="submit" class="primary-btn">Plaats bestelling</button>
 							</div>
 						</div>
 
@@ -201,5 +278,30 @@
 		</div>
 		<!-- /container -->
 	</div>
+	<script>
+		function removeItemFromCart(product_id) {
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		
+			var form_data = new FormData();
+			form_data.append('_method', 'POST');
+			form_data.append('_token', CSRF_TOKEN);
+		
+			event.preventDefault();
+		
+			$.ajax({
+				url: '/product/remove/cart/' + product_id,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				type: 'post',
+				success: function(data) {
+					console.log(data.cart_session);
+					location.reload();
+				}
+			});
+		}
+	</script>
 	<!-- /section -->
 	@endsection

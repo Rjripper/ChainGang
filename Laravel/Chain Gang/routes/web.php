@@ -27,6 +27,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function(){
     Route::get('/account/overzicht', 'CustomerController@index');
     Route::get('/account/bestellingen', 'CustomerController@orders');
+
+    /**
+     * Order Routes -> Get, Post, Patch
+     */
+    Route::post('/order/create', 'CheckoutController@store');
 });
 
 
@@ -59,7 +64,9 @@ Route::get('/betalen', 'HomeController@checkout'); // -> Checkout
 Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
 
 Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
-Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
+Route::post('/product/remove/cart/{product}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
+
+
 
 
 

@@ -115,7 +115,7 @@ function addItemToCart(product_id) {
         data: form_data,
         type: 'post',
 		success: function(data) {
-			console.log(data.user_cart);
+			console.log(data.cart_session);
 		}
 	});
 }

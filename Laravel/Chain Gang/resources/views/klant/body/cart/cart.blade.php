@@ -39,104 +39,106 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- Loop with Items in Cart --}}
-
-                                {{-- Get from Session or storage, cookie, json file, with amount and product-Id, in order to get data from DB --}}
                                 @php
-                                    // Get Session Storage
-                                    // Get json and get product id
-                                    // get Data from product from the id
-                                    // Put Data etc
-                                    // Amount of products in json set them.
-                                    // Calculate prices
+                                    $products = array();
 
+                                    $cart_session = session('cart_session');
+                                    if($cart_session != null) {
 
-                                    //Json obj
-                                    // 0: {
-                                    //     product_id: 2,
-                                    // }
-
-                                    // Retrieve a piece of data from the session...
-                                    $cart_items = session('cart');
-
-                                    //Check if cart session isn't empty
-                                    if($cart_items != null) {
-                                        $product_ids = [];
-
-                                        //Add the product ids needed to the array
-                                        foreach ($cart_items as $cart_item) {
-                                            array_push($product_ids, $cart_item->product_id);
-                                        }
-
-                                        //Get real time database data about the product and fill in
-                                        $products = null;
-
-                                        foreach ($product_ids as $id) {
-                                            $product = App\Product::where('id', $id)->first();
-                                            $products->push($product);
+                                        //New
+                                        foreach ($cart_session as $key => $e) {
+                                            $product = App\Product::where('id', $key)->first();
+                                            $product->amount = $cart_session[$key]['amount'];
+                                            array_push($products, $product);
                                         }
                                     }
+
+                                    $total_amount = 0;
+
                                 @endphp
-                                <tr>
-                                    @if($products->count() > 0)
+                                {{-- Loop with Items in Cart --}}
+                                @if($products != null)
+                                    @if(count($products) > 0)
                                         @foreach ($products as $product)
-                                            @php
-                                                //Get Image for product 
-                                                $product_image = App\ProductImage::where('product_id', $product->id)->first();
-                                            @endphp
-                                            {{-- $product_image->image --}}
-                                            <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-                                            <td class="details">
-                                                <a href="{{ url('/product/' . $product->id) }}">{{ $product->product_name }}</a>
-                                                <ul>
-                                                    <li><span>{{ $product->specifications }}</span></li>
-                                                </ul>
-                                            </td>
-                                            @php
-                                                //Check if product has a sale
-
-                                                $sale = Sale::where('product_id', $product->id)->first();
-
-                                                if($sale != null) {
-
-                                                    $sale_percentage = $sale->sale;
-                                                    $price_off = $product->price / 100 * 20;
-                                                    $new_price = $product->price - $price_off;
-                                                }
-                                            @endphp
-                                            @if($sale != null)
-                                                <td class="price text-center"><strong>&euro;{{$new_price}}</strong>
-                                                    <br>
-                                                    <del class="font-weak"><small>&euro;{{$product->price}}</small></del>
+                                            <tr>
+                                                @php
+                                                    //Get Image for product 
+                                                    $product_image = App\ProductImage::where('product_id', $product->id)->first();
+                                                @endphp
+                                                {{-- $product_image->image --}}
+                                                <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
+                                                <td class="details">
+                                                    <a href="{{ url('/product/' . $product->id) }}">{{ $product->product_name }}</a>
+                                                    <ul>
+                                                        <li><span>{{ $product->specifications }}</span></li>
+                                                    </ul>
                                                 </td>
-                                            @else
-                                                <td class="price text-center"><strong>&euro;{{$product->price}}</strong></td>
-                                            @endif
+                                                @php
+                                                    //Check if product has a sale
 
-                                            {{-- Calculate with jQuery --}}
-                                            <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                            <td class="total text-center"><strong class="primary-color">€32.50</strong></td>
-                                            <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-                                        @endforeach  
+                                                    $sale = App\Sale::where('product_id', $product->id)->first();
+
+                                                    if($sale != null) {
+
+                                                        $sale_percentage = $sale->sale;
+                                                        $price_off = round($product->price / 100 * 20, 2);
+                                                        $new_price = $product->price - $price_off;
+                                                    }
+                                                @endphp
+                                                @if($sale != null)
+                                                    <td class="price text-center"><strong>&euro;{{$new_price}}</strong>
+                                                        <br>
+                                                        <del class="font-weak"><small>&euro;{{$product->price}}</small></del>
+                                                    </td>
+                                                @else
+                                                    <td class="price text-center"><strong>&euro;{{$product->price}}</strong></td>
+                                                @endif
+
+                                                {{-- Calculate with jQuery --}}
+                                                <td class="qty text-center"><input class="input" type="number" value="{{ $product->amount }}"></td>
+                                                @if($sale != null)
+                                                    <td class="total text-center"><strong class="primary-color">&euro;{{round($product->amount * $new_price, 2)}}</strong></td>
+                                                    @php
+                                                        $total_amount += round($product->amount * $new_price, 2);
+                                                    @endphp
+                                                @else
+                                                    <td class="total text-center"><strong class="primary-color">&euro;{{round($product->amount * $product->price, 2)}}</strong></td>
+                                                    @php
+                                                        $total_amount += round($product->amount * $product->price, 2);
+                                                    @endphp
+                                                @endif
+                                                <td class="text-right">
+                                                    <button onclick="removeItemFromCart(this.getAttribute('data-id'))" data-id="{{ $product->id }}" class="main-btn icon-btn"><i class="fa fa-close"></i></button>
+                                                </td>
+                                            </tr>
+                                            @endforeach  
+                                        @endif
                                     @endif
-                                </tr>
                                 {{-- Loop with Items in Cart --}}
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>SUBTOTAAL</th>
-                                    <th colspan="2" class="sub-total">$97.50</th>
+                                    @if($total_amount != null)
+                                        <th colspan="2" class="sub-total">&euro;{{$total_amount}}</th>
+                                    @else
+                                        <th colspan="2" class="sub-total">&euro;00.00</th>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>VERZENDKOSTEN</th>
-                                    <td colspan="2">Free Shipping</td>
+                                    <td colspan="2">Gratis Verzending</td>
                                 </tr>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>TOTAAL</th>
-                                    <th colspan="2" class="total">$97.50</th>
+                                    @if($total_amount != null)
+                                        <th colspan="2" class="total">&euro;{{$total_amount}}</th>
+                                    @else
+                                        <th colspan="2" class="total">&euro;00.00</th>
+                                    @endif
                                 </tr>
                             </tfoot>
                         </table>
@@ -145,8 +147,8 @@
                             <button class="primary-btn"><a href="{{url('/betalen')}}">Plaats bestelling</a></button>
                         </div>
                     </div>
-
                 </div>
+
             </form>
             {{-- Einde checkout-form --}}
         </div>
@@ -154,5 +156,30 @@
     </div>
     <!-- /container -->
 </div>
+<script>
+    function removeItemFromCart(product_id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+        var form_data = new FormData();
+        form_data.append('_method', 'POST');
+        form_data.append('_token', CSRF_TOKEN);
+    
+        event.preventDefault();
+    
+        $.ajax({
+            url: '/product/remove/cart/' + product_id,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(data) {
+                console.log(data.cart_session);
+                location.reload();
+            }
+        });
+    }
+</script>
 <!-- /section -->
 @endsection
