@@ -14,7 +14,7 @@
             <li><span class="text-uppercase">Size:</span></li>
             <li><a href="#">X</a></li>
             <li><a href="#">XL</a></li>
-        </ul>
+        </ul> 
 
         <ul class="filter-list">
             <li><span class="text-uppercase">Price:</span></li>
@@ -38,13 +38,23 @@
             <div class="noUi-base">
                 <div class="noUi-origin" style="left: 0%;">
                     <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="1.00$" style="z-index: 5;">
-                        <div class="noUi-tooltip">€1.00</div>
+                        {{-- <div class="noUi-tooltip">€1.00</div> --}}
+                        <div class="noUi-tooltip">
+                            {{-- @foreach ($pricesAsc as $priceAsc)
+                                {{ $priceAsc->price }}      
+                            @endforeach --}}
+                        </div>
                     </div>
                 </div>
                 <div class="noUi-connect" style="left: 0%; right: 0%;"></div>
                 <div class="noUi-origin" style="left: 100%;">
                     <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="999.00$" style="z-index: 4;">
-                        <div class="noUi-tooltip">€9999.00</div>
+                        {{-- <div class="noUi-tooltip">€9999.00</div> --}}
+                        <div class="noUi-tooltip">
+                            {{-- @foreach ($pricesDesc as $priceDesc)
+                                {{ $priceDesc->price }}
+                            @endforeach --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +107,7 @@
         <h3 class="aside-title">Filter op merk</h3>
         <ul class="list-links">
             @foreach ($brands as $brand)
-                <li><a href="{{url('/producten', $brand->id)}}">{{$brand->title}}</a></li>
+                <li><a href="{{url('/producten/merk', $brand->id)}}">{{$brand->title}}</a></li>
             @endforeach
             {{-- <li><a href="#">Nike</a></li>
             <li><a href="#">Adidas</a></li>
@@ -132,7 +142,7 @@
         <h3 class="aside-title">Filter op type</h3>
         <ul class="list-links">
             @foreach ($types as $type)
-                <li><a href="#">{{ $type->title }}</a></li>    
+                <li><a href="{{url('/producten/type', $type->id)}}">{{ $type->title }}</a></li>    
             @endforeach
         </ul>
     </div>

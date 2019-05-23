@@ -30,10 +30,13 @@ class ProductController extends Controller
         // get all types
         $types = Type::orderBy('title', 'asc')->get();
 
-        // Get products by brand
-        Product::where('brand_id',2)->paginate(3);
+        //get prices lowest and min
+        // $pricesAsc = Product::orderBy('price')->first()->get();
+        // $pricesDesc = Product::max('price');
 
-        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
+        
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types', 'pricesAsc', 'pricesDesc'));
     }
 
     public function show(Request $request, Product $product)
@@ -44,12 +47,30 @@ class ProductController extends Controller
         return view('klant.body.product-details.details', compact('product'));
     }
 
-    public function category($id)
+    public function indexWithCategory(Category $category)
     {
         // Get the categories by id
-        // Return the vieuw with only the selected categories
-        $categories = Category::where('id', $id);
+        // Return the vieuw with only the selected categorie
+        $products = Product::where('category_id', $category->id)->paginate(9);
 
-        return view('klant.body.products.products', compact('categories'));
+        return view('klant.body.products.products', compact('products'));
+    }
+
+    public function indexWithBrand(Brand $brand)
+    {
+        // Get the brand by id
+        // Rerturn the view with only the selected brand
+        $products = Product::where('brand_id', $brand->id)->paginate(9);
+
+        return view('klant.body.products.products', compact('products'));
+    }
+
+    public function indexWithType(Type $type)
+    {
+        // Get the type by id
+        // Return the view with only the selected type
+        $products = Product::where('type_id', $type->id)->paginate(9);
+
+        return view('klant.body.products.products', compact('products'));
     }
 }
