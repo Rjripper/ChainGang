@@ -28,7 +28,11 @@
 							<div class="product-thumb">
 								<a href="{{ url('/product/' . $newest_product->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
 								{{-- $newest_product_image->image --}}
-								<img src="{{ asset('images/initial/images/product01.jpg') }}" alt="">
+								@if($newest_product_image != null)
+									<img src="{{ asset($newest_product_image->image) }}" alt="">
+								@else
+									<img src="{{ asset('images/products/default.jpg') }}" alt="">
+								@endif
 							</div>
 
 							<div class="product-body">

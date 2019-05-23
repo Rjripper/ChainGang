@@ -29,7 +29,11 @@
 							<div class="product-thumb">
 								<a href="{{ url('/product/' . $product_in_sale->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
 								{{-- $product_to_show_image->image --}}
-								<img src="{{ asset('images/initial/images/product01.jpg') }}" alt="">
+								@if($product_to_show_image != null)
+									<img src="{{ asset($product_to_show_image->image) }}" alt="">
+								@else
+									<img src="{{ asset('images/products/default.jpg') }}" alt="">
+								@endif
 							</div>
 							<div class="product-body">
 								@php
