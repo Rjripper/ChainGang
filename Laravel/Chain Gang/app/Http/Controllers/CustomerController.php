@@ -80,10 +80,10 @@ class CustomerController extends Controller
             if($request->confirm_password == $request->new_password && $request->confirm_password != "" && $request->new_password != "" ){
                 $user->password = Hash::make(request('new_password'));
             } else {
-                return redirect()->back()->with('error', 'Foutief wachtwoord!');
+                return redirect()->back()->with('error', 'Vul een geldig wachtwoord in!');
             }
         }else{
-            return redirect()->back()->with('error', 'Foutief wachtwoord!');
+            return redirect()->back()->with('error', 'Er is iets fout gegaan, probeer opnieuw.');
         }
 
         // if ( Hash::make($request->new_password) == Auth::user()->password) {

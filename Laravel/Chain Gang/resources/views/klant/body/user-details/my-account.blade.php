@@ -87,10 +87,10 @@
                     <div class="alert alert-success" style="text-align: center;">
                         {{ session('alert') }}
                     </div>
-                    
-                    @else
-                    <div class="alert alert-error" style="text-align: center;">
-                        {{ session('alert') }}
+                    @endif                    
+                    @if(session('error'))
+                    <div class="alert alert-danger" style="text-align: center;">
+                        {{ session('error') }}
                     </div>
                     @endif
                     {{-- Einde klant form --}}
