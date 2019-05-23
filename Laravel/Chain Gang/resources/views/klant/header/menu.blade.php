@@ -11,7 +11,7 @@
 							$categories = App\Category::all();
 						@endphp
 						@foreach ($categories as $category)
-							<li><a href="{{ url('/category/' . $category->id ) }}">{{ $category->title }}</a></li>
+							<li><a href="{{ url('/producten/categorie/' . $category->id ) }}">{{ $category->title }}</a></li>
 						@endforeach
 					</ul>
 				</div>
