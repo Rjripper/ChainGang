@@ -74,12 +74,12 @@
                 <div class="col-md-6 col-sm-12 col-xs-12 text-center">
                     <h3 class="title">Blijf op de hoogte</h3>
                     <p>Dit is de nieuwsbrief, die moet nog ergens anders naar toe!!</p>
-                    <form>
+                    <form action="{{ url('/newsletter/signup') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <input class="input nieuwsbrief-form" placeholder="Vul e-mail adres in">
+                            <input class="input nieuwsbrief-form" name="email" placeholder="Vul e-mail adres in">
                         </div>
-                        <button class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
+                        <button type="submit" class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
                     </form>
                 </div>
                 <div class="col-sm-0 col-xs-0 col-md-3"></div>

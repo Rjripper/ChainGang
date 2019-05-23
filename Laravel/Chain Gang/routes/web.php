@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +12,11 @@
 |
 */
 
-Auth::routes();
+/*
+        Auth 
+*/
+
+Auth::routes(['verify' => true]);
 
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -22,6 +27,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function(){
     Route::get('/account/overzicht', 'CustomerController@index');
     Route::get('/account/bestellingen', 'CustomerController@orders');
+
+    /**
+     * Order Routes -> Get, Post, Patch
+     */
+    Route::post('/order/create', 'CheckoutController@store');
 });
 
 
@@ -42,7 +52,12 @@ Route::get('/producten/categorie/{category}', 'ProductController@indexWithCatego
 Route::get('/producten/merk/{brand}', 'ProductController@indexWithBrand');
 Route::get('/producten/type/{type}', 'ProductController@indexWithType');
 Route::get('/product/{product}', 'ProductController@show');
+Route::get('/producten/zoeken', 'ProductController@search');
 
+/**
+ *  Products order
+*/
+//Route::get('/producten/sort', 'ProductController@sort');
 
 /**
  * Cart Routes -> Get, Post, Patch + Checkout
@@ -51,8 +66,18 @@ Route::get('/betalen', 'HomeController@checkout'); // -> Checkout
 Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
 
 Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
-Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
+Route::post('/product/remove/cart/{product}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
 
+/**
+ * NewsLetter Signup
+ */
+Route::post('/newsletter/signup', 'NewsletterController@signUp');
+
+
+/**
+ * Contact Us Form
+ */
+Route::post('/contact/send', 'SendContactEmailController@send');
 
 
 

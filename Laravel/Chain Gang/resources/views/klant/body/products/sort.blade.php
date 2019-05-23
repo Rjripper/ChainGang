@@ -1,31 +1,52 @@
 <div class="store-filter clearfix">
-    <div class="pull-left">
-        <div class="row-filter">
-            <a href="#"><i class="fa fa-th-large"></i></a>
-            <a href="#" class="active"><i class="fa fa-bars"></i></a>
-        </div>
+    <div class="pull-left">        
         <div class="sort-filter">
-            <span class="text-uppercase">Sort By:</span>
-            <select class="input">
-                <option value="0">Position</option>
-                <option value="0">Price</option>
-                <option value="0">Rating</option>
-            </select>
-            <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+            <span class="text-uppercase">Sorteren op:</span>
+            <form method="GET" action="/producten">
+                <select class="input" name="sort" style="width:150px;" onchange="sortAndOrder()">
+                    <option class="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
+                    <option value="price" id="price">Prijs</option>
+                    <option value="product_name" id="product_name">Naam</option>
+                </select>
+                <input type="hidden" name="order_by" value="{{ Request::get('order_by') !== null && Request::get('order_by') == 'asc' ? 'desc' : 'asc'}}">
+            </form>
         </div>
     </div>
     <div class="pull-right">
-        <div class="page-filter">
-            <span class="text-uppercase">Show:</span>
-            <select class="input">
-                <option value="0">10</option>
-                <option value="1">20</option>
-                <option value="2">30</option>
-            </select>
-        </div>
         <ul class="store-pages">
             <li><span class="text-uppercase">Page:</span></li>
-             <li {{ $products->links() }} </li>
+             <li> {{ $products->links() }} </li>
         </ul>
     </div>
 </div>
+
+<script>
+    function sortAndOrder()
+    {
+        let current_url = window.location.href;
+        let url = new URL(current_url);
+
+        let sort = url.searchParams.get('sort');
+        let order_by = url.searchParams.get('order_by');
+        let page = url.searchParams.get('page');
+
+        if(order_by != null)
+        {
+            if(order_by == 'asc') {
+                order_by = 'desc';
+            } else {
+                order_by = 'asc';
+            }
+        }
+
+        if()
+    }
+</script>
+
+@if(Request::get('sort') !== null)
+<script>
+    for (let i = 0; i < document.getElementsByClassName("see_value").length; i++) {
+        document.getElementsByClassName("see_value")[i].innerHTML = document.getElementById(document.getElementsByClassName("see_value")[0].value).innerHTML;   
+    }
+</script>
+@endif    

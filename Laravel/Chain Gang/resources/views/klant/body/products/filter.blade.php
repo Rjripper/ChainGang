@@ -31,3 +31,11 @@
         </ul>
     </div>
 </div>
+
+@if(Request::get('sort') !== null)
+<script>
+    for (let i = 0; i < document.getElementsByClassName("see_value").length; i++) {
+        document.getElementsByClassName("see_value")[i].innerHTML = document.getElementById(document.getElementsByClassName("see_value")[0].value).innerHTML;   
+    }
+</script>
+@endif    

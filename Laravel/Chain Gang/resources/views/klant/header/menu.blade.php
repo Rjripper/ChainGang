@@ -7,10 +7,12 @@
 				<div class="category-nav show-on-click">
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						<li><a href="{{ url('/products') }}">Elektrische Fietsen</a></li>
-						<li><a href="{{ url('/products') }}">Heren fietsen</a></li>
-						<li><a href="{{ url('/products') }}">Dames fietsen</a></li>
-						<li><a href="{{ url('/products') }}">Kinder fietsen</a></li>
+						@php
+							$categories = App\Category::all();
+						@endphp
+						@foreach ($categories as $category)
+							<li><a href="{{ url('/category/' . $category->id ) }}">{{ $category->title }}</a></li>
+						@endforeach
 					</ul>
 				</div>
 				<!-- /category nav -->
@@ -20,7 +22,7 @@
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
 					<li><a href="{{ url('/') }}">Home</a></li>
-					<li><a href="{{ url('/about')}}">Over ons</a></li>
+					<li><a href="{{ url('/overons')}}">Over ons</a></li>
 						<li><a href="{{ url('/contact')}}">Contact</a></li>
 					</ul>
 				</div>

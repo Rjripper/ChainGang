@@ -16,6 +16,7 @@ class CreateOrderItemsTable extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('order_id');
             $table->integer('amount');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
@@ -23,6 +24,7 @@ class CreateOrderItemsTable extends Migration
 
         Schema::table('order_items', function($table) {
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
