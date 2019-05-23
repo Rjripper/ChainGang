@@ -51,7 +51,6 @@ Route::get('/product/{product}', 'ProductController@show');
 */
 Route::get('/producten/sort', 'ProductController@sort');
 
-
 /**
  * Cart Routes -> Get, Post, Patch + Checkout
  */

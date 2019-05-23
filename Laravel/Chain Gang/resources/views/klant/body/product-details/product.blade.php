@@ -1,17 +1,21 @@
  {{-- big images --}}
+@php
+    $images_for_product = App\ProductImage::Where('product_id', $product->id)->get('image');
+@endphp
+
  <div id="product-main-view">
-    @for ($i = 0; $i < 4; $i++) 
+    @for ($i = 0; $i < 3; $i++) 
         <div class="product-view">
-            <img src="{{ asset('images/initial/images/main-product01.jpg') }}" alt="">
+            <img src="{{ asset($images_for_product[$i]->image ) }}" alt="">
         </div>
     @endfor
 </div>
     
 {{-- more images --}}
 <div id="product-view">
-    @for ($i = 0; $i < 4; $i++) 
+    @for ($i = 0; $i < 3; $i++) 
         <div class="product-view">
-            <img src="{{ asset('images/initial/images/thumb-product01.jpg') }}" alt="">
+            <img src="{{ asset($images_for_product[$i]->image ) }}" alt="">
         </div>
     @endfor
 </div>
