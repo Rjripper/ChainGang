@@ -73,6 +73,12 @@ Route::post('/product/remove/cart/{product}', 'CartController@removeItem'); // G
 Route::post('/newsletter/signup', 'NewsletterController@signUp');
 
 
+/**
+ * Contact Us Form
+ */
+Route::post('/contact/send', 'SendContactEmailController@send');
+
+
 
 //========= ADMIN ==========//
 //Sidepanels

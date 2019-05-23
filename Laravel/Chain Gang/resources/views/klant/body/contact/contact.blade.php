@@ -10,18 +10,18 @@
                     <div class="section-title">
 						<h2 class="title">Contact form</h2>
 					</div>
-                    <form class="review-form">
+                    <form class="review-form" action="{{ url('/contact/send') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <input class="input" type="text" placeholder="Uw naam" />
+                            <input class="input" type="text" name="name" placeholder="Uw naam" />
                         </div>
                         <div class="form-group">
-                            <input class="input" type="email" placeholder="Uw email addres" />
+                            <input class="input" type="email" name="email" placeholder="Uw email addres" />
                         </div>
                         <div class="form-group">
-                            <textarea class="input" placeholder="Uw bericht"></textarea>
+                            <textarea class="input" name="message" placeholder="Uw bericht"></textarea>
                         </div>
-                        <button class="primary-btn">Verzenden</button>
+                        <button type="submit" class="primary-btn">Verzenden</button>
                     </form>
                 </div>
                 {{-- address details --}}
@@ -43,12 +43,12 @@
                     <div class="section-title">
                         <h2 class="title">Blijf op de hoogte</h2>
                     </div>
-                    <form>
+                    <form action="{{ url('/newsletter/signup') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <input class="input" placeholder="Vul e-mail adres in">
+                            <input class="input nieuwsbrief-form" name="email" placeholder="Vul e-mail adres in">
                         </div>
-                        <button class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
+                        <button type="submit" class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
                     </form>
                 </div>
                 <div class="col-md-6">
