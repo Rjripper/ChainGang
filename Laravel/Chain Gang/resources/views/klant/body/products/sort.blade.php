@@ -4,14 +4,17 @@
             <a href="#"><i class="fa fa-th-large"></i></a>
             <a href="#" class="active"><i class="fa fa-bars"></i></a>
         </div>
+        
         <div class="sort-filter">
-            <span class="text-uppercase">Sort By:</span>
-            <select class="input">
-                <option value="0">Position</option>
-                <option value="0">Price</option>
-                <option value="0">Rating</option>
-            </select>
-            <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+            <span class="text-uppercase">Sorteren op:</span>
+            <form method="GET" action="/producten/sort">
+                <select class="input" name="sort" style="width:150px;" onchange="this.form.submit()">
+                    <option id="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
+                    <option value="price" id="price">Prijs</option>
+                    <option value="product_name" id="product_name">Naam</option>
+                </select>
+                <input type="hidden" name="order_by" value="{{ Request::get('order_by') !== null && Request::get('order_by') == 'asc' ? 'desc' : 'asc'}}">
+            </form>
         </div>
     </div>
     <div class="pull-right">
@@ -32,3 +35,9 @@
         </ul>
     </div>
 </div>
+
+@if(Request::get('sort') !== null)
+<script>
+    document.getElementById("see_value").innerHTML = document.getElementById(document.getElementById("see_value").value).innerHTML;
+</script>
+@endif    

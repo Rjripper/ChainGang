@@ -39,5 +39,31 @@ class ProductTableSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        DB::table('products')->insert([
+            'brand_id' => 1,
+            'type_id' => 1,            
+            'category_id' => 1,
+            'product_name' => 'zfiet_3000',
+            'price' => 312.12,
+            'description' => 'Leuk ding, wel goed.',
+            'specifications' => 'Zieksnel: 100km/u',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('products')->insert([
+            'brand_id' => 1,
+            'type_id' => 1,            
+            'category_id' => 1,
+            'product_name' => 'afiet_3000',
+            'price' => 312.12,
+            'description' => 'Leuk ding, wel goed.',
+            'specifications' => 'Zieksnel: 100km/u',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 }

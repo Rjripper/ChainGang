@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +12,11 @@
 |
 */
 
-Auth::routes();
+/*
+        Auth 
+*/
+
+Auth::routes(['verify' => true]);
 
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -41,6 +46,11 @@ Route::get('/producten', 'ProductController@index');
 Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
 Route::get('/product/{product}', 'ProductController@show');
 
+/**
+ *  Products order
+*/
+Route::get('/producten/sort', 'ProductController@sort');
+
 
 /**
  * Cart Routes -> Get, Post, Patch + Checkout
@@ -50,7 +60,6 @@ Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
 
 Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
 Route::post('/product/remove/cart/{orderitem}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
-
 
 
 
