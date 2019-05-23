@@ -14,8 +14,8 @@
 	
 						<!-- Search -->
 						<div class="header-search">
-							<form>
-								<input class="input" type="text" placeholder="Enter your keyword">
+							<form action="{{ url('/producten/zoeken') }}" action="GET">
+								<input class="input" type="text" name="search" placeholder="Enter your keyword">
 								<button class="search-btn"><i class="fa fa-search"></i></button>
 							</form>
 						</div>

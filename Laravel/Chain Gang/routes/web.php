@@ -50,6 +50,7 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/producten', 'ProductController@index');
 Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
 Route::get('/product/{product}', 'ProductController@show');
+Route::get('/producten/zoeken', 'ProductController@search');
 
 /**
  *  Products order

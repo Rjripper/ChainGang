@@ -8,6 +8,22 @@ use App\Category;
 
 class ProductController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        if(!empty($search))
+        {
+            $products = Product::where('product_name', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%")
+            ->orWhere('specifications', 'LIKE', "%$search%")->latest()->paginate(9);
+        } else {
+            $products = Product::latest()->paginate(9);
+        }
+
+        return view('klant.body.products.products', compact('products'));
+    }
+
     public function index()
     {
         // Get 9 Products
