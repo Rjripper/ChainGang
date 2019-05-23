@@ -27,6 +27,10 @@
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="product product-single">
 							<div class="product-thumb">
+									<div class="product-label">
+											{{-- <span>New</span> --}}
+											<span class="sale">-{{ $product_in_sale->sale}}%</span>
+									</div>
 								<a href="{{ url('/product/' . $product_in_sale->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
 								{{-- $product_to_show_image->image --}}
 								@if($product_to_show_image != null)
@@ -40,7 +44,9 @@
 									$price_off = round(($product_to_show->price / 100 ) * $product_in_sale->sale, 2);
 									$new_price = $product_to_show->price - $price_off;
 								@endphp
-								<h3 class="product-price">&euro;{{$new_price}}</h3>
+								<h3 class="product-price">&euro;{{$new_price}}
+									<del class="product-old-price"> {{ $product_to_show->price }}</del>
+								</h3>
 								<div class="product-rating">
 										@php
 										$MAX_RATING = 5;

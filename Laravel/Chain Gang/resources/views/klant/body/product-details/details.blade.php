@@ -45,12 +45,12 @@
                                     <div><a href="#"><i class="fa fa-user-o"></i> {{$review->customer->first_name}}</a></div>
                                         <div><a href="#"><i class="fa fa-clock-o"></i>{{ $review->created_at}}</a></div>
                                         <div class="review-rating pull-right">
-                                            @php
+                                        @php
                                             $MAX_RATING = 5;
-    
+                
                                             $reviews = App\Review::where('product_id', $product->id)->get();
                                             $reviews_count = $reviews->count();
-    
+                
                                             $reviews_amount_added = null;
                                             if($reviews->count() > 0) {
                                                 foreach($reviews as $review) {
@@ -64,7 +64,7 @@
                                                 $review_average = 0;
                                                 $uncolored_review = 5;
                                             }
-    
+                
                                         @endphp
                                         @for ($i = 1; $i <= $review_average; $i++)
                                             <i class="fa fa-star"></i>

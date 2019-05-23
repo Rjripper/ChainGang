@@ -19,8 +19,6 @@
         <!-- row -->
         <div class="row">
             {{-- Start checkout-form --}}
-            <form id="checkout-form" class="clearfix">
-                @csrf
                 <div class="col-md-12">
                     <div class="order-summary clearfix">
                         <div class="section-title">
@@ -149,7 +147,6 @@
                     </div>
                 </div>
 
-            </form>
             {{-- Einde checkout-form --}}
         </div>
         <!-- /row -->

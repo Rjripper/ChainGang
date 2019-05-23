@@ -37,52 +37,36 @@ get new price and add it --}}
                     </h3>
                     <div class="product-rating">
                         @php
-                            // Get Reviews for Product
-                            // Count how many reviews there are
-                            // Add the amount of rating
-                            // Divide Rating by amount of reviews
-                            // Count ratings up
-                            // For int amount of ratings, create fa-star
-                            // if less then or is 4 then create fa-star-o empty
-                            $reviews = App\Review::where('product_id', $product->id)->where('deleted_at', null)->get();
+                            $MAX_RATING = 5;
+
+                            $reviews = App\Review::where('product_id', $product->id)->get();
                             $reviews_count = $reviews->count();
 
-                            $star_rating = 1;
-
-                            foreach ($reviews as $review) {
-                                $star_rating += $review->rating;
-                            }
-
-                            $rating = 5;
-
-                            if($reviews_count > 0) {
-                                $star_rating = ceil($star_rating / $reviews_count);
-                                $rating -= $star_rating;
+                            $reviews_amount_added = null;
+                            if($reviews->count() > 0) {
+                                foreach($reviews as $review) {
+                                    $reviews_amount_added += $review->rating;
+                                }
+                                if($reviews_amount_added > 0) {
+                                    $review_average = ceil($reviews_amount_added / $reviews_count);
+                                    $uncolored_review = $MAX_RATING - $review_average;
+                                }
                             } else {
-                                $rating = 0;
+                                $review_average = 0;
+                                $uncolored_review = 5;
                             }
 
                         @endphp
-                        @if($rating > 0)
-                            @for ($i = 1; $i <= $star_rating; $i++)
-                                <i class="fa fa-star"></i>
-                            @endfor
-                            @if ($rating <= 4)
-                                @for ($i = 1; $i < $rating; $i++)
-                                    <i class="fa fa-star-o empty"></i>
-                                @endfor
-                            @endif
-                        @else
-                            @for ($i = 1; $i <= 5; $i++)
-                                <i class="fa fa-star-o empty"></i>
-                            @endfor
-                        @endif
+                        @for ($i = 1; $i <= $review_average; $i++)
+                            <i class="fa fa-star"></i>
+                        @endfor
+                        @for ($i = 1; $i <= $uncolored_review; $i++)
+                            <i class="fa fa-star-o empty"></i>
+                        @endfor
                     </div>
                     <h2 class="product-name"><a href="#">{{ $product->product_name}}</a></h2>
                     <div class="product-btns">
-                        <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                        <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                        <a href="{{ url('/product/add/cart/' . $product->id ) }}"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+                        <button onclick="addItemToCart(this.getAttribute('data-id'));" data-id="{{$product->id}}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -90,4 +74,29 @@ get new price and add it --}}
         <!-- /Product Single -->
     @endforeach
 </div>
+<script>
+function addItemToCart(product_id) {
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+	var form_data = new FormData();
+	form_data.append('_method', 'POST');
+	form_data.append('_token', CSRF_TOKEN);
+
+	event.preventDefault();
+
+	$.ajax({
+		url: '/product/add/cart/' + product_id,
+		dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+		success: function(data) {
+			console.log(data.cart_session);
+		}
+	});
+}
+</script>
+
 <!-- /row -->

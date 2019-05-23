@@ -1,26 +1,9 @@
-
-{{-- @php
-$product_in_sale = App\Sale::where('product_id', $product->id)->first();
-
-if($product_in_sale != null)
-{
-    $price_off = round(($product->price / 100 ) * $product_in_sale->sale, 2);
-    $new_price = $product->price - $price_off;
-} else {
-    $new_price = null;
-}
-@endphp --}}
-
-{{-- @if($new_price != null)
-<h3 class="product-price">&euro;{{$new_price}}</h3>
-@else
-<h3 class="product-price">&euro;{{$newest_product->price}}</h3>
-@endif --}}
-
 <div class="product-body">
     <div class="product-label">
         <span>New</span>
-        <span class="sale">-{{$product_in_sale->sale}}%</span>
+        @if($product_in_sale != null)
+            <span class="sale">-{{$product_in_sale->sale}}%</span>
+        @endif
     </div>
     <h2 class="product-name">{{$product->product_name}}</h2>    
         @if($new_price != null)
@@ -48,9 +31,35 @@ if($product_in_sale != null)
             <span class="text-uppercase">QTY: </span>
             <input class="input" type="number">
         </div>
-        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
         <div class="pull-right">
             
         </div>
     </div>
 </div>
+<script>
+		function addItemToCart(product_id) {
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		
+			var form_data = new FormData();
+			form_data.append('_method', 'POST');
+			form_data.append('_token', CSRF_TOKEN);
+		
+			event.preventDefault();
+		
+			$.ajax({
+				url: '/product/add/cart/' + product_id,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				type: 'post',
+				success: function(data) {
+					console.log(data.cart_session);
+				}
+			});
+		}
+		</script>
+		
+

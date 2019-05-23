@@ -48,7 +48,9 @@
                                     <tr>
                                         <td><a href="{{ url('/account/bestellingen/overzicht/'. $order->id) }}">{{ $order->id }}</a></td>
                                         <td>{{ $order->created_at }}</td>
+                                        @if($order->status != null)
                                         <td>{{ $order->status->title }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             @else

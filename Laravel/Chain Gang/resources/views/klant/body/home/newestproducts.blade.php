@@ -21,11 +21,18 @@
 					@php
 						//Get Product image
 						$newest_product_image = App\ProductImage::where('product_id', $newest_product->id)->first();
+						$product_in_sale = App\Sale::where('product_id', $newest_product->id)->first();
 					@endphp
 					<!-- Product Single -->
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="product product-single">
 							<div class="product-thumb">
+								<div class="product-label">
+										{{-- <span>New</span> --}}
+									@if($product_in_sale != null)
+										<span class="sale">-{{ $product_in_sale->sale}}%</span>
+									@endif
+								</div>
 								<a href="{{ url('/product/' . $newest_product->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
 								{{-- $newest_product_image->image --}}
 								@if($newest_product_image != null)
@@ -37,7 +44,7 @@
 
 							<div class="product-body">
 								@php
-									$product_in_sale = App\Sale::where('product_id', $newest_product->id)->first();
+									
 
 									if($product_in_sale != null)
 									{
@@ -48,7 +55,9 @@
 									}
 								@endphp
 								@if($new_price != null)
-									<h3 class="product-price">&euro;{{$new_price}}</h3>
+									<h3 class="product-price">&euro;{{$new_price}}
+										<del class="product-old-price"> {{ $newest_product->price }}</del>
+									</h3>
 								@else
 									<h3 class="product-price">&euro;{{$newest_product->price}}</h3>
 								@endif
