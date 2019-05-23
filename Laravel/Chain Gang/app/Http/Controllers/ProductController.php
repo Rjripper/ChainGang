@@ -8,6 +8,7 @@ use App\Product;
 use App\Review;
 use App\Sale;
 
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -46,6 +47,13 @@ class ProductController extends Controller
 
         return view('klant.body.product-details.products-details',
                compact('product', 'reviews', 'brands', 'products', 'product_in_sale', 'price_off', 'new_price', 'reviews_amount' ));
+    }
+
+    public function indexWithCategory(Category $category)
+    {
+        $products = Product::where('category_id', $category->id)->paginate(9);
+
+        return view('klant.body.products.products', compact('products'));
     }
 
     public function sort(Request $request)

@@ -40,8 +40,8 @@
 								@endif
 
 								<ul class="custom-menu">
-									<li><a href="{{ url('/my-account') }}"><i class="fa fa-user-o"></i> Mijn Account</a></li>
-									<li><a href="{{ url('/checkout') }}"><i class="fa fa-check"></i> Betalen</a></li>
+									<li><a href="{{ url('/account/overzicht') }}"><i class="fa fa-user-o"></i> Mijn Account</a></li>
+									<li><a href="{{ url('/betalen') }}"><i class="fa fa-check"></i> Betalen</a></li>
 									@if (Auth::check())
 										<li><a href="{{  route('logout') }}" onclick="event.preventDefault();
 											document.getElementById('logout-form').submit();"> <i class="fa fa-unlock-alt"></i>Afmelden</a></li>
@@ -54,11 +54,20 @@
 							<!-- /Account -->
 	
 							<!-- Cart -->
-                            <li class="header-cart dropdown default-dropdown">
-								<div class="header-btns-icon">
-									<a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i></a>
-									<span class="qty">3</span>
-								</div>
+							<li class="header-cart dropdown default-dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<a href="{{ url('/winkelwagen') }}">
+									<div class="header-btns-icon">
+										<i class="fa fa-shopping-cart"></i>
+										@php
+											$cart = session('cart_session');
+										@endphp
+										@if($cart != null)
+											<span class="qty">{{count($cart)}}</span>
+										@endif
+									</div>
+									</a>
+								</a>
 							</li>
 							<!-- /Cart -->
 	
