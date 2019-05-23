@@ -81,10 +81,14 @@ class ProductController extends Controller
     {
         // Get the type by id
         // Return the view with only the selected type
-        $products = Product::where('type_id', $type->id)->paginate(9);
+        $products = Product::whereIn('type_id', Type::whereId($type->id)->get()->pluck('id'))->get();//->paginate(9);
 
-        $types = Type::orderBy('title', 'asc')->get()->toArray();
+        $types = Type::orderBy('title', 'asc')->get();
 
-        return view('klant.body.products.products', compact('products', 'types'));
+        $brands = Brand::orderBy('title', 'asc')->get();
+
+        $categories = Category::orderBy('title', 'asc')->get();
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 }
