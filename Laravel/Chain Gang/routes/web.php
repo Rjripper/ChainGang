@@ -57,7 +57,6 @@ Route::get('/producten/zoeken', 'ProductController@search');
 */
 Route::get('/producten/sort', 'ProductController@sort');
 
-
 /**
  * Cart Routes -> Get, Post, Patch + Checkout
  */
