@@ -70,21 +70,30 @@ class CustomerController extends Controller
         // if ($validator->fails()) {
         //     return response()->json(['success' => false, 'errors'=>$validator->errors()], 422);
         // }
-
+        
 
         
         //email 
         $user->email = $request->email;
-
-        if ( Hash::make($request->new_password) != Auth::user()->password) {
-            if($request->confirm_password == $request->new_password && $request->confirm_password != "" && $request->new_password != "" ){
-                $user->password = Hash::make(request('new_password'));
-            } else {
-                return redirect()->back()->with('error', 'Vul een geldig wachtwoord in!');
+        // dd(Auth::user()->password, Hash::check($request->current_password, Auth::user()->password));
+        // // dd(Auth::user()->password);
+        if(Hash::check($request->current_password, Auth::user()->password)){
+            // dd('prima');
+            if ( Hash::make($request->new_password) != Auth::user()->password) {
+                if($request->confirm_password == $request->new_password && $request->confirm_password != "" && $request->new_password != "" ){
+                    $user->password = Hash::make(request('new_password'));
+                } else {
+                    return redirect()->back()->with('error', 'Vul een geldig wachtwoord in!');
+                }
+            }else{
+                return redirect()->back()->with('error', 'Er is iets fout gegaan, probeer opnieuw.');
             }
-        }else{
-            return redirect()->back()->with('error', 'Er is iets fout gegaan, probeer opnieuw.');
+
+        } else {
+            return redirect()->back()->with('error', 'U heeft nog niks ingevuld!');
+
         }
+
 
         // if ( Hash::make($request->new_password) == Auth::user()->password) {
         //     return response()->json(['errors' => ["Je wachtwoord mag niet het zelfde zijn!"]], 400);

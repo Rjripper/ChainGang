@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/account/update/details/{user}', 'CustomerController@updateCustomerInformation');
     Route::patch('/account/update/inlog/{user}', 'CustomerController@customerAccount');
     Route::get('/account/bestellingen', 'CustomerController@orders');
+    Route::get('/account/bestellingen/overzicht/{order}', 'OrderController@show');
     Route::post('/review/create/{product}', 'ReviewController@store');
     
 

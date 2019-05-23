@@ -46,7 +46,7 @@
                             @if($orders->count() > 0)
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        <td><a href="{{ url('/account/bestellingen/overzicht/'. $order->id) }}">{{ $order->id }}</a></td>
                                         <td>{{ $order->created_at }}</td>
                                         <td>{{ $order->status->title }}</td>
                                     </tr>
