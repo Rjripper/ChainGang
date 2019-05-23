@@ -26,13 +26,22 @@ Route::get('/', 'HomeController@index')->name('home');
  */
 Route::middleware(['auth'])->group(function(){
     Route::get('/account/overzicht', 'CustomerController@index');
+    Route::patch('/account/update/details/{user}', 'CustomerController@updateCustomerInformation');
+    Route::patch('/account/update/inlog/{user}', 'CustomerController@customerAccount');
     Route::get('/account/bestellingen', 'CustomerController@orders');
+    Route::get('/account/bestellingen/overzicht/{order}', 'OrderController@show');
+    Route::post('/review/create/{product}', 'ReviewController@store');
+    
 
     /**
      * Order Routes -> Get, Post, Patch
      */
     Route::post('/order/create', 'CheckoutController@store');
 });
+
+// DIT MOET NOG IN DE AUTH MAAR OMDAT DE AUTH NOG NIET KLAAR IS
+// NOG NIET MET AUTH
+// Route::post('/review/create/{product}', 'ReviewController@store');
 
 
 /**

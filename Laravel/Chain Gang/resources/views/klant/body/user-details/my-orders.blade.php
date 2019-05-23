@@ -27,7 +27,7 @@
                         <div class="card" style="width:50%;">
                             <ul class="list-group list-group-flush list-links">
                                 <li class="list-group-item"><a href="{{ url('/account/overzicht') }}">Details</a></li>
-                                <li class="list-group-item"><a href="{{ url('/account/orders') }}">Orders</a></li>
+                                <li class="list-group-item"><a href="{{ url('/account/bestellingen') }}">Orders</a></li>
                                 <li class="list-group-item"><a href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>
@@ -46,9 +46,9 @@
                             @if($orders->count() > 0)
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        <td><a href="{{ url('/account/bestellingen/overzicht/'. $order->id) }}">{{ $order->id }}</a></td>
                                         <td>{{ $order->created_at }}</td>
-                                        <td>{{ $order->status_id }}</td>
+                                        <td>{{ $order->status->title }}</td>
                                     </tr>
                                 @endforeach
                             @else

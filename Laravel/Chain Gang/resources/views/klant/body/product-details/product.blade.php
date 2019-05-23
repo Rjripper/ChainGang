@@ -1,3 +1,4 @@
+
  {{-- big images --}}
 @php
     $images_for_product = App\ProductImage::Where('product_id', $product->id)->get('image');
