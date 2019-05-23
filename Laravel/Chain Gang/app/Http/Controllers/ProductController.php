@@ -7,6 +7,7 @@ use App\Product;
 use App\Brand;
 use App\Category;
 use App\Type;
+use phpDocumentor\Reflection\Types\Float_;
 
 class ProductController extends Controller
 {
@@ -30,13 +31,11 @@ class ProductController extends Controller
         // get all types
         $types = Type::orderBy('title', 'asc')->get();
 
-        //get prices lowest and min
-        // $pricesAsc = Product::orderBy('price')->first()->get();
-        // $pricesDesc = Product::max('price');
+        //get min and max price
+        $maxPrice = Product::orderby('price', 'desc')->where('price', '>', 0)->first('price');
+        $minPrice = Product::orderby('price', 'asc')->where('price', '>', 0)->first('price');
 
-        
-
-        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types', 'pricesAsc', 'pricesDesc'));
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types', 'maxPrice', 'minPrice'));
     }
 
     public function show(Request $request, Product $product)

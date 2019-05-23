@@ -37,23 +37,17 @@
         <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal">
             <div class="noUi-base">
                 <div class="noUi-origin" style="left: 0%;">
-                    <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="1.00$" style="z-index: 5;">
-                        {{-- <div class="noUi-tooltip">€1.00</div> --}}
+                    <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="0.0" style="z-index: 5;">
                         <div class="noUi-tooltip">
-                            {{-- @foreach ($pricesAsc as $priceAsc)
-                                {{ $priceAsc->price }}      
-                            @endforeach --}}
+                                €{{ $minPrice->price }}      
                         </div>
                     </div>
                 </div>
                 <div class="noUi-connect" style="left: 0%; right: 0%;"></div>
                 <div class="noUi-origin" style="left: 100%;">
-                    <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="999.00$" style="z-index: 4;">
-                        {{-- <div class="noUi-tooltip">€9999.00</div> --}}
+                    <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="100.0" style="z-index: 4;">
                         <div class="noUi-tooltip">
-                            {{-- @foreach ($pricesDesc as $priceDesc)
-                                {{ $priceDesc->price }}
-                            @endforeach --}}
+                            €{{ $maxPrice->price }}
                         </div>
                     </div>
                 </div>
