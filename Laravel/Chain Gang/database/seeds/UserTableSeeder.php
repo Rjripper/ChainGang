@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'email' => 'austirol@gmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'phonenumber' => '09000000',
-            'password' => Hash::make('secret'),
+            'password' => Hash::make('henkiespankie69'),
             'wants_newsletter' => true,
             'remember_token' => str_random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
