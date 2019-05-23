@@ -24,10 +24,10 @@
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a href="https://facebook.com" target="blanck"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://twitter.com" target="blanck"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="https://instagram.com" target="blanck"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="https://pinterest.com" target="blanck"><i class="fa fa-pinterest"></i></a></li>
+							<li><a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="https://pinterest.com" target="_blank"><i class="fa fa-pinterest"></i></a></li>
 						</ul>
 						<!-- /footer social -->
 					</div>
@@ -39,8 +39,8 @@
 					<div class="footer">
 						<h3 class="footer-header">Mijn Account</h3>
 						<ul class="list-links">
-						<li><a href="{{url('/my-account')}}">Mijn account</a></li>
-							<li><a href="{{url('/checkout')}}">Checkout</a></li>
+						<li><a href="{{url('/account/gegevens')}}">Mijn account</a></li>
+							<li><a href="{{url('/betalen')}}">Betalen</a></li>
 							<li><a href="{{url('/login')}}">Login</a></li>
 						</ul>
 					</div>
@@ -54,7 +54,7 @@
 					<div class="footer">
 						<h3 class="footer-header">Klanten Service</h3>
 						<ul class="list-links">
-							<li><a href="{{url('/about')}}">Over ons</a></li>
+							<li><a href="{{url('/overons')}}">Over ons</a></li>
 							<li><a href="{{url('/shipping-retour')}}">Verzenden & retouneren</a></li>
 							<li><a href="{{url('/faq')}}">Veel gestelde vragen</a></li>
 						</ul>

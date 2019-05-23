@@ -6,13 +6,30 @@
 </div>
 <!-- /section-title -->
 
-@for($i = 0; $i < 3; $i++)
+@foreach($reviews as $review)
     <!-- banner -->
     <div class="col-md-4 col-sm-6">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim ex nec ligula faucibus porta. Nulla ultrices arcu sapien, eget fringilla nisi condimentum et. Quisque cursus nibh eget aliquet auctor. Praesent at velit scelerisque, aliquam elit at, vestibulum velit. Aliquam aliquam, purus ac eleifend efficitur, orci turpis accumsan nulla, sit amet elementum ligula arcu vitae elit. Suspendisse eu tellus purus. Integer feugiat mollis nibh, eget vehicula mi tempus et. Mauris odio enim, accumsan id purus commodo, facilisis gravida nibh. Proin sed sodales orci. Phasellus vel nunc sit amet sem sollicitudin interdum sit amet et urna. Integer fringilla odio eu velit malesuada, et vulputate urna molestie. Vestibulum sed augue ac libero ullamcorper consectetur. Integer scelerisque, libero posuere ornare tempor, nisi augue euismod erat, ut tincidunt ante est vel risus.
-        </p>
-        <small>Jon Snow 1 januari 2019</small>
+        <p>{{ $review->message }}</p>
+        <small>- {{ $review->customer->first_name . " " . $review->customer->last_name }} {{ $review->created_at}}</small>
+        <br>
+        <br>
+        <div class="product-rating">
+            @php
+                $total_stars = 5;
+                //Uncolored Ratings
+                $uncolored_stars = $total_stars - $review->rating;
+                
+            @endphp
+            @for ($i = 1; $i <= $review->rating; $i++)
+                <i class="fa fa-star"></i>
+            @endfor
+            @if ($uncolored_stars > 0)
+                @for ($i = 1; $i <= $uncolored_stars; $i++)
+                    <i class="fa fa-star-o empty"></i>
+                @endfor
+            @endif
+        </div>
     </div>
     <!-- /banner -->
-@endfor
+@endforeach
     
