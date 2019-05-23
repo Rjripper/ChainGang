@@ -1,11 +1,17 @@
 
+@php
+//Get price of product in sale
+$sale_percentage = $product_in_sale->sale;
+$price_off = $product_to_show->price / 100 * 20;
+$new_price = $product_to_show->price - $price_off;
+@endphp
 <div class="product-body">
     <div class="product-label">
         <span>New</span>
-        <span class="sale">-20%</span>
+        <span class="sale">{{$sale->sale}}</span>
     </div>
-    <h2 class="product-name">Product Name Goes Here</h2>
-    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+    <h2 class="product-name">{{$product->product_name}}</h2>
+    <h3 class="product-price">{{$product->price}}<del class="product-old-price">$45.00</del></h3>
     <div>
         <div class="product-rating">
             <i class="fa fa-star"></i>
