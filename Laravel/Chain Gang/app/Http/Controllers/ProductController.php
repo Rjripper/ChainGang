@@ -48,4 +48,9 @@ class ProductController extends Controller
                compact('product', 'reviews', 'brands', 'products', 'product_in_sale', 'price_off', 'new_price', 'reviews_amount' ));
     }
 
+    public function sort(Request $request)
+    {
+        $products = Product::orderBy($request->input('sort'), $request->input('order_by'))->paginate(9);
+        return view('klant.body.products.products', compact('products'));
+    }
 }
