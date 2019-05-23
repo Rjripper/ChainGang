@@ -66,7 +66,10 @@ Route::get('/winkelwagen', 'HomeController@cart'); // -> Cart
 Route::post('/product/add/cart/{product}', 'CartController@addItem'); // GET -> Parameter, amount? -> AJAX
 Route::post('/product/remove/cart/{product}', 'CartController@removeItem'); // GET -> Parameter id of orderitem in cart -> AJAX
 
-
+/**
+ * NewsLetter Signup
+ */
+Route::post('/newsletter/signup', 'NewsletterController@signUp');
 
 
 
