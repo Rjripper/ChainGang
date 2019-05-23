@@ -31,11 +31,7 @@ class ProductController extends Controller
         // get all types
         $types = Type::orderBy('title', 'asc')->get();
 
-        //get min and max price
-        $maxPrice = Product::orderby('price', 'desc')->where('price', '>', 0)->first('price');
-        $minPrice = Product::orderby('price', 'asc')->where('price', '>', 0)->first('price');
-
-        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types', 'maxPrice', 'minPrice'));
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 
     public function show(Request $request, Product $product)
