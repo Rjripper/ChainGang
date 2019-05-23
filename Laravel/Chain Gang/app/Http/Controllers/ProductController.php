@@ -28,4 +28,10 @@ class ProductController extends Controller
 
         return view('klant.body.product-details.details', compact('product'));
     }
+
+    public function sort(Request $request)
+    {
+        $products = Product::orderBy($request->input('sort'), $request->input('order_by'))->paginate(9);
+        return view('klant.body.products.products', compact('products'));
+    }
 }

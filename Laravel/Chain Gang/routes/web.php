@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,11 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/producten', 'ProductController@index');
 Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
 Route::get('/product/{product}', 'ProductController@show');
+
+/**
+ *  Products order
+*/
+Route::get('/producten/sort', 'ProductController@sort');
 
 
 /**
