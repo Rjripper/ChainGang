@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'email' => 'austirol@gmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'phonenumber' => '09000000',
-            'password' => bcrypt('secret'),
+            'password' => Hash::make('secret'),
             'wants_newsletter' => true,
             'remember_token' => str_random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
