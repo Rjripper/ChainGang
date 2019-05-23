@@ -51,5 +51,6 @@
 	<script src="{{ asset('js/customer/initial/js/nouislider.min.js') }}"></script>
 	<script src="{{ asset('js/customer/initial/js/jquery.zoom.min.js') }}"></script>
 	<script src="{{ asset('js/customer/initial/js/main.js') }}"></script>
+	<script src="{{ asset('js/customer/joost.js') }}"></script>
 </body>
 </html>

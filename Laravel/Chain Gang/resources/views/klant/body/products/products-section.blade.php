@@ -29,7 +29,7 @@ get new price and add it --}}
                         @if($sale != null)
                             @php
                                 $sale_percentage = $sale->sale;
-                                $price_off = ceil($product->price / 100 * 20, 2);
+                                $price_off = round($product->price / 100 * 20, 2);
                                 $new_price = $product->price - $price_off;
                             @endphp
                             <del class="product-old-price"> {{ $new_price }}</del>

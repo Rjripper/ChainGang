@@ -11,14 +11,13 @@
 		</div>
 	</div>
 	<!-- /BREADCRUMB -->
-
     <div class="section">
         <div class="container">
             <div class="row">
-                @include('klant.body.products.filter')
-
+                @include('klant.body.products.filter', compact('brands', 'categories', 'types'))
+                
                 <div id="main" class="col-md-9">
-                    @include('klant.body.products.sort')
+                    @include('klant.body.products.sort', $products)
                     
                     <div id="store">
                         @if($products != null)
@@ -28,7 +27,7 @@
                         @endif
                     </div>
                 
-                    @include('klant.body.products.sort')
+                    @include('klant.body.products.sort', $products)
                 </div>
             </div>
         </div>

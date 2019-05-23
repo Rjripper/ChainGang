@@ -48,14 +48,16 @@ Route::get('/contact', 'HomeController@contact');
  *  Products Routes -> Get, Post, Patch
  */
 Route::get('/producten', 'ProductController@index');
-Route::get('/producten/category/{category}', 'ProductController@indexWithCategory');
+Route::get('/producten/categorie/{category}', 'ProductController@indexWithCategory');
+Route::get('/producten/merk/{brand}', 'ProductController@indexWithBrand');
+Route::get('/producten/type/{type}', 'ProductController@indexWithType');
 Route::get('/product/{product}', 'ProductController@show');
 Route::get('/producten/zoeken', 'ProductController@search');
 
 /**
  *  Products order
 */
-Route::get('/producten/sort', 'ProductController@sort');
+//Route::get('/producten/sort', 'ProductController@sort');
 
 /**
  * Cart Routes -> Get, Post, Patch + Checkout
