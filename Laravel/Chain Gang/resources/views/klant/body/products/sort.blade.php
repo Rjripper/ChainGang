@@ -3,7 +3,7 @@
         <div class="sort-filter">
             <span class="text-uppercase">Sorteren op:</span>
             <form method="GET" action="/producten">
-                <select class="input" name="sort" style="width:150px;" onchange="sortAndOrder()">
+                <select class="input" name="sort" style="width:150px;" onchange="this.form.submit()">
                     <option class="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
                     <option value="price" id="price">Prijs</option>
                     <option value="product_name" id="product_name">Naam</option>
@@ -12,36 +12,14 @@
             </form>
         </div>
     </div>
-    <div class="pull-right">
+    {{-- <div class="pull-right">
         <ul class="store-pages">
             <li><span class="text-uppercase">Page:</span></li>
              <li> {{ $products->links() }} </li>
         </ul>
-    </div>
+    </div> --}}
 </div>
 
-<script>
-    function sortAndOrder()
-    {
-        let current_url = window.location.href;
-        let url = new URL(current_url);
-
-        let sort = url.searchParams.get('sort');
-        let order_by = url.searchParams.get('order_by');
-        let page = url.searchParams.get('page');
-
-        if(order_by != null)
-        {
-            if(order_by == 'asc') {
-                order_by = 'desc';
-            } else {
-                order_by = 'asc';
-            }
-        }
-
-        if()
-    }
-</script>
 
 @if(Request::get('sort') !== null)
 <script>

@@ -1,10 +1,17 @@
 <div class="product-body">
     <div class="product-label">
         <span>New</span>
-        <span class="sale">-20%</span>
+        @if($product_in_sale != null)
+            <span class="sale">-{{$product_in_sale->sale}}%</span>
+        @endif
     </div>
-    <h2 class="product-name">Product Name Goes Here</h2>
-    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+    <h2 class="product-name">{{$product->product_name}}</h2>    
+        @if($new_price != null)
+        <h3 class="product-price">&euro;{{$new_price}}</h3>
+        <h3><del class="product-old-price">{{$product->price}}</del></h3>
+        @else
+        <h3 class="product-price">&euro;{{$product->price}}</h3>
+        @endif
     <div>
         <div class="product-rating">
             <i class="fa fa-star"></i>
@@ -13,45 +20,46 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o empty"></i>
         </div>
-        <a href="#">3 Review(s) / Add Review</a>
+        <a href="#">{{$reviews_amount}} Review(s) / Add Review</a>
     </div>
-    <p><strong>Availability:</strong> In Stock</p>
-    <p><strong>Brand:</strong> E-SHOP</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <div class="product-options">
-        <ul class="size-option">
-            <li><span class="text-uppercase">Size:</span></li>
-            <li class="active"><a href="#">S</a></li>
-            <li><a href="#">XL</a></li>
-            <li><a href="#">SL</a></li>
-        </ul>
-        <ul class="color-option">
-            <li><span class="text-uppercase">Color:</span></li>
-            <li class="active">
-                <a href="#" style="background-color:#475984;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#8A2454;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#BF6989;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#9A54D8;"></a>
-            </li>
-        </ul>
-    </div>
-    
+    <p><strong>Brand:</strong>{{$product->brand->title}}</p>
+    <p>{{$product->description}}</p>
+<div class="product-options">
+            
     <div class="product-btns">
         <div class="qty-input">
             <span class="text-uppercase">QTY: </span>
             <input class="input" type="number">
         </div>
-        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
         <div class="pull-right">
-            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-            <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-            <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+            
         </div>
     </div>
 </div>
+<script>
+		function addItemToCart(product_id) {
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		
+			var form_data = new FormData();
+			form_data.append('_method', 'POST');
+			form_data.append('_token', CSRF_TOKEN);
+		
+			event.preventDefault();
+		
+			$.ajax({
+				url: '/product/add/cart/' + product_id,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				type: 'post',
+				success: function(data) {
+					console.log(data.cart_session);
+				}
+			});
+		}
+		</script>
+		
+

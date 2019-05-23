@@ -14,6 +14,6 @@ class OrderController extends Controller
         
         $order_items = OrderItem::where('order_id', $order->id)->get();
 
-        return view('{{idk, view van orders van user}}', compact('order_items', 'order'));
+        return view('klant.body.user-details.my-order-items', compact('order_items', 'order'));
     }
 }

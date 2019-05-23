@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Brand;
+use App\Review;
+use App\Sale;
 use App\Category;
 use App\Type;
 use phpDocumentor\Reflection\Types\Float_;
@@ -24,7 +27,16 @@ class ProductController extends Controller
             $products = Product::latest()->paginate(9);
         }
 
-        return view('klant.body.products.products', compact('products'));
+        // get all brands
+        $brands = Brand::orderBy('title', 'asc')->get();
+
+        // get all categories
+        $categories = Category::orderBy('title', 'asc')->get();
+
+        // get all types
+        $types = Type::orderBy('title', 'asc')->get();
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 
     public function index(Request $request)
@@ -40,9 +52,9 @@ class ProductController extends Controller
 
         if(!empty($sort) && !empty($order_by))
         {
-            $products = Product::orderBy($sort, $order_by)->paginate(9);
+            $products = Product::orderBy($sort, $order_by)->get();
         } else {
-            $products = Product::paginate(9);
+            $products = Product::get();
         }
 
         // get all brands
@@ -61,8 +73,23 @@ class ProductController extends Controller
     {
         //Get Product to show from route {product}
         //Return the view with the product id
+        $reviews = Review::where('product_id', $product->id)->get();
+        $products = Product::orderBy(DB::raw('RAND()'))->take(4)->get();
 
-        return view('klant.body.product-details.products-details', compact('product'));
+        $product_in_sale = Sale::where('product_id', $product->id)->first();
+
+        if($product_in_sale != null)
+        {
+            $price_off = round(($product->price / 100 ) * $product_in_sale->sale, 2);
+            $new_price = $product->price - $price_off;
+        } else {
+            $new_price = null;
+        }
+
+        $reviews_amount = $reviews->count();
+
+        return view('klant.body.product-details.products-details',
+               compact('product', 'reviews', 'brands', 'products', 'product_in_sale', 'price_off', 'new_price', 'reviews_amount' ));
     }
 
     public function indexWithCategory(Request $request, Category $category)
@@ -76,9 +103,9 @@ class ProductController extends Controller
         if(!empty($sort) && !empty($order_by))
         {
             $products = Product::orderBy($sort, $order_by)
-                ->whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->paginate(9);
+                ->whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->get();
         } else {
-            $products = Product::whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->paginate(9);
+            $products = Product::whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->get();
 
         }
 
@@ -107,9 +134,9 @@ class ProductController extends Controller
         if(!empty($sort) && !empty($order_by))
         {
             $products = Product::orderBy($sort, $order_by)
-                ->whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->paginate(9);
+                ->whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->get();
         } else {
-            $products = Product::whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->paginate(9);
+            $products = Product::whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->get();
 
         }
         
@@ -132,9 +159,9 @@ class ProductController extends Controller
         if(!empty($sort) && !empty($order_by))
         {
             $products = Product::orderBy($sort, $order_by)
-                ->whereIn('type_id', Type::whereId($type->id)->get()->pluck('id'))->paginate(9);
+                ->whereIn('type_id', Type::whereId($type->id)->get()->pluck('id'))->get();
         } else {
-            $products = Product::whereIn('type_id', Type::whereId($type->id)->get()->pluck('id'))->paginate(9);
+            $products = Product::whereIn('type_id', Type::whereId($type->id)->get()->pluck('id'))->get();
         }
 
         $types = Type::orderBy('title', 'asc')->get();
