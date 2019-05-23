@@ -9,7 +9,7 @@
             <span class="text-uppercase">Sorteren op:</span>
             <form method="GET" action="/producten/sort">
                 <select class="input" name="sort" style="width:150px;" onchange="this.form.submit()">
-                    <option id="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
+                    <option class="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
                     <option value="price" id="price">Prijs</option>
                     <option value="product_name" id="product_name">Naam</option>
                 </select>
@@ -38,6 +38,8 @@
 
 @if(Request::get('sort') !== null)
 <script>
-    document.getElementById("see_value").innerHTML = document.getElementById(document.getElementById("see_value").value).innerHTML;
+    for (let i = 0; i < document.getElementsByClassName("see_value").length; i++) {
+        document.getElementsByClassName("see_value")[i].innerHTML = document.getElementById(document.getElementsByClassName("see_value")[0].value).innerHTML;   
+    }
 </script>
 @endif    
