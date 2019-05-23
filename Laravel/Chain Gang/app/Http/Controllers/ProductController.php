@@ -51,9 +51,13 @@ class ProductController extends Controller
     {
         // Get the categories by id
         // Return the vieuw with only the selected categorie
-        $products = Product::whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->get()->paginate(9);
+        $products = Product::whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->get();//->paginate(9);
 
-        $categories = Category::orderBy('title', 'asc')->get()->toArray();
+        $categories = Category::orderBy('title', 'asc')->get();
+
+        $brands = Brand::orderBy('title', 'asc')->get();
+
+        $types = Type::orderBy('title', 'asc')->get();
 
         return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
@@ -62,13 +66,13 @@ class ProductController extends Controller
     {
         // Get the brand by id
         // Rerturn the view with only the selected brand
-        $products = Product::whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->get();
+        $products = Product::whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->get();//->paginate(9);
 
         $brands = Brand::orderBy('id', 'asc')->get();
 
-        $categories = Category::orderBy('title', 'asc')->get()->toArray();
+        $categories = Category::orderBy('title', 'asc')->get();
 
-        $types = Type::orderBy('title', 'asc')->get()->toArray();
+        $types = Type::orderBy('title', 'asc')->get();
 
         return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
