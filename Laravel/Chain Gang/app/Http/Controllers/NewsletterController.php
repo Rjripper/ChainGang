@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WantsNewsletter;
+use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
@@ -17,6 +18,8 @@ class NewsletterController extends Controller
         $wants->email = $data['email'];
 
         $wants->save();
+
+        Mail::to($wants->email)->send("U heeft zich geregistreerd voor de nieuwsletters van Chain Gang");
 
         return back();
 
