@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Review;
+use App\Sale;
+
 
 class ProductController extends Controller
 {
@@ -27,8 +30,22 @@ class ProductController extends Controller
         //Get Product to show from route {product}
         //Return the view with the product id
         $reviews = Review::where('product_id', $product->id)->get();
-        
+        $products = Product::orderBy(DB::raw('RAND()'))->take(4)->get();
 
-        return view('klant.body.product-details.products-details', compact('product', 'reviews'));
+        $product_in_sale = Sale::where('product_id', $product->id)->first();
+
+        if($product_in_sale != null)
+        {
+            $price_off = round(($product->price / 100 ) * $product_in_sale->sale, 2);
+            $new_price = $product->price - $price_off;
+        } else {
+            $new_price = null;
+        }
+
+        $reviews_amount = $reviews->count();
+
+        return view('klant.body.product-details.products-details',
+               compact('product', 'reviews', 'brands', 'products', 'product_in_sale', 'price_off', 'new_price', 'reviews_amount' ));
     }
+
 }

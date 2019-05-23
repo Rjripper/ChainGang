@@ -1,17 +1,34 @@
 
-@php
-//Get price of product in sale
-$sale_percentage = $product_in_sale->sale;
-$price_off = $product_to_show->price / 100 * 20;
-$new_price = $product_to_show->price - $price_off;
-@endphp
+{{-- @php
+$product_in_sale = App\Sale::where('product_id', $product->id)->first();
+
+if($product_in_sale != null)
+{
+    $price_off = round(($product->price / 100 ) * $product_in_sale->sale, 2);
+    $new_price = $product->price - $price_off;
+} else {
+    $new_price = null;
+}
+@endphp --}}
+
+{{-- @if($new_price != null)
+<h3 class="product-price">&euro;{{$new_price}}</h3>
+@else
+<h3 class="product-price">&euro;{{$newest_product->price}}</h3>
+@endif --}}
+
 <div class="product-body">
     <div class="product-label">
         <span>New</span>
-        <span class="sale">{{$sale->sale}}</span>
+        <span class="sale">-{{$product_in_sale->sale}}%</span>
     </div>
-    <h2 class="product-name">{{$product->product_name}}</h2>
-    <h3 class="product-price">{{$product->price}}<del class="product-old-price">$45.00</del></h3>
+    <h2 class="product-name">{{$product->product_name}}</h2>    
+        @if($new_price != null)
+        <h3 class="product-price">&euro;{{$new_price}}</h3>
+        <h3><del class="product-old-price">{{$product->price}}</del></h3>
+        @else
+        <h3 class="product-price">&euro;{{$product->price}}</h3>
+        @endif
     <div>
         <div class="product-rating">
             <i class="fa fa-star"></i>
@@ -20,35 +37,12 @@ $new_price = $product_to_show->price - $price_off;
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o empty"></i>
         </div>
-        <a href="#">3 Review(s) / Add Review</a>
+        <a href="#">{{$reviews_amount}} Review(s) / Add Review</a>
     </div>
-    <p><strong>Availability:</strong> In Stock</p>
-    <p><strong>Brand:</strong> E-SHOP</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <div class="product-options">
-        <ul class="size-option">
-            <li><span class="text-uppercase">Size:</span></li>
-            <li class="active"><a href="#">S</a></li>
-            <li><a href="#">XL</a></li>
-            <li><a href="#">SL</a></li>
-        </ul>
-        <ul class="color-option">
-            <li><span class="text-uppercase">Color:</span></li>
-            <li class="active">
-                <a href="#" style="background-color:#475984;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#8A2454;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#BF6989;"></a>
-            </li>
-            <li>
-                <a href="#" style="background-color:#9A54D8;"></a>
-            </li>
-        </ul>
-    </div>
-    
+    <p><strong>Brand:</strong>{{$product->brand->title}}</p>
+    <p>{{$product->description}}</p>
+<div class="product-options">
+            
     <div class="product-btns">
         <div class="qty-input">
             <span class="text-uppercase">QTY: </span>
@@ -56,9 +50,7 @@ $new_price = $product_to_show->price - $price_off;
         </div>
         <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
         <div class="pull-right">
-            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-            <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-            <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+            
         </div>
     </div>
 </div>

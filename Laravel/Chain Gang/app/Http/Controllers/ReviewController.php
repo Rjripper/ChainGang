@@ -23,6 +23,7 @@ class ReviewController extends Controller
         $request->validate([            
             'title' => 'required',
             'message' => 'required',
+            'rating' => 'integer|required|min:1'
          ]);
 
          $review = new Review;
