@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -27,5 +28,12 @@ class ProductController extends Controller
         //Return the view with the product id
 
         return view('klant.body.product-details.products-details', compact('product'));
+    }
+
+    public function indexWithCategory(Category $category)
+    {
+        $products = Product::where('category_id', $category->id)->paginate(9);
+
+        return view('klant.body.products.products', compact('products'));
     }
 }

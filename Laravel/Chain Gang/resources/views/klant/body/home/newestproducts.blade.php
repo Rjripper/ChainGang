@@ -98,7 +98,6 @@
 </div>
 <script>
 function addItemToCart(product_id) {
-
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 	var form_data = new FormData();
@@ -116,10 +115,9 @@ function addItemToCart(product_id) {
         data: form_data,
         type: 'post',
 		success: function(data) {
-			console.log(data);
+			console.log(data.user_cart);
 		}
 	});
-	console.log(product_id.getAttribute('data-id'));
 }
 </script>
 
