@@ -106,8 +106,9 @@
     <div class="aside">
         <h3 class="aside-title">Filter op merk</h3>
         <ul class="list-links">
+
             @foreach ($brands as $brand)
-                <li><a href="{{url('/producten/merk', $brand->id)}}">{{$brand->title}}</a></li>
+                <li><a href="{{url('/producten/merk', $brand['id'])}}">{{$brand['title']}}</a></li>
             @endforeach
             {{-- <li><a href="#">Nike</a></li>
             <li><a href="#">Adidas</a></li>
@@ -132,7 +133,7 @@
         <h3 class="aside-title">Filter op categorie</h3>
         <ul class="list-links">
             @foreach ($categories as $categorie)
-            <li><a href="{{url('/producten/categorie', $categorie->id)}}">{{ $categorie->title }}</a></li>
+                <li><a href="{{url('/producten/categorie', $categorie['id'])}}">{{ $categorie['title'] }}</a></li>
             @endforeach
         </ul>
     </div>
@@ -142,7 +143,7 @@
         <h3 class="aside-title">Filter op type</h3>
         <ul class="list-links">
             @foreach ($types as $type)
-                <li><a href="{{url('/producten/type', $type->id)}}">{{ $type->title }}</a></li>    
+                <li><a href="{{url('/producten/type', $type['id'])}}">{{ $type['title'] }}</a></li>    
             @endforeach
         </ul>
     </div>

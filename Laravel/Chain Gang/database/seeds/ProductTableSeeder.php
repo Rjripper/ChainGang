@@ -16,7 +16,7 @@ class ProductTableSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        foreach (range(1,25) as $index)
+        foreach (range(1,50) as $index)
         {
             DB::table('products')->insert([
                 'brand_id' => $faker->numberBetween(1,6),

@@ -51,18 +51,26 @@ class ProductController extends Controller
     {
         // Get the categories by id
         // Return the vieuw with only the selected categorie
-        $products = Product::where('category_id', $category->id)->paginate(9);
+        $products = Product::whereIn('category_id', Category::whereId($category->id)->get()->pluck('id'))->get()->paginate(9);
 
-        return view('klant.body.products.products', compact('products'));
+        $categories = Category::orderBy('title', 'asc')->get()->toArray();
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 
     public function indexWithBrand(Brand $brand)
     {
         // Get the brand by id
         // Rerturn the view with only the selected brand
-        $products = Product::where('brand_id', $brand->id)->paginate(9);
+        $products = Product::whereIn('brand_id', Brand::whereId($brand->id)->get()->pluck('id'))->get();
 
-        return view('klant.body.products.products', compact('products'));
+        $brands = Brand::orderBy('id', 'asc')->get();
+
+        $categories = Category::orderBy('title', 'asc')->get()->toArray();
+
+        $types = Type::orderBy('title', 'asc')->get()->toArray();
+
+        return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
     }
 
     public function indexWithType(Type $type)
@@ -71,6 +79,8 @@ class ProductController extends Controller
         // Return the view with only the selected type
         $products = Product::where('type_id', $type->id)->paginate(9);
 
-        return view('klant.body.products.products', compact('products'));
+        $types = Type::orderBy('title', 'asc')->get()->toArray();
+
+        return view('klant.body.products.products', compact('products', 'types'));
     }
 }
