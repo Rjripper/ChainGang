@@ -4,6 +4,11 @@ get new price and add it --}}
 
 <!-- row -->
 <div class="row">
+    @if (count($products) == 0)
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Er zijn geen producten beschikbaar</p>
+        </div>
+    @endif
     @foreach ($products as $product)
         @php
             $sale = App\Sale::where('product_id', $product->id)->first();
