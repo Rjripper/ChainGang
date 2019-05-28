@@ -4,7 +4,8 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
-class UserTableSeeder extends Seeder
+
+class CustomersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +15,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('users')->insert([
+        DB::table('customers')->insert([
             'first_name' => 'Anton',
             'last_name' => 'austirol',            
             'address' => 'tirol',

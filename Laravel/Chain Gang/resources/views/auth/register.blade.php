@@ -91,12 +91,12 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                            <input  type="hidden" name="wants_newsletter" value="0">
-                                        <p> <input style="width:20px;height:20px;" type="checkbox" id="backend_access" name="wants_newsletter" value="1" class="switch-input" {{ old('wants_newsletter') == '1' ? 'checked' : '' }}>
+                                            <input  type="hidden" name="has_newsletter" value="0">
+                                        <p> <input style="width:20px;height:20px;" type="checkbox" id="backend_access" name="has_newsletter" value="1" class="switch-input" {{ old('has_newsletter') == '1' ? 'checked' : '' }}>
                                             schrijf me in voor de nieuws brief!</p>
-                                        @if ($errors->has('wants_newsletter'))
+                                        @if ($errors->has('has_newsletter'))
                                             <span class="bg-danger" role="alert">
-                                                <strong>&nbsp;{{ $errors->first('wants_newsletter') }}</strong>
+                                                <strong>&nbsp;{{ $errors->first('has_newsletter') }}</strong>
                                             </span>
                                         @endif
                                     </div>
