@@ -102,29 +102,27 @@ Route::get('/admin/users', function() {
 
 Route::get('/admin/customers', function() {
     return view('dashboard.body.customers.index');
-})->name('customers');
+})->name('customers'); 
 
-Route::get('/admin/products', function() {
-    return view('dashboard.body.products.index');
-})->name('products');
+Route::get('/admin/products', 'ProductController@productIndex')->name('products');
 
 
 /*
     Users
 */
-Route::get('/user/create/', function() {
+Route::get('/admin/user/create/', function() {
     return view('dashboard.body.users.create');
 });
 
-Route::get('/user/edit/1/', function() {
+Route::get('/admin/user/edit/1/', function() {
     return view('dashboard.body.users.update');
 });
 
-Route::get('/user/1/', function() {
+Route::get('/admin/user/1/', function() {
     return view('dashboard.body.users.view');
 });
 
-Route::get('/user/delete/', function() {
+Route::get('/admin/user/delete/', function() {
     return view('dashboard.body.users.delete');
 });
 
@@ -132,19 +130,19 @@ Route::get('/user/delete/', function() {
 /*
     Customers
 */
-Route::get('/customer/create/', function() {
+Route::get('/admin/customer/create/', function() {
     return view('dashboard.body.customers.create');
 });
 
-Route::get('/customer/edit/1/', function() {
+Route::get('/admin/customer/edit/1/', function() {
     return view('dashboard.body.customers.update');
 });
 
-Route::get('/customer/1/', function() {
+Route::get('/admin/customer/1/', function() {
     return view('dashboard.body.customers.view');
 });
 
-Route::get('/customer/delete/', function() {
+Route::get('/admin/customer/delete/', function() {
     return view('dashboard.body.customers.delete');
 });
 
@@ -152,19 +150,16 @@ Route::get('/customer/delete/', function() {
 /*
     Products
 */
-Route::get('/product/create/', function() {
-    return view('dashboard.body.products.create');
-});
+Route::get('/admin/product/create/', 'ProductController@createProduct')->name('productCreate');
+Route::post('/admin/product/', 'ProductController@storeProduct')->name('productStore');
 
-Route::get('/product/edit/1/', function() {
+Route::get('/admin/product/edit/1/', function() {
     return view('dashboard.body.products.update');
 });
 
-Route::get('/product/1/', function() {
-    return view('dashboard.body.products.view');
-});
+Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 
-Route::get('/product/delete/', function() {
+Route::get('/admin/product/delete/', function() {
     return view('dashboard.body.products.delete');
 });
 
@@ -174,19 +169,19 @@ Route::get('/product/delete/', function() {
 /*
     Newsletters
 */
-Route::get('/newsletters', function() {
+Route::get('/admin/newsletters', function() {
     return view('dashboard.body.newsletters.index');
 })->name('newsletters');
 
-Route::get('/newsletter/create', function() {
+Route::get('/admin/newsletter/create', function() {
     return view('dashboard.body.newsletters.create');
 });
 
-Route::get('/newsletter/1/', function() {
+Route::get('/admin/newsletter/1/', function() {
     return view('dashboard.body.newsletters.view');
 });
 
-Route::get('/newsletter/edit/1', function() {
+Route::get('/admin/newsletter/edit/1', function() {
     return view('dashboard.body.newsletters.update');
 });
 
@@ -194,19 +189,19 @@ Route::get('/newsletter/edit/1', function() {
 /*
     Orders
 */
-Route::get('/orders', function() {
+Route::get('/admin/orders', function() {
     return view('dashboard.body.orders.index');
 })->name('orders');
 
-Route::get('/order/create', function() {
+Route::get('/admin/order/create', function() {
     return view('dashboard.body.orders.create');
 });
 
-Route::get('/order/1/', function() {
+Route::get('/admin/order/1/', function() {
     return view('dashboard.body.orders.view');
 });
 
-Route::get('/order/edit/1', function() {
+Route::get('/admin/order/edit/1', function() {
     return view('dashboard.body.orders.update');
 });
 
@@ -214,19 +209,19 @@ Route::get('/order/edit/1', function() {
 /*
     Sales
 */
-Route::get('/sales', function() {
+Route::get('/admin/sales', function() {
     return view('dashboard.body.sales.index');
 })->name('sales');
 
-Route::get('/sale/create', function() {
+Route::get('/admin/sale/create', function() {
     return view('dashboard.body.sales.create');
 });
 
-Route::get('/sale/1/', function() {
+Route::get('/admin/sale/1/', function() {
     return view('dashboard.body.sales.view');
 });
 
-Route::get('/sale/edit/1', function() {
+Route::get('/admin/sale/edit/1', function() {
     return view('dashboard.body.sales.update');
 });
 
@@ -234,18 +229,18 @@ Route::get('/sale/edit/1', function() {
 /*
     Reviews
 */
-Route::get('/reviews', function() {
+Route::get('/admin/reviews', function() {
     return view('dashboard.body.reviews.index');
 })->name('reviews');
 
-Route::get('/review/create', function() {
+Route::get('/admin/review/create', function() {
     return view('dashboard.body.reviews.create');
 });
 
-Route::get('/review/1/', function() {
+Route::get('/admin/review/1/', function() {
     return view('dashboard.body.reviews.view');
 });
 
-Route::get('/review/edit/1', function() {
+Route::get('/admin/review/edit/1', function() {
     return view('dashboard.body.reviews.update');
 });

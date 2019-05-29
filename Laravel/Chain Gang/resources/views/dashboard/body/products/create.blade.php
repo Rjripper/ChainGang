@@ -3,16 +3,29 @@
 @section('body')
 <div class="container-fluid">
     <h4 class="c-grey-900 mT-10 mB-30">Product</h4>
+
+    
+    {{-- begin Form --}}
+    <form method="POST" action="{{ url('/admin/product/')}}" enctype="multipart/form-data">
+        @csrf
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 <h4 class="c-grey-900 mB-20">Product aanmaken</h4>
                 <div class="row">
+
                     <div class="col-md-2 mb-3">
                         <div class="user-upload-image">
                             <div class="text-center">
-                                <i class="ti-plus user-upload-plus"></i>
-                                <p class="user-upload-text">FOTO'S UPLOADEN</p>
+                                {{-- Foto upload --}}
+                                <label for="upload-photo" class="ti-plus user-upload-plus" style="cursor: pointer;">     
+                                    <img src="" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
+                                </label>
+                                <input id="upload-photo" type="file" name="image" style="opacity: 0; z-index: -1;" onchange="readURL(this);">
+                                <label for="upload-photo" style="cursor: pointer;">
+                                    <p class="user-upload-text">FOTO'S UPLOADEN</p>
+                                </label>
+                                {{-- Eind Foto upload --}}
                             </div>
                         </div>
                     </div>
@@ -23,24 +36,29 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Product naam</label>
-                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Product naam" required>
+                                            <input type="text" class="form-control" id="validationCustom01" name="product_name" placeholder="Product naam" required>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
+                                            @if ($errors->has('product_name'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('product_name') }}</strong>
+                                            </span> 
+                                            @endif
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Merk</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">Gazelle</option>
-                                                <option>Batavus</option>
-                                                <option>Altec</option>
-                                            </select>
+                                            <select id="validationCustom03" name="brand_id" class="form-control">
+                                                @foreach ($brands as $brand)
+                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
+                                                @endforeach
+                                              </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -52,16 +70,16 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Type</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">E-Bike</option>
-                                                <option>3-Wieler</option>
-                                                <option>2-Wieler</option>
+                                            <select id="validationCustom03" name="type_id" class="form-control">
+                                                @foreach ($types as $type)
+                                                    <option value="{{$type->id}}">{{$type->title}}</option>
+                                                @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -73,16 +91,17 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Categorie</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">Heren</option>
-                                                <option>Vrouwen</option>
-                                                <option>Kinderen</option>
+                                            <select id="validationCustom03" name="category_id" class="form-control">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                                @endforeach
+                                            </select>
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -94,7 +113,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>
-                                            <input type="text" class="form-control" id="validationCustom04" placeholder="1200" required>
+                                            <input type="text" class="form-control" id="validationCustom04" name="price" placeholder="1200" required>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +121,7 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Beschrijving</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" required></textarea>
+                                            <textarea  class="form-control" name="description" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" required></textarea>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                         </div>
                                     </div>
@@ -110,7 +129,7 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Specificaties</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" required></textarea>
+                                            <textarea  class="form-control" name="specifications" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" required></textarea>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                         </div>
                                     </div>
@@ -123,15 +142,34 @@
                                 </div>
                                 <div class="col-md-6 mb-6">
                                     <div class="text-right">
-                                        <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Product aanmaken</button></a> 
+                                        <button class="btn btn-primary tables-function-button" type="submit">Product aanmaken</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
+            </form>
+        {{-- einde form --}}
             </div>
         </div>
+
+
     </div>
 </div>
+
+<script>
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+</script>
 @endsection

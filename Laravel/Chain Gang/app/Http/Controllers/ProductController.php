@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use App\Product;
 use App\Brand;
 use App\Review;
 use App\Sale;
 use App\Category;
 use App\Type;
-use phpDocumentor\Reflection\Types\Float_;
+
 
 class ProductController extends Controller
 {
-
     public function search(Request $request)
     {
         $search = $request->get('search');
@@ -46,7 +46,7 @@ class ProductController extends Controller
         // Return view with products
 
         // Loop them in the view
-        // add the urls to add them to cart
+        // add the urls to add them to cart        
         $sort = $request->get('sort');
         $order_by = $request->get('order_by');
 
@@ -171,5 +171,83 @@ class ProductController extends Controller
         $categories = Category::orderBy('title', 'asc')->get();
 
         return view('klant.body.products.products', compact('products', 'brands', 'categories', 'types'));
+    }
+
+
+    /*
+        Show all Products for Dashboard Index
+    */
+    public function productIndex(){
+
+        $products = Product::all();
+
+        return view('dashboard.body.products.index', compact('products'));
+    }
+
+    public function productShow($id){
+
+        $products = Product::findOrFail($id);
+
+        return view('dashboard.body.products.view', compact('products'));
+    }
+
+    public function createProduct(){
+        $product = Product::all();
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
+
+        return view('dashboard.body.products.create', compact('product', 'brands', 'categories', 'types'));
+
+    }
+
+    public function storeProduct(Request $request){
+
+        $request->validate([            
+            'product_name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required',
+            'description' => 'required|min:1',
+            'specifications' => 'required',
+            'brand_id' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',            
+         ]);
+
+        $product = new Product;
+        // $product->id = $request->id;
+           
+        $product->product_name = $request->product_name;  
+        $product->price = $request->price;    
+        $product->description = $request->description; 
+        $product->specifications = $request->specifications;
+        $product->brand_id = $request->brand_id;
+        $product->type_id = $request->type_id;
+        $product->category_id = $request->category_id;
+
+
+        if(empty($request->image))
+        {
+            $product->product_images = public_path('images/products/uploads/default.jpg');
+        } else {
+            $product->product_images = $this->resizeImage(
+                                                        $request->image,
+                                                        public_path('images/products/uploads'),
+                                                        '150',
+                                                        '150',
+                                                        Input::file('image'));
+        }
+    	// if($request->hasFile('image')){
+    	// 	$image = $request->file('image');
+    	// 	$filename = time() . '.' . $image->getClientOriginalExtension();
+        //     Image::make($image)->resize(300, 300)->save( public_path('/images/products/uploads' . $filename ) );
+            
+        //     $product->product_images->image = $filename;
+        // }
+        // dd($request);
+        $product->save();
+
+        return redirect()->action('ProductController@productIndex');
+
     }
 }

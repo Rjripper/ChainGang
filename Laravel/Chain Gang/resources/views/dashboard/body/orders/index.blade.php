@@ -44,8 +44,8 @@
                                 <td>€100,-</td>
                                 <td>
                                     <div class="text-center">                                        
-                                        <a class="table-icon-link tables-icons" href="{{ url('/order/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/order/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/1/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Order_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="btn-add-index">
-                                <a href="{{ url('/order/create') }}"><button class="btn btn-primary tables-function-button">Bestelling Aanmaken</button></a> 
+                                <a href="{{ url('/admin/order/create') }}"><button class="btn btn-primary tables-function-button">Bestelling Aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   
