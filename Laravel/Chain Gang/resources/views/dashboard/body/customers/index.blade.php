@@ -44,8 +44,8 @@
                                 <td>Doetinchem</td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/customer/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/customer/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/1/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="text-right">
-                                <a href="{{ url('/customer/create') }}"><button class="btn btn-primary tables-function-button">Klant aanmaken</button></a> 
+                                <a href="{{ url('/admin/customer/create') }}"><button class="btn btn-primary tables-function-button">Klant aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   

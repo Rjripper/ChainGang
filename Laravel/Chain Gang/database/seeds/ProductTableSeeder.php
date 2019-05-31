@@ -22,6 +22,7 @@ class ProductTableSeeder extends Seeder
                 'brand_id' => $faker->numberBetween(1,6),
                 'type_id' => $faker->numberBetween(1,6),            
                 'category_id' => $faker->numberBetween(1,4),
+                'product_images' => '',
                 'product_name' => $faker->name,
                 'price' => $faker->numberBetween(1.00,9999.99),
                 'description' => 'Leuk ding, wel goed.',
