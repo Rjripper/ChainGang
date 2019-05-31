@@ -97,10 +97,19 @@ Route::get('/admin/login', 'Auth\UserLoginController@showLoginForm')->name('user
 Route::post('/admin/login', 'Auth\UserLoginController@login')->name('userLoginSubmit');
 
 Route::group(['middleware' => ['auth:user']], function () {
+
+        Route::get('/admin/dashboard', 'DashboardController@index')->name('dashboard');
+
+        //?????
         Route::get('/admin/customers', function() {
             return view('dashboard.body.customers.index');
         })->name('customers'); 
 
+        Route::get('/admin/users', function() {
+            return view('dashboard.body.users.index');
+        })->name('users');
+
+        // ?????
         Route::get('/admin/products', 'ProductController@productIndex')->name('products');
 
 
