@@ -3,19 +3,34 @@
 @section('body')
 <div class="container-fluid">
     <h4 class="c-grey-900 mT-10 mB-30">Product</h4>
+
+    {{-- begin Form --}}
+    {{-- geef de forum een post en de action mee --}}
+    {{-- bij action geef je het pad waar hij hem moet opslaan gewoon het zelfde als de get van index. --}}
+    <form method="POST" action="{{ url('/admin/product/')}}" enctype="multipart/form-data">
+        @csrf
+        @method('patch')
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 <h4 class="c-grey-900 mB-20">Product wijzigen</h4>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <div class="user-upload-image">
-                            <div class="text-center">
-                                <i class="ti-plus user-upload-plus"></i>
-                                <p class="user-upload-text">FOTO'S UPLOADEN</p>
+                            <div class="user-upload-image">
+                                <div class="text-center">
+                                    {{-- Foto upload --}}
+                                    {{-- onderaan deze blade staat de javascript voor foto uploaden. --}}
+                                    <label for="upload-photo" class="ti-plus user-upload-plus" style="cursor: pointer;">     
+                                        <img src="" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
+                                    </label>
+                                    <input id="upload-photo" type="file" name="image" style="opacity: 0; z-index: -1;" onchange="readURL(this);">
+                                    <label for="upload-photo" style="cursor: pointer;">
+                                        <p class="user-upload-text">FOTO'S UPLOADEN</p>
+                                    </label>
+                                    {{-- Eind Foto upload --}}
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                     </div>
                     <div class="col-md-10">
                         <form class="container" id="needs-validation" novalidate>
                             <div class="row">
@@ -23,7 +38,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Product naam</label>
-                                            <input type="text" class="form-control" id="validationCustom01" placeholder="E-Bike Zoof 3000" required>
+                                            <input type="text" class="form-control" id="validationCustom01" name="product_name" value="{{ old('product_name', $product->product_name) }}" placeholder="Product naam" required>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                         </div>
                                     </div>
@@ -31,10 +46,13 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Merk</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">Gazelle</option>
-                                                <option>Batavus</option>
-                                                <option>Altec</option>
+                                            {{-- kijk naar de naam select(naam moet het zelfde zijn als database table name) --}}
+                                            <select id="validationCustom03" name="brand_id" class="form-control">
+                                                {{-- loop door elementen die je wilt laten weergeven in de dropdown --}}                                  
+                                                @foreach ($brands as $brand)                                               
+                                                {{-- geef waarde van de optie weer doe dit tussen <option>...</option> --}}
+                                                    <option value="{{$brand->id}}" @if( $brand->id ==  $product->brand_id) selected @endif>{{$brand->title}}</option>
+                                                @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
@@ -133,5 +151,6 @@
             </div>
         </div>
     </div>
+</form>
 </div>
 @endsection

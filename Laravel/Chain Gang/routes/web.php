@@ -150,12 +150,14 @@ Route::get('/admin/customer/delete/', function() {
 /*
     Products
 */
+//aanmaken product
 Route::get('/admin/product/create/', 'ProductController@createProduct')->name('productCreate');
 Route::post('/admin/product/', 'ProductController@storeProduct')->name('productStore');
 
-Route::get('/admin/product/edit/1/', function() {
-    return view('dashboard.body.products.update');
-});
+
+//updaten product
+Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
+Route::patch('/admin/product/{id}/update', 'ProductController@updateProduct')->name('productUpdate');
 
 Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 

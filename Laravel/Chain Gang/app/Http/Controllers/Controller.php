@@ -21,8 +21,7 @@ class Controller extends BaseController
         // dd($photo);
         $filename = time() . '.' . $photo->getClientOriginalExtension();
         $image = Image::make($photo)->resize($width, $height)->save($filename);
-
-        Storage::disk('local')->put($filename, $image);
+        Storage::disk('public')->put($folder . $filename, $image);
 
         return $filename;
     }

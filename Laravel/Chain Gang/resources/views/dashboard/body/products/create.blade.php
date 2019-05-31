@@ -6,6 +6,8 @@
 
     
     {{-- begin Form --}}
+    {{-- geef de forum een post en de action mee --}}
+    {{-- bij action geef je het pad waar hij hem moet opslaan gewoon het zelfde als de get van index. --}}
     <form method="POST" action="{{ url('/admin/product/')}}" enctype="multipart/form-data">
         @csrf
     <div class="row">
@@ -18,6 +20,7 @@
                         <div class="user-upload-image">
                             <div class="text-center">
                                 {{-- Foto upload --}}
+                                {{-- onderaan deze blade staat de javascript voor foto uploaden. --}}
                                 <label for="upload-photo" class="ti-plus user-upload-plus" style="cursor: pointer;">     
                                     <img src="" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
                                 </label>
@@ -36,6 +39,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Product naam</label>
+                                            {{-- kijk naar de naam input field(naam moet het zelfde zijn als database table name) --}}
                                             <input type="text" class="form-control" id="validationCustom01" name="product_name" placeholder="Product naam" required>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             @if ($errors->has('product_name'))
@@ -49,8 +53,11 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Merk</label>
+                                            {{-- kijk naar de naam select(naam moet het zelfde zijn als database table name) --}}
                                             <select id="validationCustom03" name="brand_id" class="form-control">
+                                                {{-- loop door elementen die je wilt laten weergeven in de dropdown --}}
                                                 @foreach ($brands as $brand)
+                                                {{-- geef waarde van de optie weer doe dit tussen <option>...</option> --}}
                                                  <option value="{{$brand->id}}">{{$brand->title}}</option>
                                                 @endforeach
                                               </select>
@@ -158,6 +165,8 @@
 </div>
 
 <script>
+    //foto upload js
+    //gewoon in de blade laten staan.
      function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

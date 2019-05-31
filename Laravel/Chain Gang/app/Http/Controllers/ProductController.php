@@ -192,16 +192,84 @@ class ProductController extends Controller
     }
 
     public function createProduct(){
+        
+        //haal alle info + foreign key info op.
         $product = Product::all();
         $brands = Brand::all();
         $types = Type::all();
         $categories = Category::all();
 
+        //gebruik compact zodat de info gezien kan worden
         return view('dashboard.body.products.create', compact('product', 'brands', 'categories', 'types'));
 
     }
 
     public function storeProduct(Request $request){
+
+        //valideer
+        $request->validate([            
+            'product_name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required',
+            'description' => 'required|min:1',
+            'specifications' => 'required',
+            'brand_id' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',            
+         ]);
+
+
+        //maak product
+        $product = new Product;
+
+        //haal request data op en sla op in product variabelen   
+        $product->product_name = $request->product_name;  
+        $product->price = $request->price;    
+        $product->description = $request->description; 
+        $product->specifications = $request->specifications;
+        $product->brand_id = $request->brand_id;
+        $product->type_id = $request->type_id;
+        $product->category_id = $request->category_id;
+
+        //plaatje opslaan    
+        if(empty($request->image))
+        {
+            $product->product_images = public_path('images/products/uploads/default.jpg');
+        } else {            
+            $product->product_images = $this->resizeImage(
+                                                        $request->image,
+                                                        'images/products/uploads/',
+                                                        '150',
+                                                        '150',
+                                                        Input::file('image'));
+        }
+
+        //is je data niet zeker? gebruik dd();
+        //dd($product);
+        //dd($request);
+
+        //sla product op
+        $product->save();
+
+        //return naar index
+        return redirect()->action('ProductController@productIndex');
+
+    }
+
+    public function editProduct($id){
+
+        $product = Product::findOrFail($id);
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
+
+
+        return view('dashboard.body.products.update', compact('product', 'brands', 'categories', 'types'));
+        
+    }
+
+
+    public function updateProduct(Request $request, Product $product){
 
         $request->validate([            
             'product_name' => 'required',
@@ -214,40 +282,32 @@ class ProductController extends Controller
             'category_id' => 'required',            
          ]);
 
-        $product = new Product;
-        // $product->id = $request->id;
-           
-        $product->product_name = $request->product_name;  
-        $product->price = $request->price;    
-        $product->description = $request->description; 
-        $product->specifications = $request->specifications;
-        $product->brand_id = $request->brand_id;
-        $product->type_id = $request->type_id;
-        $product->category_id = $request->category_id;
 
+         $product->product_name = $request->product_name;  
+         $product->price = $request->price;    
+         $product->description = $request->description; 
+         $product->specifications = $request->specifications;
+         $product->brand_id = $request->brand_id;
+         $product->type_id = $request->type_id;
+         $product->category_id = $request->category_id;
+ 
+ 
+         if(empty($request->image))
+         {
+             $product->product_images = public_path('images/products/uploads/default.jpg');
+         } else {            
+             $product->product_images = $this->resizeImage(
+                                                         $request->image,
+                                                         'images/products/uploads/',
+                                                         '150',
+                                                         '150',
+                                                         Input::file('image'));
+         }
 
-        if(empty($request->image))
-        {
-            $product->product_images = public_path('images/products/uploads/default.jpg');
-        } else {
-            $product->product_images = $this->resizeImage(
-                                                        $request->image,
-                                                        public_path('images/products/uploads'),
-                                                        '150',
-                                                        '150',
-                                                        Input::file('image'));
-        }
-    	// if($request->hasFile('image')){
-    	// 	$image = $request->file('image');
-    	// 	$filename = time() . '.' . $image->getClientOriginalExtension();
-        //     Image::make($image)->resize(300, 300)->save( public_path('/images/products/uploads' . $filename ) );
-            
-        //     $product->product_images->image = $filename;
-        // }
-        // dd($request);
-        $product->save();
+         $product->save();
 
-        return redirect()->action('ProductController@productIndex');
+         return redirect()->action('ProductController@productIndex');
+ 
 
     }
 }
