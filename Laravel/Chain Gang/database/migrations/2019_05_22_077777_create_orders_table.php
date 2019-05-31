@@ -26,7 +26,7 @@ class CreateOrdersTable extends Migration
 
         Schema::table('orders', function($table) {
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
 
     }

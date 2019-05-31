@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,10 +54,10 @@ class RegisterController extends Controller
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'zip_code' => ['required', 'string' , 'min:6', 'max:6'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phonenumber' => ['required', 'string', 'min:10'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'phonenumber' => ['required', 'string', 'min:9'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'wants_newsletter'=> ['boolean'],
+            'has_newsletter'=> ['boolean'],
         ]);
     }
 
@@ -65,11 +65,11 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Customer
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Customer::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'address' => $data['address'],
@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phonenumber' => $data['phonenumber'],
             'password' => Hash::make($data['password']),
-            'wants_newsletter' => $data['wants_newsletter'],
+            'has_newsletter' => $data['has_newsletter'],
         ]);
     }
 }
