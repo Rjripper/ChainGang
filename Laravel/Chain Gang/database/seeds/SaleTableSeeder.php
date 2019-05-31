@@ -14,7 +14,7 @@ class SaleTableSeeder extends Seeder
     public function run()
     {
         DB::table('sales')->insert([
-            'user_id' => 1,
+            'customer_id' => 1,
             'product_id' => 2,
             'sale' => 30,
             'start_date' => Carbon::now()->format('Y-m-d H:i:s'),

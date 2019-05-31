@@ -2,7 +2,7 @@
     <div class="pull-left">        
         <div class="sort-filter">
             <span class="text-uppercase">Sorteren op:</span>
-            <form method="GET" action="/producten">
+            <form method="GET" action="">
                 <select class="input" name="sort" style="width:150px;" onchange="this.form.submit()">
                     <option class="see_value" value="{{ Request::get('sort') !== null ? Request::get('sort') : '' }}" selected disabled hidden>{{ Request::get('sort') !== null ? Request::get('sort') : 'Sorteer' }}</option>
                     <option value="price" id="price">Prijs</option>
