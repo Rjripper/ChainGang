@@ -38,18 +38,18 @@
                                 @foreach($orders as $order)
                                     <tr>
                                         <td>{{$order->id}}</td>
-                                        <td>{{$order->status_id}}</td>
-                                        <td>{{$order->customer_id}}</td>
-                                        <td>{{$order->user_id}}</td>
+                                        <td>{{$order->status->title}}</td>
+                                        <td>{{$order->customer->fullname}}</td>
+                                        <td>{{$order->user->username}}</td>
                                         <td>{{$order->track_and_trace}}</td>
                                         <td>{{$order->order_date}}</td>
-                                        <td>€100,-</td>
+                                        <td>&euro; {{$order->total_price($order)}}</td>
                                         <td>
                                             <div class="text-center">                                        
-                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/1/') }} "><i class="ti-eye"></i></a>
-                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = Order_id --}}
-                                                <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
+                                                <i class="ti-trash tables-icons remove-user-icon" data-id="{{$order->id}}"></i>
                                             </div>
                                         </td>
                                     </tr>

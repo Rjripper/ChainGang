@@ -16,7 +16,8 @@ class OrderTableSeeder extends Seeder
         //
         DB::table('orders')->insert([
             'status_id' => 1,
-            'customer_id' => 1,            
+            'customer_id' => 1,
+            'user_id' => 1,            
             'track_and_trace' => '02309324',
             'order_date' => Carbon::now()->format('Y-m-d H:i:s'),
             'shipped_date' => Carbon::now()->format('Y-m-d H:i:s'),
