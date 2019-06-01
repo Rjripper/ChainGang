@@ -163,7 +163,7 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
-        Route::patch('/admin/product/{id}/update', 'ProductController@updateProduct')->name('productUpdate');
+        Route::patch('/admin/product/update', 'ProductController@updateProduct')->name('productUpdate');
 
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 

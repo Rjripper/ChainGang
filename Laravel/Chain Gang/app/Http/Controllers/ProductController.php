@@ -230,7 +230,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->type_id = $request->type_id;
         $product->category_id = $request->category_id;
-
+    
         //plaatje opslaan    
         if(empty($request->image))
         {
@@ -281,6 +281,7 @@ class ProductController extends Controller
             'type_id' => 'required',
             'category_id' => 'required',            
          ]);
+   
 
 
          $product->product_name = $request->product_name;  
@@ -303,7 +304,7 @@ class ProductController extends Controller
                                                          '150',
                                                          Input::file('image'));
          }
-
+         
          $product->save();
 
          return redirect()->action('ProductController@productIndex');

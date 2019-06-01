@@ -37,7 +37,7 @@
                             @foreach ($products as $product)                                
                             
                             <tr>
-                                <td><img class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
+                                <td><img class="user-table-avatar" style="border-radius: 100%;" src="{{asset ($product->product_images)}}" alt="Gebruikers Plaatje"></td>
                                 <td>{{$product->id}}</td>
                                 <td>{{$product->product_name}}</td>
                                 <td>{{$product->brand->title}}</td>
