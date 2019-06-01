@@ -12,11 +12,11 @@
                             <tr>
                                 <th></th>
                                 <th>ID</th>
+                                <th>Voornaam</th>
+                                <th>Achternaam</th>
                                 <th>Gebruikersnaam</th>
                                 <th>E-mailadres</th>
-                                <th>Rol</th>
-                                <th>Ipadres</th>
-                                <th>Registratie Datum</th>
+                                <th>Admin</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -24,33 +24,36 @@
                             <tr>
                                 <th></th>
                                 <th>ID</th>
+                                <th>Voornaam</th>
+                                <th>Achternaam</th>
                                 <th>Gebruikersnaam</th>
                                 <th>E-mailadres</th>
-                                <th>Rol</th>
-                                <th>Ipadres</th>
-                                <th>Registratie Datum</th>
+                                <th>Admin</th>
                                 <th></th>
                             </tr>
                         </tfoot>
                         <tbody>
                             {{-- Loop this with all Users --}}
+                            @foreach ($users as $user)                                
+                            
                             <tr>
                                 <td><img class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
-                                <td>1</td>
-                                <td>bobross</td>
-                                <td>bob@ross.com</td>
-                                <td>Admin</td>
-                                <td>31.151.233.21</td>
-                                <td>12:03:12 14/03/2019</td>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->first_name}}</td>
+                                <td>{{$user->last_name}}</td>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{($user->is_admin == 1 ? 'X' : '' ) }}</td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/edit/'. $user->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
+                                    <i class="ti-trash tables-icons remove-user-icon" data-id="{{$user->id}}"></i>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                             {{-- Loop this with all Users --}}
                         </tbody>
                     </table>
@@ -60,7 +63,7 @@
                                 <a href="{{ url('/admin/user/create') }}"><button class="btn btn-primary tables-function-button">Gebruiker aanmaken</button></a> 
                             </div>
                         </div>
-                    </div>   
+                    </div> 
                 </div>
             </div>
         </div>

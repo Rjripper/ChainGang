@@ -105,9 +105,9 @@ Route::group(['middleware' => ['auth:user']], function () {
             return view('dashboard.body.customers.index');
         })->name('customers'); 
 
-        Route::get('/admin/users', function() {
-            return view('dashboard.body.users.index');
-        })->name('users');
+        // Route::get('/admin/users', function() {
+        //     return view('dashboard.body.users.index');
+        // })->name('users');
 
         // ?????
         Route::get('/admin/products', 'ProductController@productIndex')->name('products');
@@ -116,22 +116,22 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Users
         */
-        Route::get('/admin/user/create/', function() {
-            return view('dashboard.body.users.create');
-        });
+        // Alle Users
+        Route::get('/admin/users', 'UserController@index')->name('users');
 
-        Route::get('/admin/user/edit/1/', function() {
-            return view('dashboard.body.users.update');
-        });
+        // Aanmaken User
+        Route::get('/admin/user/create/', 'UserController@createUser')->name('userCreate');
+        Route::post('/admin/users/', 'UserController@storeUser')->name('userStore');
 
-        Route::get('/admin/user/1/', function() {
-            return view('dashboard.body.users.view');
-        });
+        // Update User
+        Route::get('/admin/user/edit/{user}', 'UserController@editUser')->name('editUser');
+        Route::patch('/admin/user/{user}/update', 'UserController@updateUser')->name('userUpdate');
 
-        Route::get('/admin/user/delete/', function() {
-            return view('dashboard.body.users.delete');
-        });
+        // Delete User
+        Route::post('/admin/users/delete/', 'UserController@deleteUser')->name('deleteUser');
 
+        // View User
+        Route::get('/admin/user/{id}', 'UserController@userShow')->name('showUser');
 
         /*
             Customers
