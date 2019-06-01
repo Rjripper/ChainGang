@@ -55,7 +55,7 @@
     
                     <div class="row">   
                         <div class="btn-back">
-                            <a href="{{ url('/newsletters') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                            <a href="{{ url('/admin/newsletters') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>                    
                         <div class="btn-add-newsletter-layout">
                             <a href="#"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanpassen</button></a> 

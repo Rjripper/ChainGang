@@ -55,10 +55,10 @@
     
                     <div class="row">   
                         <div class="btn-back">
-                            <a href="{{ url('/newsletters') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                            <a href="{{ url('/admin/newsletters') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>                    
                         <div class="btn-add-newsletter-layout">
-                            <a href="{{ url('/newsletters') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief Wijzigen</button></a> 
+                            <a href="{{ url('/admin/newsletters') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief Wijzigen</button></a> 
                         </div>                
                         </div>   
                     </div>            

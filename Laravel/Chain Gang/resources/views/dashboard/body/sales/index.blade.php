@@ -42,8 +42,8 @@
                                 <td>24-05-2019 15:03:22</td>                                
                                 <td>
                                     <div class="text-center">         
-                                        <a class="table-icon-link tables-icons" href="{{ url('/sale/1/') }} "><i class="ti-eye"></i></a>                               
-                                        <a class="table-icon-link tables-icons" href="{{ url('/sale/edit/1') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/1/') }} "><i class="ti-eye"></i></a>                               
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/edit/1') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Order_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="btn-add-index">
-                                <a href="{{ url('/sale/create') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
+                                <a href="{{ url('/admin/sale/create') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   

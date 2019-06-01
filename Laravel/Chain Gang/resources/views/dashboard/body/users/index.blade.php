@@ -44,8 +44,8 @@
                                 <td>12:03:12 14/03/2019</td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/user/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/user/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/edit/1/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="text-right">
-                                <a href="{{ url('/user/create') }}"><button class="btn btn-primary tables-function-button">Gebruiker aanmaken</button></a> 
+                                <a href="{{ url('/admin/user/create') }}"><button class="btn btn-primary tables-function-button">Gebruiker aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   

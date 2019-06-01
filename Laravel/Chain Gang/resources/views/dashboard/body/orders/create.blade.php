@@ -120,10 +120,10 @@
                     {{-- EIND Form--}}
                     <div class="row">   
                         <div class="btn-back">
-                            <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                            <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>
                         <div class="btn-add-newsletter-layout">
-                                <a href="{{ url('/orders') }}"><button class="btn btn-primary tables-function-button">Bestelling aanmaken</button></a> 
+                                <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Bestelling aanmaken</button></a> 
                         </div>                
                     </div>                  
                     {{-- EIND Orders toevoegen--}}

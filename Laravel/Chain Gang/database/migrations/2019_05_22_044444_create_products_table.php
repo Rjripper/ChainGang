@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('product_images');
             $table->string('product_name');
             $table->double('price');
             $table->string('description');

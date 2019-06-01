@@ -2,13 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Customer extends Model
+class Customer extends Authenticatable implements MustVerifyEmail
 {
+    use Notifiable;
     //
     protected $fillable = [
-        'first_name', 'last_name', 'address', 'city', 'email', 'avatar', 'phonenumber',
+        'first_name', 'last_name', 'address', 'city', 'email','zip_code', 'avatar', 'phonenumber',
         'password', 'has_newsletter', 'created_at', 'updated_at', 'deleted_at'
     ];
 
