@@ -16,4 +16,14 @@ class OrderController extends Controller
 
         return view('klant.body.user-details.my-order-items', compact('order_items', 'order'));
     }
+
+
+    // Admin Part
+    public function index()
+    {
+        //Get All Orders
+        $orders = Order::All();
+
+        return view('dashboard.body.orders.index', compact('orders'));
+    }
 }

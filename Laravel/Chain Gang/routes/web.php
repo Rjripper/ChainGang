@@ -194,12 +194,11 @@ Route::group(['middleware' => ['auth:user']], function () {
         });
 
 
+        // Routes Moosti
         /*
             Orders
         */
-        Route::get('/admin/orders', function() {
-            return view('dashboard.body.orders.index');
-        })->name('orders');
+        Route::get('/admin/orders', 'OrderController@index')->name('orders');
 
         Route::get('/admin/order/create', function() {
             return view('dashboard.body.orders.create');

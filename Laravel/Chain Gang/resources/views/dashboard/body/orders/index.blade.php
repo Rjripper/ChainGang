@@ -34,23 +34,27 @@
                         </tfoot>
                         <tbody>
                             {{-- Loop this with all Orders --}}
-                            <tr>
-                                <td>12312312</td>
-                                <td>send</td>
-                                <td>bobross</td>
-                                <td>mufasa</td>
-                                <td>28903423423</td>
-                                <td>22-4-2001</td>
-                                <td>€100,-</td>
-                                <td>
-                                    <div class="text-center">                                        
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/1/') }} "><i class="ti-pencil"></i></a>
-                                        {{-- Data-id = Order_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            @if($orders != null)
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->status_id}}</td>
+                                        <td>{{$order->customer_id}}</td>
+                                        <td>{{$order->user_id}}</td>
+                                        <td>{{$order->track_and_trace}}</td>
+                                        <td>{{$order->order_date}}</td>
+                                        <td>€100,-</td>
+                                        <td>
+                                            <div class="text-center">                                        
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/1/') }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                                {{-- Data-id = Order_id --}}
+                                                <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             {{-- Loop this with all Orders --}}
                         </tbody>
                     </table>
