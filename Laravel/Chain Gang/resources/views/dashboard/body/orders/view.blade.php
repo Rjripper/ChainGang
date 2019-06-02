@@ -14,45 +14,21 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-group"><label for="title">Status</label> 
-                                                @if($statusses != null)
-                                                    <select id="status" class="form-control">
-                                                        @foreach($statusses as $status)
-                                                            @if($loop->first)
-                                                                <option selected="selected">{{$status->title}}</option>
-                                                            @else
-                                                                <option>{{$status->title}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                @endif
+                                                <select id="status" class="form-control" disabled>
+                                                    <option selected="selected">{{$order->status->title}}</option>
+                                                </select>
                                             </div>
                                             <div class="form-group"><label for="creator">Auteur</label> 
-                                                @if($users != null)
-                                                    <select id="creator" class="form-control">
-                                                        @foreach($users as $user)
-                                                            @if($loop->first)
-                                                                <option selected="selected">{{$user->username}}</option>
-                                                            @else
-                                                                <option>{{$user->username}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                @endif
+                                                <select id="creator" class="form-control" disabled>
+                                                    <option selected="selected">{{$order->user->username}}</option>
+                                                </select>
                                             </div>
                                             <div class="form-group"><label for="customer">Klant</label> 
-                                                @if($customers != null)
-                                                    <select id="customer" class="form-control">
-                                                        @foreach($customers as $customer)
-                                                            @if($loop->first)
-                                                                <option selected="selected">{{$customer->email}}</option>
-                                                            @else
-                                                                <option>{{$customer->email}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                @endif
+                                                <select id="customer" class="form-control" disabled>
+                                                    <option selected="selected">{{$order->customer->email}}</option>
+                                                </select>
                                             </div>                                  
-                                            <div class="form-group"><label for="track_and_trace">Track & Trace</label> <input type="text" value="{{$order->track_and_trace}}" class="form-control" id="track_and_trace"></div>
+                                            <div class="form-group"><label for="track_and_trace">Track & Trace</label> <input disabled type="text" value="{{$order->track_and_trace}}" class="form-control" id="track_and_trace"></div>
                                             <div class="form-group">
                                                 <label class="fw-500">Datum van Bestelling</label>
                                                 <div class="timepicker-input input-icon form-group">
@@ -60,7 +36,7 @@
                                                         <div class="input-group-addon bgc-white bd bdwR-0">
                                                             <i class="ti-calendar"></i>
                                                         </div>
-                                                        <input type="text" value="{{$order->order_date}}" class="form-control bdc-grey-200 start-date" id="order_date" placeholder="Datum van Bestelling" data-provide="datepicker">
+                                                        <input type="text" value="{{$order->order_date}}" disabled class="form-control bdc-grey-200 start-date" id="order_date" placeholder="Datum van Bestelling" data-provide="datepicker">
                                                     </div>
                                                 </div>
                                             </div>                                     
@@ -71,7 +47,7 @@
                                                         <div class="input-group-addon bgc-white bd bdwR-0">
                                                             <i class="ti-calendar"></i>
                                                         </div>
-                                                        <input type="text" value="{{$order->shipped_date}}" class="form-control bdc-grey-200 start-date" id="ship_date" placeholder="Datum van Verzending" data-provide="datepicker">
+                                                        <input type="text" value="{{$order->shipped_date}}" disabled class="form-control bdc-grey-200 start-date" id="ship_date" placeholder="Datum van Verzending" data-provide="datepicker">
                                                     </div>
                                                 </div>
                                             </div>         
@@ -129,7 +105,7 @@
     let table = document.getElementById("tafeltje");
     table = table.children[2];
 
-    
+
 let total_amount = 0;
     for(let i = 0; i < table.children.length; i++){
         let price = table.children[i].children[3].innerText;

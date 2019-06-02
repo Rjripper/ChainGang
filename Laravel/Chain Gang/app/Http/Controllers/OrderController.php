@@ -49,13 +49,12 @@ class OrderController extends Controller
     {
         //Get statusses, users, customers, products
         $order = Order::findOrFail($order->id);
-        $statusses = Status::All();
-        $users = User::All();
-        $customers = Customer::All();
-        $products = Product::All();
+        $status = Status::where('id', '=', $order->status_id);
+        $user = User::where('id', '=', $order->user_id);
+        $customer = Customer::where('id', '=', $order->customer_id);
         $items = OrderItem::where('order_id', $order->id)->get();
 
-        return view('dashboard.body.orders.view', compact('statusses', 'users', 'customers', 'products', 'items', 'order'));
+        return view('dashboard.body.orders.view', compact('status', 'user', 'customer', 'items', 'order'));
     }
 
     public function store(Request $request) {
