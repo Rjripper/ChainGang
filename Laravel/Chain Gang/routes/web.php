@@ -201,6 +201,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/orders', 'OrderController@index')->name('orders');
         Route::get('/admin/order/create', 'OrderController@create');
         Route::post('/admin/order/store', 'OrderController@store');
+        Route::delete('/admin/order/delete/{order}', 'OrderController@delete');
         Route::get('/product/json/{product}', 'ProductController@getJson');
 
         Route::get('/admin/order/1/', function() {

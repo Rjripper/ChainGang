@@ -49,7 +49,7 @@
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = Order_id --}}
-                                                <i class="ti-trash tables-icons remove-user-icon" data-id="{{$order->id}}"></i>
+                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" onclick="deleteOrder(this);"></i>
                                             </div>
                                         </td>
                                     </tr>
@@ -69,4 +69,31 @@
             </div>
         </div>
     </div>
+    <script>
+    function deleteOrder(node)
+    {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        var form_data = new FormData();
+        form_data.append('_method', 'DELETE');
+        form_data.append('_token', CSRF_TOKEN);
+
+        let order_id = node.getAttribute('data-id');
+        node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+        $.ajax({
+            url: '/admin/order/delete/' + order_id,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(){
+            },
+            error: function(errors) {
+                console.log(errors);
+            }
+        });
+    }
+    </script>
 @endsection

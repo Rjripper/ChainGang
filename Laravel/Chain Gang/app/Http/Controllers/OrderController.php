@@ -90,6 +90,14 @@ class OrderController extends Controller
         return response()->json(['succes' => true], 200);
     }
 
+    public function delete(Order $order)
+    {
+        $order = Order::findOrFail($order->id);
+        $order->delete();
+
+        return response()->json(['success' => true], 200);
+    }
+
     protected function rulesCreateOrder()
     {
         return [

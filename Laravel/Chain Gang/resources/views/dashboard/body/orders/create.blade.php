@@ -13,7 +13,6 @@
                             <div class="col-sm-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="form-group"><label for="title">Titel</label> <input type="text" class="form-control" id="title"></div>
                                     <div class="form-group"><label for="title">Status</label> 
                                         @if($statusses != null)
                                             <select id="status" class="form-control">
