@@ -4,141 +4,139 @@
     <h4 class="c-grey-900 mT-10 mB-30">Bestelling</h4>
     <div class="row">
         <div class="col-md-12">
-            <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Bestelling - #4343123 (1)</h4>
-               
-                {{-- Begin Form --}}
-                <form>
-                    @csrf
-                    {{-- Orders toevoegen --}}
-                    <div class="row">
-                            <div class="col-sm-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="form-group"><label for="inputTitle">Titel</label>
-                                        <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
-                                    </div>
-                                    <div class="form-group"><label for="inputStatus">Status</label> 
-                                        <select id="inputStatus" class="form-control" disabled>
-                                            <option selected="selected">Status...</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group"><label for="inputAteur">Auteur</label> 
-                                        <select id="inputAteur" class="form-control" disabled>
-                                            <option selected="selected">Auteur...</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group"><label for="inputKlant">Klant</label> 
-                                        <select id="inputKlant" class="form-control" disabled>
-                                            <option selected="selected">Klant...</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>                                  
-                                    <div class="form-group"><label for="inputTrackAndTrace">Track & Trace</label>
-                                        <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="fw-500">Datum van Bestelling</label>
-                                        <div class="timepicker-input input-icon form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon bgc-white bd bdwR-0">
-                                                    <i class="ti-calendar"></i>
-                                                </div>
-                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
+                <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                        <h4 class="c-grey-900 mB-20">Bestelling Aanmaken</h4>
+                       
+                        {{-- Begin Form --}}
+                            {{-- Orders toevoegen --}}
+                            <div class="row">
+                                    <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-group"><label for="title">Status</label> 
+                                                @if($statusses != null)
+                                                    <select id="status" class="form-control">
+                                                        @foreach($statusses as $status)
+                                                            @if($loop->first)
+                                                                <option selected="selected">{{$status->title}}</option>
+                                                            @else
+                                                                <option>{{$status->title}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                @endif
                                             </div>
-                                        </div>
-                                    </div>                                     
-                                    <div class="form-group">
-                                        <label class="fw-500">Datum van Verzending</label>
-                                        <div class="timepicker-input input-icon form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon bgc-white bd bdwR-0">
-                                                    <i class="ti-calendar"></i>
-                                                </div>
-                                                <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
+                                            <div class="form-group"><label for="creator">Auteur</label> 
+                                                @if($users != null)
+                                                    <select id="creator" class="form-control">
+                                                        @foreach($users as $user)
+                                                            @if($loop->first)
+                                                                <option selected="selected">{{$user->username}}</option>
+                                                            @else
+                                                                <option>{{$user->username}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                @endif
                                             </div>
+                                            <div class="form-group"><label for="customer">Klant</label> 
+                                                @if($customers != null)
+                                                    <select id="customer" class="form-control">
+                                                        @foreach($customers as $customer)
+                                                            @if($loop->first)
+                                                                <option selected="selected">{{$customer->email}}</option>
+                                                            @else
+                                                                <option>{{$customer->email}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                @endif
+                                            </div>                                  
+                                            <div class="form-group"><label for="track_and_trace">Track & Trace</label> <input type="text" value="{{$order->track_and_trace}}" class="form-control" id="track_and_trace"></div>
+                                            <div class="form-group">
+                                                <label class="fw-500">Datum van Bestelling</label>
+                                                <div class="timepicker-input input-icon form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon bgc-white bd bdwR-0">
+                                                            <i class="ti-calendar"></i>
+                                                        </div>
+                                                        <input type="text" value="{{$order->order_date}}" class="form-control bdc-grey-200 start-date" id="order_date" placeholder="Datum van Bestelling" data-provide="datepicker">
+                                                    </div>
+                                                </div>
+                                            </div>                                     
+                                            <div class="form-group">
+                                                <label class="fw-500">Datum van Verzending</label>
+                                                <div class="timepicker-input input-icon form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon bgc-white bd bdwR-0">
+                                                            <i class="ti-calendar"></i>
+                                                        </div>
+                                                        <input type="text" value="{{$order->shipped_date}}" class="form-control bdc-grey-200 start-date" id="ship_date" placeholder="Datum van Verzending" data-provide="datepicker">
+                                                    </div>
+                                                </div>
+                                            </div>         
                                         </div>
-                                    </div>         
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-sm-9">
-                            <div class="card">
-                                <div class="card-body">
-                                    <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Productnaam</th>
-                                                <th>Hoeveelheid</th>
-                                                <th>Prijs</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr> 
-                                                <th></th>
-                                                <th>Productnaam</th>
-                                                <th>Hoeveelheid</th>
-                                                <th>Prijs</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            {{-- Loop this with all Products --}}
-                                            <tr>
-                                                <td><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
-                                                <td>fiets</td>
-                                                <td>20</td>
-                                                <td>
-                                                    €50000
-                                                </td>
-                                            </tr>
-                                            {{-- Loop this with all Products --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </form>
-                    {{-- EIND Form--}}             
-                    <div class="row">   
-                        <div class="btn-back">
-                            <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
-                        </div>
-                        <div class="btn-add-newsletter-layout">
-                        </div>                
-                    </div>    
-                    {{-- EIND Orders toevoegen--}}              
-            </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <table id="tafeltje" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Productnaam</th>
+                                                        <th>Hoeveelheid</th>
+                                                        <th>Prijs</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr> 
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th id="total_amount"></th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach ($items as $item)
+                                                        <tr> 
+                                                            <th><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></th>
+                                                            <th>{{$item->product->product_name}} </th>
+                                                            <th>{{$item->amount}} </th>
+                                                            <th>&euro; {{$item->product->price}}</th>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>  
+                            {{-- EIND Form--}}
+                            <div class="row">   
+                                <div class="btn-back">
+                                    <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                                </div>       
+                            </div>                  
+                            {{-- EIND Orders toevoegen--}}
+                    </div>
         </div>
     </div>
 </div>
 
-
 <script>
+    let table = document.getElementById("tafeltje");
+    table = table.children[2];
 
-function addRow(dataTable) {               
-    var table = document.getElementById(dataTable);               
-    var rowCount = table.rows.length;         
-    var count = rowCount + 1;
-    var row = table.insertRow(rowCount);               
-        //*** EDIT ***               
-    var cell1 = row.insertCell(0);             
-    cell1.innerHTML = count;
-    var cell2 = row.insertCell(1);             
-    var element2 = document.createElement("select");
-
-    //Append the options from the arraylist to the "select" element
-    for (var i = 0; i < arraylist.length; i++) {
-        var option = document.createElement("option");
-        option.value = arraylist[i];
-        option.text = arraylist[i];
-        element2.appendChild(option);
+    
+let total_amount = 0;
+    for(let i = 0; i < table.children.length; i++){
+        let price = table.children[i].children[3].innerText;
+        price = price.replace('€', '');
+        total_amount += parseFloat(price);
     }
 
-    cell2.appendChild(element2);  
-} 
+    document.getElementById('total_amount').innerHTML = "&euro;" + total_amount;
 </script>
 @endsection

@@ -204,10 +204,8 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::delete('/admin/order/delete/{order}', 'OrderController@delete');
         Route::get('/product/json/{product}', 'ProductController@getJson');
 
-        Route::get('/admin/order/1/', function() {
-            return view('dashboard.body.orders.view');
-        });
-
+        Route::get('/admin/order/{order}', 'OrderController@showAdmin');
+        
         Route::get('/admin/order/edit/1', function() {
             return view('dashboard.body.orders.update');
         });

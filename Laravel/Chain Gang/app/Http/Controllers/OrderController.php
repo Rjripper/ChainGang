@@ -45,6 +45,19 @@ class OrderController extends Controller
 
     }
 
+    public function showAdmin(Order $order)
+    {
+        //Get statusses, users, customers, products
+        $order = Order::findOrFail($order->id);
+        $statusses = Status::All();
+        $users = User::All();
+        $customers = Customer::All();
+        $products = Product::All();
+        $items = OrderItem::where('order_id', $order->id)->get();
+
+        return view('dashboard.body.orders.view', compact('statusses', 'users', 'customers', 'products', 'items', 'order'));
+    }
+
     public function store(Request $request) {
         $order_items = [];
         
