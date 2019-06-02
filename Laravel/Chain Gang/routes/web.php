@@ -205,10 +205,8 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/product/json/{product}', 'ProductController@getJson');
 
         Route::get('/admin/order/{order}', 'OrderController@showAdmin');
-        
-        Route::get('/admin/order/edit/1', function() {
-            return view('dashboard.body.orders.update');
-        });
+        Route::get('/admin/order/edit/{order}', 'OrderController@edit');
+        Route::patch('/admin/order/update/{order}', 'OrderController@update');
 
 
         /*

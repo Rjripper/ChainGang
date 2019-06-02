@@ -77,10 +77,10 @@
                                                 <tbody>
                                                     @foreach ($items as $item)
                                                         <tr> 
-                                                            <th><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></th>
-                                                            <th>{{$item->product->product_name}} </th>
-                                                            <th>{{$item->amount}} </th>
-                                                            <th>&euro; {{$item->product->price}}</th>
+                                                            <td><img style="width: 50px; height: 50px;" class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
+                                                            <td>{{$item->product->product_name}} </td>
+                                                            <td>{{$item->amount}} </td>
+                                                            <td>&euro; {{$item->product->price}}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
