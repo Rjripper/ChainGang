@@ -8,9 +8,6 @@
                 <h4 class="c-grey-900 mB-20">Bestelling Aanmaken</h4>
                
                 {{-- Begin Form --}}
-                <form>
-
-                    @csrf
                     {{-- Orders toevoegen --}}
                     <div class="row">
                             <div class="col-sm-3">
@@ -133,7 +130,6 @@
                             </div>
                             </div>
                         </div>  
-                    </form>
                     {{-- EIND Form--}}
                     <div class="row">   
                         <div class="btn-back">
@@ -168,7 +164,6 @@ function createOrder() {
     form_data.append('order_items', JSON.stringify(products));
 
     // event.preventDefault();
-
     $.ajax({
         url: '/admin/order/store',
         dataType: 'json',
@@ -177,8 +172,8 @@ function createOrder() {
         processData: false,
         data: form_data,
         type: 'POST',
-        success: function(response){
-            console.log(response);
+        success: function(){
+            window.location.href = window.location.origin + "/admin/orders";
         },
         error: function(errors) {
             console.log(errors);
