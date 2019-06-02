@@ -199,10 +199,8 @@ Route::group(['middleware' => ['auth:user']], function () {
             Orders
         */
         Route::get('/admin/orders', 'OrderController@index')->name('orders');
-
-        Route::get('/admin/order/create', function() {
-            return view('dashboard.body.orders.create');
-        });
+        Route::get('/admin/order/create', 'OrderController@create');
+        Route::get('/product/json/{product}', 'ProductController@getJson');
 
         Route::get('/admin/order/1/', function() {
             return view('dashboard.body.orders.view');

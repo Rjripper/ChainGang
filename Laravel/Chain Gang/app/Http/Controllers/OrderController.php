@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderItem;
+use App\Status;
+use App\User;
+use App\Customer;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -25,5 +29,17 @@ class OrderController extends Controller
         $orders = Order::All();
 
         return view('dashboard.body.orders.index', compact('orders'));
+    }
+
+    public function create()
+    {
+        //Get statusses, users, customers, products
+        $statusses = Status::All();
+        $users = User::All();
+        $customers = Customer::All();
+        $products = Product::All();
+
+        return view('dashboard.body.orders.create', compact('statusses', 'users', 'customers', 'products'));
+
     }
 }

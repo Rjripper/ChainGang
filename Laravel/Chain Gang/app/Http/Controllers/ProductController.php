@@ -311,4 +311,11 @@ class ProductController extends Controller
  
 
     }
+
+    public function getJson(Product $product)
+    {
+        $product = Product::findOrFail($product->id);
+
+        return response()->json(['product' => $product], 200);
+    }
 }
