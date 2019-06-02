@@ -180,15 +180,19 @@ class ProductController extends Controller
     public function productIndex(){
 
         $products = Product::all();
+        
 
         return view('dashboard.body.products.index', compact('products'));
     }
 
     public function productShow($id){
 
-        $products = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
 
-        return view('dashboard.body.products.view', compact('products'));
+        return view('dashboard.body.products.view', compact('product', 'brands', 'categories', 'types'));
     }
 
     public function createProduct(){
@@ -269,7 +273,9 @@ class ProductController extends Controller
     }
 
 
-    public function updateProduct(Request $request, Product $product){
+    public function updateProduct(Request $request, $id){
+
+        $product = Product::findOrFail($id);
 
         $request->validate([            
             'product_name' => 'required',
@@ -281,9 +287,9 @@ class ProductController extends Controller
             'type_id' => 'required',
             'category_id' => 'required',            
          ]);
-   
+        
 
-
+            
          $product->product_name = $request->product_name;  
          $product->price = $request->price;    
          $product->description = $request->description; 
@@ -304,7 +310,7 @@ class ProductController extends Controller
                                                          '150',
                                                          Input::file('image'));
          }
-         
+
          $product->save();
 
          return redirect()->action('ProductController@productIndex');

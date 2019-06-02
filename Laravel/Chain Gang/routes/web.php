@@ -110,6 +110,9 @@ Route::group(['middleware' => ['auth:user']], function () {
         })->name('users');
 
         // ?????
+
+
+        //index products
         Route::get('/admin/products', 'ProductController@productIndex')->name('products');
 
 
@@ -163,8 +166,9 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
-        Route::patch('/admin/product/update', 'ProductController@updateProduct')->name('productUpdate');
+        Route::patch('/admin/product/update/{id}', 'ProductController@updateProduct')->name('productUpdate');
 
+        //show product
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 
         Route::get('/admin/product/delete/', function() {
@@ -217,21 +221,34 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Sales
         */
-        Route::get('/admin/sales', function() {
-            return view('dashboard.body.sales.index');
-        })->name('sales');
 
-        Route::get('/admin/sale/create', function() {
-            return view('dashboard.body.sales.create');
-        });
+        //index
+        Route::get('/admin/sales', 'SaleController@indexSale')->name('sales');
 
-        Route::get('/admin/sale/1/', function() {
-            return view('dashboard.body.sales.view');
-        });
+        //aanmaken sale
+        Route::get('/admin/sale/create/', 'SaleController@createSale')->name('createSale');
+        Route::post('/admin/sales/', 'SaleController@storeSale')->name('storeSale');
 
-        Route::get('/admin/sale/edit/1', function() {
-            return view('dashboard.body.sales.update');
-        });
+        // Route::get('/admin/sale/create', function() {
+        //     return view('dashboard.body.sales.create');
+        // });
+
+        //updaten sale
+        Route::get('/admin/sale/edit/{id}', 'SaleController@editSale')->name('editSale');
+        Route::patch('/admin/sale/update/{id}', 'SaleController@updateSale')->name('updateSale');
+
+        //show sale
+        Route::get('/admin/sale/{id}/', 'SaleController@showSale')->name('showSale');
+
+        //delete
+        Route::delete('/admin/sale/delete/{id}', 'SaleController@deleteSale')->name('deleteSale');
+
+
+        // Route::get('/admin/sale/1/', function() {
+        //     return view('dashboard.body.sales.view');
+        // });
+
+    
 
 
         /*

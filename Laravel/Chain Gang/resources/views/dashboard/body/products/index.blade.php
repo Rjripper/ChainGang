@@ -46,7 +46,7 @@
                                 <td>&euro;{{$product->price}}</td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/product/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/product/'. $product->id .'/') }} "><i class="ti-eye"></i></a>
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/product/edit/'. $product->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
