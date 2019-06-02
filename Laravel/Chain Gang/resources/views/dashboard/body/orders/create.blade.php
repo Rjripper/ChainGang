@@ -140,7 +140,7 @@
                             <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>
                         <div class="btn-add-newsletter-layout">
-                                <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Bestelling aanmaken</button></a> 
+                            <button type="button" onclick="createOrder();" class="btn btn-primary tables-function-button">Bestelling aanmaken</button>
                         </div>                
                     </div>                  
                     {{-- EIND Orders toevoegen--}}
@@ -151,6 +151,40 @@
 <script>
 
 var products = [[]];
+
+function createOrder() {
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+    var form_data = new FormData();
+    form_data.append('_method', 'POST');
+    form_data.append('_token', CSRF_TOKEN);
+    form_data.append('title', $('#title').val());
+    form_data.append('status', $('#status').val());
+    form_data.append('creator', $('#creator').val());
+    form_data.append('customer', $('#customer').val());
+    form_data.append('track_and_trace', $('#track_and_trace').val());
+    form_data.append('order_date', $('#order_date').val());
+    form_data.append('ship_date', $('#ship_date').val());
+    form_data.append('order_items', JSON.stringify(products));
+
+    // event.preventDefault();
+
+    $.ajax({
+        url: '/admin/order/store',
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'POST',
+        success: function(response){
+            console.log(response);
+        },
+        error: function(errors) {
+            console.log(errors);
+        }
+    });
+}
 
 function addProduct() {
     let product_dropdown = document.getElementById('product');
@@ -170,6 +204,7 @@ function addProduct() {
                 if(product_id == data.product.id) {
                     exists = true;
                     key = x;
+                    break;
                 }
             }
 
@@ -182,11 +217,38 @@ function addProduct() {
                 products.push(product);
             }
 
-
             insertData(data, amount);
         }
     });
 } 
+
+function removeProduct(node) {
+    let table = document.getElementById("tafeltje");
+    table = table.children[2];
+
+    let product_id = node.parentElement.parentElement.getAttribute('data-id');
+
+    node.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement);
+    
+    let total_amount = 0;
+    for(let i = 0; i < table.children.length; i++){
+        let price = table.children[i].children[3].innerText;
+        price = price.replace('€', '');
+        total_amount += parseFloat(price);
+    }
+    document.getElementById('total_amount').innerHTML = "&euro;" + total_amount;
+
+    let key = 0;
+    for(x in products) {
+        let productid = products[x][0];
+        if(productid == product_id) {
+            key = x;
+            break;
+        }
+    }
+
+    products.splice(key, 1);
+}
 
 function insertData(data, hoeveel) {
     let table = document.getElementById("tafeltje");
@@ -220,7 +282,7 @@ function insertData(data, hoeveel) {
         product_name.innerHTML = data.product.product_name;
         amount.innerHTML = '<input type="number" id="amount-'+ data.product.id + '"' + 'min="1" value="'+ hoeveel +'" disabled>';
         price.innerHTML = '&euro;' + data.product.price;
-        delete_cell.innerHTML = '<i class="ti-trash tables-icons remove-user-icon" data-id="'+ data.product.id +'"></i>';    
+        delete_cell.innerHTML = '<i class="ti-trash tables-icons" onclick="removeProduct(this);" data-id="'+ data.product.id +'"></i>';    
     } else {
         let tr = table.children[child];
         tr.children[2].children[0].value++;
