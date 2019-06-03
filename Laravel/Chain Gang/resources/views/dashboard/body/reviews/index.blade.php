@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="btn-add-index">
-                                <a href="{{ url('/admin/review/create') }}"><button class="btn btn-primary tables-function-button">Recensie Aanmaken</button></a> 
+                                <a href="{{ url('/admin/reviews/create') }}"><button class="btn btn-primary tables-function-button">Recensie Aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   

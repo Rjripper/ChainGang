@@ -248,6 +248,10 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
 
+        // create review
+        Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
+        Route::post('/admin/reviews/', 'ReviewController@storeReview')->name('reviewStore');
+
         // Route::get('/admin/reviews', function() {
         //     return view('dashboard.body.reviews.index');
         // })->name('reviews');
