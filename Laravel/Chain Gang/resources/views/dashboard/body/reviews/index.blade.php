@@ -56,7 +56,7 @@
                                 <td>
                                     <div class="text-center">         
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/review/' . $review->id . '/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/review/edit/1') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/review/edit/' . $review->id . '/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Review_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>

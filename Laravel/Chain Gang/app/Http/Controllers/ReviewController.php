@@ -7,6 +7,7 @@ use Auth;
 use App\Review;
 use App\Product;
 use App\Customer;
+use Tymon\JWTAuth\Claims\Custom;
 
 class ReviewController extends Controller
 {
@@ -55,37 +56,48 @@ class ReviewController extends Controller
             $review->title = $request->title;
             $review->message = $request->message;
 
-            // dd($review);
-            // dd($request);
+            dd($review);
+            dd($request);
 
             $review->save();
 
             return redirect()->action('ReviewController@reviewIndex');
     }
 
-    public function store(Request $request, Product $product)
+    public function editReview($id)
     {
-        
-        $request->validate([            
+        $review = Review::findOrFail($id);
+        $customers = Customer::all();
+        $products = Product::all();
+
+        return view('dashboard.body.reviews.update', compact('review', 'customers', 'products'));
+   }
+
+   public function updateReview(Request $request, Review $review)
+   {
+    $request->validate(
+        [
             'title' => 'required',
             'message' => 'required',
-            'rating' => 'integer|required|min:1'
-         ]);
+            'rating' => 'integer|required|min:1'    
+        ]);
+        
+        // $review = new Review;
 
-         $review = new Review;
-         $user = Auth::user();
-         $review->id = $request->id;     
-         $review->customer_id = $user->id;   
-         $review->product_id = $product->id; 
-         $review->rating = $request->rating;
-         $review->title = $request->title;
-         $review->message = $request->message;
-         
-         dd($product);
-         dd($request);
-         //Save Review
-         $review->save();
+        // $review = new Review;
+        $user = Auth::user();
+        $review->id = $request->id;     
+        $review->customer_id = $user->id;   
+        $review->product_id = $request->product_id; 
+        $review->rating = $request->rating;
+        $review->title = $request->title;
+        $review->message = $request->message;
 
-         return redirect()->back();
-    }
+        // dd($review);
+        // dd($request);
+
+        $review->save();
+
+        return redirect()->action('ReviewController@reviewIndex');
+   }
 }
