@@ -132,27 +132,6 @@ Route::group(['middleware' => ['auth:user']], function () {
             return view('dashboard.body.users.delete');
         });
 
-
-        /*
-            Customers
-        */
-        Route::get('/admin/customer/create/', function() {
-            return view('dashboard.body.customers.create');
-        });
-
-        Route::get('/admin/customer/edit/1/', function() {
-            return view('dashboard.body.customers.update');
-        });
-
-        Route::get('/admin/customer/1/', function() {
-            return view('dashboard.body.customers.view');
-        });
-
-        Route::get('/admin/customer/delete/', function() {
-            return view('dashboard.body.customers.delete');
-        });
-
-
         /*
             Products
         */
@@ -208,6 +187,16 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/order/edit/{order}', 'OrderController@edit');
         Route::patch('/admin/order/update/{order}', 'OrderController@update');
 
+        /*
+            Customers
+        */
+        Route::get('/admin/customers/', 'CustomerController@adminIndex')->name('customers');
+        Route::get('/admin/customer/create', 'CustomerController@create');
+        Route::post('/admin/customer/store', 'CustomerController@store');
+        Route::delete('/admin/customer/delete/{customer}', 'CustomerController@delete');
+        Route::get('/admin/customer/{customer}', 'CustomerController@show');
+        Route::get('/admin/customer/edit/{customer}', 'CustomerController@edit');
+        Route::patch('/admin/customer/update/{customer}', 'CustomerController@update');
 
         /*
             Sales
