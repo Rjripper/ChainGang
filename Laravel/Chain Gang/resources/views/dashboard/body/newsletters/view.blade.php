@@ -36,7 +36,7 @@
                                 <div class="card-body">
                                     <div class="tag">Preview Nieuwsbrief:</div>
                                     {{-- <iframe class="iframe-layout" name="targetCode" id="targetCode"></iframe> --}}
-                                    <textarea class="iframe-layout">{{$newsletter[0]->message}}</textarea>
+                                    <textarea class="iframe-layout" disabled>{{$newsletter[0]->message}}</textarea>
                                 </div>
                             </div>
                             </div>
