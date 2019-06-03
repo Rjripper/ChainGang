@@ -43,7 +43,11 @@
                                 <td>{{$user->last_name}}</td>
                                 <td>{{$user->username}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{($user->is_admin == 1 ? 'X' : '' ) }}</td>
+                                <td>
+                                    @if ($user->is_admin == 1)
+                                        <i class="fa fa-check" style="color:#90ee90;font-size:21px;"></i>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="text-center">
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
