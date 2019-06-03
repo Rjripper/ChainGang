@@ -243,19 +243,24 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Reviews
         */
-        Route::get('/admin/reviews', function() {
-            return view('dashboard.body.reviews.index');
-        })->name('reviews');
 
-        Route::get('/admin/review/create', function() {
-            return view('dashboard.body.reviews.create');
-        });
+        Route::get('/admin/reviews', 'ReviewController@reviewIndex')->name('reviews');
 
-        Route::get('/admin/review/1/', function() {
-            return view('dashboard.body.reviews.view');
-        });
+        Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
 
-        Route::get('/admin/review/edit/1', function() {
-            return view('dashboard.body.reviews.update');
-        });
+        // Route::get('/admin/reviews', function() {
+        //     return view('dashboard.body.reviews.index');
+        // })->name('reviews');
+
+        // Route::get('/admin/review/create', function() {
+        //     return view('dashboard.body.reviews.create');
+        // });
+
+        // Route::get('/admin/review/1/', function() {
+        //     return view('dashboard.body.reviews.view');
+        // });
+
+        // Route::get('/admin/review/edit/1', function() {
+        //     return view('dashboard.body.reviews.update');
+        // });
 });

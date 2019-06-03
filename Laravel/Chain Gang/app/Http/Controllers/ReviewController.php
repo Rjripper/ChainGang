@@ -11,10 +11,18 @@ class ReviewController extends Controller
 {
     //
 
-    public function index()
+    public function reviewIndex()
     {
         $reviews = Review::all();
-        return view("dashboard.body.product-details.details", compact("reviews"));
+
+        return view("dashboard.body.reviews.index", compact("reviews"));
+    }
+
+    public function reviewShow(Request $request, Review $review)
+    {
+        $review = Review::where('id', $review->id)->get();
+
+        return view('dashboard.body.reviews.view', compact('review'));
     }
 
     public function store(Request $request, Product $product)
