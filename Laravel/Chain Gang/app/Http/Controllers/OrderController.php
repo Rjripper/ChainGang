@@ -40,7 +40,7 @@ class OrderController extends Controller
         $users = User::All();
         $customers = Customer::All();
         $products = Product::All();
-        $items = OrderItem::where('order_id', $order->id)->get();
+        //$items = OrderItem::where('order_id', $order->id)->get();
 
         return view('dashboard.body.orders.create', compact('statusses', 'users', 'customers', 'products'));
     }

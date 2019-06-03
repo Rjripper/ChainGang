@@ -71,28 +71,49 @@
     </div>
     <script>
         function deleteCustomer(node) {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    
-            var form_data = new FormData();
-            form_data.append('_method', 'DELETE');
-            form_data.append('_token', CSRF_TOKEN);
-    
             let customer_id = node.getAttribute('data-id');
-            $.ajax({
-                url: '/admin/customer/delete/' + customer_id,
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(){
-                    node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
-                },
-                error: function(errors) {
-                    console.log(errors);
+
+            Swal.fire({
+                title: 'Weet je het zeker?',
+                text: "Je kan deze optie niet terug zetten.",
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Annuleren',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ja, verwijder ('+ customer_id  +')!'
+                }).then((result) => {
+                if (result.value) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+                    var form_data = new FormData();
+                    form_data.append('_method', 'DELETE');
+                    form_data.append('_token', CSRF_TOKEN);
+            
+                    $.ajax({
+                        url: '/admin/customer/delete/' + customer_id,
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(){
+                            node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+                            Swal.fire(
+                            'Verwijderd!',
+                            'Klant is verwijderd!',
+                            'success'
+                            );
+                        },
+                        error: function(errors) {
+                            console.log(errors);
+                        }
+                    });
+                    
                 }
             });
+            
         }
         </script>
 @endsection
