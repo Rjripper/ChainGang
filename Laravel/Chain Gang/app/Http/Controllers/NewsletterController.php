@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\WantsNewsletter;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignedUpNewsletterMail;
+use App\Newsletter;
+use App\User;
+use Symfony\Component\Process\Process;
 
 class NewsletterController extends Controller
 {
@@ -31,5 +34,99 @@ class NewsletterController extends Controller
         //NewsletterEntry -> email fillable
         //Mail::to (email) 
         
+    }
+
+    public function newsletterIndex(Request $request)
+    {
+        $sort = $request->get('sort');
+        $order_by = $request->get('order_by');
+
+        if(!empty($sort) && !empty($order_by))
+        {
+            $newsletters = Newsletter::orderBy($sort, $order_by)->get();
+        } 
+        else
+         {
+            $newletters = Newsletter::get();
+        }
+
+        return view('dashboard.body.newsletters.index', compact('newsletters'));
+        
+    }
+
+    public function newsletterShow(Request $request, Newsletter $newsletter)
+    {
+        // haal de nieuwsletters om te laten zien op van {nieuwsletrter}
+        // return the view met het id van de nieuwsletter
+        $newsletters = Newsletter::where('id',$newsletter->id)->get();
+        $users = User::all();
+
+
+        return view('dashboard.body.newsletters.show', compact('newsletters'));//, 'users'));
+    }
+
+    public function createNewsletter()
+    {
+        // haal alle nieuwsbrieven op
+        $newsletters = Newsletter::all();
+        $users = User::all();
+
+        return view('dashboard.body.newsletters.create', compact('newsletters', 'users'));
+    }
+
+    public function storeNewsletter(Request $request)
+    {
+        // valideer
+        $request->validate(
+            [
+                'title' => 'required',
+                'reference' => 'required',
+                'message' => 'required',
+            ]);
+
+            // maak nieuwsbrief
+            $newsletter = new Newsletter;
+
+            // haal request data op en sla op in newsletter variabelen
+            $newsletter->title = $request->title;
+            $newsletter->reference = $request->reference;
+            $newsletter->message = $request->message;
+
+            // // DD
+            // dd($newsletter);
+            // dd($request);
+
+            $newsletter->save();
+
+            //return naar index
+            return redirect()->action('NewsletterController@newsletterIndex');
+    }
+
+    public function editNewsletter($id)
+    {
+        $newsletters = Newsletter::findOrFail($id);
+        $users = User::all();
+        dd($id);
+        return view('dashboard.body.newsletters.update', compact('newsletters', 'users'));
+    }
+
+    public function updateNewsletter(Request $request, Newsletter $newsletter)
+    {
+        $request->validate(
+            [
+                'title' => 'required',
+                'reference' => 'required',
+                'message' => 'required',
+            ]);
+
+            $newsletter->title = $request->title;
+            $newsletter->reference = $request->reference;
+            $newsletter->message = $request->message;
+
+            dd($newsletter);
+
+            $newsletter->save();
+
+            return redirect()->action('NewsletterController@newslettersIndex');
     }
 }

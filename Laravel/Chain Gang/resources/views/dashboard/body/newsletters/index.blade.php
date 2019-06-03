@@ -33,7 +33,9 @@
                                 <td>RJ</td>
                                 <td>
                                     <div class="text-center">
+                                        {{-- hier moet nog id in komen --}}
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/edit/1/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Nieuwsbrief_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
@@ -46,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-12">
                                 <div class="btn-add-index">
-                                    <a href="{{ url('/admin/newsletter/create') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
+                                    <a href="{{ url('/admin/newsletters/create') }}"><button class="btn btn-primary tables-function-button">Nieuwsbrief aanmaken</button></a> 
                                 </div>
                             </div>
                         </div>   

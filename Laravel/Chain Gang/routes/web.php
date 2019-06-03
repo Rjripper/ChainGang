@@ -177,21 +177,27 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Newsletters
         */
-        Route::get('/admin/newsletters', function() {
-            return view('dashboard.body.newsletters.index');
-        })->name('newsletters');
 
-        Route::get('/admin/newsletter/create', function() {
-            return view('dashboard.body.newsletters.create');
-        });
+        Route::get('/admin/newsletters', 'NewsletterController@newsletterIndex')->name('newsletters');
 
-        Route::get('/admin/newsletter/1/', function() {
-            return view('dashboard.body.newsletters.view');
-        });
+        // create newsletter
+        Route::get('/admin/newsletters/create/', 'NewsletterController@createNewsletter')->name('newsletterCreate');
+        Route::post('/admin/newsletters/', 'NewsletterController@storeNewsletter')->name('newsletterStore');
 
-        Route::get('/admin/newsletter/edit/1', function() {
-            return view('dashboard.body.newsletters.update');
-        });
+        // Route::get('/admin/newsletter/1/', function() {
+        //     return view('dashboard.body.newsletters.view');
+        // });
+
+         //updaten newsletter
+         Route::get('/admin/newsletter/edit/{newsletter}', 'NewsletterController@editNewsletter')->name('editNewsletter');
+         Route::patch('/admin/newsletter/{id}/update', 'NewletterController@updateNewletter')->name('newsletterUpdate');
+ 
+         Route::get('/admin/newsletter/{newsletter}/', 'NewsletterController@newsletterShow')->name('newsletterShow');
+ 
+         Route::get('/admin/newsletter/delete/', function() 
+         {
+             return view('dashboard.body.newsletters.delete');
+         });
 
 
         /*
