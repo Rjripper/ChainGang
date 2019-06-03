@@ -36,33 +36,23 @@ class NewsletterController extends Controller
         
     }
 
-    public function newsletterIndex(Request $request)
+    public function newsletterIndex()
     {
-        $sort = $request->get('sort');
-        $order_by = $request->get('order_by');
+        $newsletters = Newsletter::all();
+        $users = User::all();
 
-        if(!empty($sort) && !empty($order_by))
-        {
-            $newsletters = Newsletter::orderBy($sort, $order_by)->get();
-        } 
-        else
-         {
-            $newletters = Newsletter::get();
-        }
-
-        return view('dashboard.body.newsletters.index', compact('newsletters'));
-        
+        return view('dashboard.body.newsletters.index', compact('newsletters', 'users'));
     }
 
     public function newsletterShow(Request $request, Newsletter $newsletter)
     {
         // haal de nieuwsletters om te laten zien op van {nieuwsletrter}
         // return the view met het id van de nieuwsletter
-        $newsletters = Newsletter::where('id',$newsletter->id)->get();
+        $newsletter = Newsletter::where('id',$newsletter->id)->get();
         $users = User::all();
 
 
-        return view('dashboard.body.newsletters.show', compact('newsletters'));//, 'users'));
+        return view('dashboard.body.newsletters.view', compact('newsletter', 'users'));
     }
 
     public function createNewsletter()
@@ -106,7 +96,7 @@ class NewsletterController extends Controller
     {
         $newsletters = Newsletter::findOrFail($id);
         $users = User::all();
-        dd($id);
+        // dd($id);
         return view('dashboard.body.newsletters.update', compact('newsletters', 'users'));
     }
 

@@ -27,20 +27,29 @@
                             <tbody>
 
                             {{-- Loop this with all Newsletters --}}
+                            @foreach ($newsletters as $newsletter)
                             <tr>
-                                <td>Mooie Titel</td>
-                                <td>Leuk Berichtje</td>
-                                <td>RJ</td>
+                                <td class="text-truncate" style="max-width:300px">{{$newsletter->title}}</td>
+                                <td class="text-truncate" style="max-width:300px">{{$newsletter->message}}</td>
+                                <td class="text-truncate" style="max-width:250px">
+                                    @php
+                                        $userReference = App\User::Where('id', $newsletter->reference)->get();
+                                        // dd($userReference[0]->first_name);
+                                    @endphp
+                                    {{
+                                        $userReference[0]->first_name
+                                    }}</td>
                                 <td>
                                     <div class="text-center">
                                         {{-- hier moet nog id in komen --}}
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/edit/1/') }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/'. $newsletter->id . '/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/edit/'. $newsletter->id . '/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Nieuwsbrief_id --}}
                                         <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                             {{-- Loop this with all Newsletters --}}
                             </tbody>                            
         

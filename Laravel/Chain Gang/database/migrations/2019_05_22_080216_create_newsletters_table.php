@@ -17,7 +17,7 @@ class CreateNewslettersTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('reference');
-            $table->string('message');
+            $table->text('message');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
