@@ -301,7 +301,7 @@ class ProductController extends Controller
  
          if(empty($request->image))
          {
-             $product->product_images = public_path('images/products/uploads/default.jpg');
+            $product->product_images;
          } else {            
              $product->product_images = $this->resizeImage(
                                                          $request->image,

@@ -41,7 +41,7 @@
                                             <label for="validationCustom01">Product naam</label>
                                             {{-- kijk naar de naam input field(naam moet het zelfde zijn als database table name) --}}
                                             <input type="text" class="form-control" id="validationCustom01" name="product_name" placeholder="Product naam" required>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
+                                            <div class="invalid-feedback"><strong>Geef een product naam op.</strong></div>
                                             @if ($errors->has('product_name'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('product_name') }}</strong>
