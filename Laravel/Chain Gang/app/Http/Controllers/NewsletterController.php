@@ -82,7 +82,7 @@ class NewsletterController extends Controller
             $newsletter->reference = $request->reference;
             $newsletter->message = $request->message;
 
-            // // DD
+            // DD
             // dd($newsletter);
             // dd($request);
 
@@ -94,10 +94,12 @@ class NewsletterController extends Controller
 
     public function editNewsletter($id)
     {
-        $newsletters = Newsletter::findOrFail($id);
+        $newsletter = Newsletter::findOrFail($id);
         $users = User::all();
-        // dd($id);
-        return view('dashboard.body.newsletters.update', compact('newsletters', 'users'));
+
+        // dd($newsletter);
+
+        return view('dashboard.body.newsletters.update', compact('newsletter', 'users'));
     }
 
     public function updateNewsletter(Request $request, Newsletter $newsletter)
@@ -114,9 +116,10 @@ class NewsletterController extends Controller
             $newsletter->message = $request->message;
 
             dd($newsletter);
+            dd($request);
 
             $newsletter->save();
 
-            return redirect()->action('NewsletterController@newslettersIndex');
+            return redirect()->action('NewsletterController@newsletterIndex');
     }
 }

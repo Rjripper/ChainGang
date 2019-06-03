@@ -50,7 +50,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            {{-- Loop this with all Newsletters --}}
+                            {{-- End loop this with all Newsletters --}}
                             </tbody>                            
         
                         </table>

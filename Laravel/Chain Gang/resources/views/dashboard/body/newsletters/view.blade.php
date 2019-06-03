@@ -7,7 +7,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Nieuwsbrief - Summer Sale (1)</h4>
+                <h4 class="c-grey-900 mB-20">
+                    Nieuwsbrief -
+                    @foreach ($newsletter as $item)
+                    {{$item->title}}
+                    @endforeach
+                </h4>
                
                 {{-- Begin Form --}}
                 <form>

@@ -190,14 +190,14 @@ Route::group(['middleware' => ['auth:user']], function () {
 
          //updaten newsletter
          Route::get('/admin/newsletter/edit/{newsletter}', 'NewsletterController@editNewsletter')->name('editNewsletter');
-         Route::patch('/admin/newsletter/{id}/update', 'NewletterController@updateNewletter')->name('newsletterUpdate');
+         Route::patch('/admin/newsletter/{id}/update', 'NewsletterController@updateNewsletter')->name('newsletterUpdate');
  
          Route::get('/admin/newsletter/{newsletter}/', 'NewsletterController@newsletterShow')->name('newsletterShow');
  
-         Route::get('/admin/newsletter/delete/', function() 
-         {
-             return view('dashboard.body.newsletters.delete');
-         });
+        //  Route::get('/admin/newsletter/delete/', function() 
+        //  {
+        //      return view('dashboard.body.newsletters.delete');
+        //  });
 
 
         /*
