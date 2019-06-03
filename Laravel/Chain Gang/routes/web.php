@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::patch('/admin/user/{user}/update', 'UserController@updateUser')->name('userUpdate');
 
         // Delete User
-        Route::post('/admin/users/delete/', 'UserController@deleteUser')->name('deleteUser');
+        Route::delete('/admin/users/delete/{user}', 'UserController@deleteUser')->name('deleteUser');
 
         // View User
         Route::get('/admin/user/{id}', 'UserController@userShow')->name('showUser');

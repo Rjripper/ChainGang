@@ -111,13 +111,12 @@ class UserController extends Controller
         return redirect()->action('UserController@index');
     }
 
-    public function deleteUser(Request $request)
+    public function deleteUser(User $user)
     {
-        dd($request);
-
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail($user->id);
         $user->delete();
 
-        return redirect()->action('UserController@index');
+        return response()->json(['success' => true], 200);
+        //return redirect()->action('UserController@index');
     }
 }
