@@ -35,8 +35,8 @@ class SaleController extends Controller
 
         $sale->delete();
 
-        return redirect()->action('SaleController@indexSale');
-        
+        return response()->json(['success' => true], 200);
+
     }
 
     public function createSale(){

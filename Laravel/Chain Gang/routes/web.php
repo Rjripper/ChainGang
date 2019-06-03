@@ -269,4 +269,63 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/review/edit/1', function() {
             return view('dashboard.body.reviews.update');
         });
+
+        /*
+            Brand
+        */
+
+        //index
+        Route::get('/admin/brands', 'BrandController@index')->name('brands');
+
+        // //aanmaken brand
+        Route::get('/admin/brand/create/', 'BrandController@create')->name('createBrand');
+        Route::post('/admin/brands/', 'BrandController@store')->name('storeBrand');
+
+        // //updaten brand
+        Route::get('/admin/brand/edit/{id}', 'BrandController@edit')->name('editBrand');
+        Route::patch('/admin/brand/update/{id}', 'BrandController@update')->name('updateBrand');
+
+        // //show brand
+        Route::get('/admin/brand/{id}/', 'BrandController@show')->name('showBrand');
+
+        // //delete
+        // Route::delete('/admin/sale/delete/{id}', 'SaleController@deleteSale')->name('deleteSale');
+
+
+         /*
+            Type
+        */        
+        //index
+        Route::get('/admin/types', 'TypeController@index')->name('types');
+
+        // aanmaken type
+        Route::get('/admin/type/create/', 'TypeController@create')->name('createType');
+        Route::post('/admin/types/', 'TypeController@store')->name('storeType');
+
+        // updaten type
+        Route::get('/admin/type/edit/{id}', 'TypeController@edit')->name('editType');
+        Route::patch('/admin/type/update/{id}', 'TypeController@update')->name('updateType');
+
+        // show type
+        Route::get('/admin/type/{id}/', 'TypeController@show')->name('showType');
+
+
+        /*
+            Category
+        */        
+        //index
+        Route::get('/admin/categories', 'CategoryController@index')->name('categories');
+
+        // aanmaken type
+        Route::get('/admin/category/create/', 'CategoryController@create')->name('createCategory');
+        Route::post('/admin/categories/', 'CategoryController@store')->name('storeCategory');
+
+        // updaten type
+        Route::get('/admin/category/edit/{id}', 'CategoryController@edit')->name('editCategory');
+        Route::patch('/admin/category/update/{id}', 'CategoryController@update')->name('updateCategory');
+
+        // show type
+        Route::get('/admin/category/{id}/', 'CategoryController@show')->name('showCategory');
+
+
 });
