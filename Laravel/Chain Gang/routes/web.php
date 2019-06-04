@@ -184,21 +184,15 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/newsletters/create/', 'NewsletterController@createNewsletter')->name('newsletterCreate');
         Route::post('/admin/newsletters/', 'NewsletterController@storeNewsletter')->name('newsletterStore');
 
-        // Route::get('/admin/newsletter/1/', function() {
-        //     return view('dashboard.body.newsletters.view');
-        // });
-
          //updaten newsletter
          Route::get('/admin/newsletter/edit/{newsletter}', 'NewsletterController@editNewsletter')->name('editNewsletter');
          Route::patch('/admin/newsletter/{id}/update', 'NewsletterController@updateNewsletter')->name('newsletterUpdate');
  
+         // Vieuw one newsletter
          Route::get('/admin/newsletter/{newsletter}/', 'NewsletterController@newsletterShow')->name('newsletterShow');
- 
-        //  Route::get('/admin/newsletter/delete/', function() 
-        //  {
-        //      return view('dashboard.body.newsletters.delete');
-        //  });
 
+         //Detele newsletter
+         Route::delete('/admin/newsletter/delete/{newsletter}', 'NewsletterController@deleteNewsletter')->name('newsletterDelete');
 
         /*
             Orders
@@ -260,23 +254,4 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         // delete revieuw
         /* DELETE ROUTE HIER */
-
-
-        /*
-        Route::get('/admin/reviews', function() {
-            return view('dashboard.body.reviews.index');
-        })->name('reviews');
-
-        Route::get('/admin/review/create', function() {
-            return view('dashboard.body.reviews.create');
-        });
-
-        Route::get('/admin/review/1/', function() {
-            return view('dashboard.body.reviews.view');
-        });
-
-        Route::get('/admin/review/edit/1', function() {
-            return view('dashboard.body.reviews.update');
-        });
-        */
 });

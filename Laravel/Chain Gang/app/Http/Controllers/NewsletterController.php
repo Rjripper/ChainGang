@@ -124,4 +124,16 @@ class NewsletterController extends Controller
 
             return redirect()->action('NewsletterController@newsletterIndex');
     }
+
+    public function deleteNewsletter(Newsletter $newsletter)//, $id
+    {
+        $newsletter = Newsletter::findOrFail($newsletter->id);
+        // $newsletter = Newsletter::findOrFail($id);
+        dd('nieuwsletter id = ' . $newsletter->id);
+        dd($newsletter);
+        
+        $newsletter->delete();
+
+        return response()->json(['success' => true], 200);
+    }
 }

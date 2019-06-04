@@ -56,8 +56,8 @@ class ReviewController extends Controller
             $review->title = $request->title;
             $review->message = $request->message;
 
-            dd($review);
-            dd($request);
+            // dd($review);
+            // dd($request);
 
             $review->save();
 
