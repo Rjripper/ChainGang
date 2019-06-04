@@ -10,8 +10,8 @@
                 
                     <h4 class="c-grey-900 mB-20">Recensie Aanpassen</h4>
                     {{-- Begin Form --}}
-                    {{-- <form method="POST" action="{{ url('/admin/reviews/')}}" enctype="multipart/form-data"> --}}
-                    <form method="POST" action="{{ url('/admin/review', [$review->id])}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ url('/admin/review/' . $review->id . '/update')}}" enctype="multipart/form-data">
+                        {{-- <form method="POST" action="{{ url('/admin/review/update/' . $review->id . '/')}}" enctype="multipart/form-data"> --}}
                         @csrf
                         @method('patch')
                         {{-- Recensie aanpassen --}} 
@@ -20,7 +20,7 @@
                                 <div class="card">  
                                     <div class="card-body">      
                                         <div class="form-group"><label for="inputTitle">Titel</label>
-                                            <input type="text" class="form-control" id="inputTitle" value="{{ old('title', $review->title) }}" required>
+                                            <input type="text" class="form-control" id="inputTitle" name="title" value="{{ old('title', $review->title) }}" required>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Klant</label> 
                                             <select id="inputKlant" name="customer_id" class="form-control" required>
@@ -87,9 +87,19 @@
                                         <a class="btn btn-primary tables-function-button" href="{{ route('reviews') }}">Terug</a>
                                 </div>
                                 <div class="btn-add-newsletter-layout">
-                                    <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Recensie Wijzigen</button></a> 
+                                    <button class="btn btn-primary tables-function-button" type="submit">Recensie Wijzigen</button>
                                 </div>                
                             </div>     
+
+                            {{-- error handling --}}
+                            @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" style="text-align: center;">
+                                {{ $error }}
+                            </div>
+                            @endforeach
+                            @endif
+                            {{-- end error handling --}}
                     </form>
                     {{-- Eind Form --}}         
                     {{-- Eind Nieuwsbrief toevoegen --}}

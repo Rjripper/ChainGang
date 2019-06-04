@@ -244,8 +244,10 @@ Route::group(['middleware' => ['auth:user']], function () {
             Reviews
         */
 
+        // alle reviews
         Route::get('/admin/reviews', 'ReviewController@reviewIndex')->name('reviews');
 
+        // bekijk een review
         Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
 
         // create review
@@ -256,19 +258,25 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/review/edit/{review}', 'ReviewController@editReview')->name('editreview');
         Route::patch('/admin/review/{id}/update', 'ReviewController@updateReview')->name('updateReview');
 
-        // Route::get('/admin/reviews', function() {
-        //     return view('dashboard.body.reviews.index');
-        // })->name('reviews');
+        // delete revieuw
+        /* DELETE ROUTE HIER */
 
-        // Route::get('/admin/review/create', function() {
-        //     return view('dashboard.body.reviews.create');
-        // });
 
-        // Route::get('/admin/review/1/', function() {
-        //     return view('dashboard.body.reviews.view');
-        // });
+        /*
+        Route::get('/admin/reviews', function() {
+            return view('dashboard.body.reviews.index');
+        })->name('reviews');
 
-        // Route::get('/admin/review/edit/1', function() {
-        //     return view('dashboard.body.reviews.update');
-        // });
+        Route::get('/admin/review/create', function() {
+            return view('dashboard.body.reviews.create');
+        });
+
+        Route::get('/admin/review/1/', function() {
+            return view('dashboard.body.reviews.view');
+        });
+
+        Route::get('/admin/review/edit/1', function() {
+            return view('dashboard.body.reviews.update');
+        });
+        */
 });

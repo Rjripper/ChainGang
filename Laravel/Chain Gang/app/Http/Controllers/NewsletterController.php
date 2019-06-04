@@ -102,8 +102,10 @@ class NewsletterController extends Controller
         return view('dashboard.body.newsletters.update', compact('newsletter', 'users'));
     }
 
-    public function updateNewsletter(Request $request, Newsletter $newsletter)
+    public function updateNewsletter(Request $request, Newsletter $newsletter, $id)
     {
+        $newsletter = Newsletter::findOrFail($id);
+
         $request->validate(
             [
                 'title' => 'required',
@@ -115,8 +117,8 @@ class NewsletterController extends Controller
             $newsletter->reference = $request->reference;
             $newsletter->message = $request->message;
 
-            dd($newsletter);
-            dd($request);
+            // dd($newsletter);
+            // dd($request);
 
             $newsletter->save();
 

@@ -40,8 +40,8 @@ class ReviewController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required',
-                'message' => 'required',
+                'title' => 'required|min:5',
+                'message' => 'required|min:5',
                 'rating' => 'integer|required|min:1'    
             ]);
             
@@ -73,21 +73,23 @@ class ReviewController extends Controller
         return view('dashboard.body.reviews.update', compact('review', 'customers', 'products'));
    }
 
-   public function updateReview(Request $request, Review $review)
+   public function updateReview(Request $request, Review $review, $id)
    {
-    $request->validate(
-        [
-            'title' => 'required',
-            'message' => 'required',
-            'rating' => 'integer|required|min:1'    
-        ]);
-        
-        // $review = new Review;
+       $review = Review::findOrFail($id);
 
-        // $review = new Review;
-        $user = Auth::user();
-        $review->id = $request->id;     
-        $review->customer_id = $user->id;   
+       $request->validate(
+            [
+                // 'customer_id' => 'integer|required',
+                // 'product_id' => 'integer|required',
+                'rating' => 'integer|required|min:1',
+                'title' => 'required|min:5',
+                'message' => 'required|min:5',
+            ]);
+            
+        // $user = Auth::user();
+        // // $review->id = $request->id;
+        // $review->customer_id = $user->id;
+        $review->customer_id = $request->customer_id;
         $review->product_id = $request->product_id; 
         $review->rating = $request->rating;
         $review->title = $request->title;

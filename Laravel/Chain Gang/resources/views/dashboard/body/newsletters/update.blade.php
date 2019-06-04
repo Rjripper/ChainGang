@@ -10,8 +10,7 @@
                 <h4 class="c-grey-900 mB-20">Nieuwsbrief Wijzigen</h4>
                
                 {{-- Begin Form --}}
-                {{-- <form method="POST" action="{{ url('/admin/newsletter/')}}" enctype="multipart/form-data"> --}}
-                <form method="POST" action="{{ url('/admin/newsletter',[$newsletter->id])}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/admin/newsletter/' . $newsletter->id . '/update')}}" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     {{-- Nieuwsbrief toevoegen --}}
@@ -20,7 +19,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group"><label for="inputTitle">Titel</label>
-                                        <input type="text" class="form-control" id="inputTitle" value="{{ old('title', $newsletter->title) }}" required>
+                                        <input type="text" class="form-control" id="inputTitle" name="title" value="{{ old('title', $newsletter->title) }}" required>
                                     </div>
                                     <div class="form-group"><label for="inputAteur">Auteur</label> 
                                         {{-- kijk naar de naam select(naam moet het zelfde zijn als database table name) --}}
@@ -40,7 +39,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div>HTML/Tekst Nieuwsbrief</div>
-                                    <textarea name="sourceCode" id="sourceCode" class="textArea-layout" required>{{ old('message', $newsletter->message) }}</textarea>
+                                    <textarea name="message" id="sourceCode" class="textArea-layout" required>{{ old('message', $newsletter->message) }}</textarea>
                                     <div class="preview-newsletter">
                                         <a class="btn btn-light" onclick="runCode();">Maak preview!</a>
                                     </div>                                    
@@ -58,13 +57,24 @@
                         </div>   
                         <div class="row">   
                                 <div class="btn-back">
-                                        <a class="btn btn-primary tables-function-button" href="{{ route('newsletters') }}">Terug</a>
+                                    <a class="btn btn-primary tables-function-button" href="{{ route('newsletters') }}">Terug</a>
                                 </div>                    
                                 <div class="btn-add-newsletter-layout">
-                                    <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Nieuwsbrief Wijzigen</button></a> 
+                                    <button class="btn btn-primary tables-function-button" type="submit">Nieuwsbrief Wijzigen</button>
                                 </div>                
                                 </div>  
-                            </div>            
+                            </div>
+
+                            {{-- error handling --}}
+                            @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" style="text-align: center;">
+                                {{ $error }}
+                            </div>
+                            @endforeach
+                            @endif
+                            {{-- end error handling --}}
+
                     </form>
                     {{-- EIND Form--}}                    
                     
