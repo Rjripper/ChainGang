@@ -80,7 +80,8 @@ function updateCustomer(user_id) {
     form_data.append('zip_code', $('#zipcode').val());
     form_data.append('password', $('#password').val());
 
-    // event.preventDefault();
+    event.preventDefault();
+    
     $.ajax({
         url: '/admin/customer/update/' + user_id,
         dataType: 'json',
@@ -90,10 +91,29 @@ function updateCustomer(user_id) {
         data: form_data,
         type: 'POST',
         success: function(){
-            window.location.href = window.location.origin + "/admin/customers";
+            Swal.fire({
+                type: 'success',
+                title: 'Wijziging Klant',
+                html: "Klant (" + user_id + ") is gewijzigd.",
+                timer: 3000
+            });
         },
-        error: function(errors) {
-            console.log(errors);
+        error: function(response) {
+            let errors = response.responseJSON.errors;
+            let myErrors = "";
+            for (let key in errors) {
+                for(let index in errors[key]) {
+                    myErrors += "<p style='color: red; margin:0; padding:0; text-align: left;'>" + errors[key][index] + "</p>";
+                }
+            }
+
+            Swal.fire({
+                type: 'error',
+                title: 'Wijziging Klant!',
+                html: "Er traden foutmeldingen op tijdens het wijzigen van de klant.<br><br>" + myErrors,
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
