@@ -99,6 +99,9 @@ Route::post('/admin/login', 'Auth\UserLoginController@login')->name('userLoginSu
 Route::group(['middleware' => ['auth:user']], function () {
 
         Route::get('/admin/dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('/admin', function(){
+            return redirect()->route('dashboard');
+        });
 
         //?????
         Route::get('/admin/customers', function() {
