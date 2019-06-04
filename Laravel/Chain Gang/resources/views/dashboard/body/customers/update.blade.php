@@ -94,7 +94,7 @@ function updateCustomer(user_id) {
             Swal.fire({
                 type: 'success',
                 title: 'Wijziging Klant',
-                html: "Klant (" + user_id + ") is gewijzigd.",
+                html: "U heeft de klant aangepast.",
                 timer: 3000
             });
         },

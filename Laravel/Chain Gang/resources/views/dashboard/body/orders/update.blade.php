@@ -198,10 +198,29 @@ function updateOrder(order_id) {
         data: form_data,
         type: 'POST',
         success: function(){
-            window.location.href = window.location.origin + "/admin/orders";
+            Swal.fire({
+                type: 'success',
+                title: 'Wijziging Bestelling',
+                html: "U heeft de bestelling aangepast.",
+                timer: 3000
+            });
         },
-        error: function(errors) {
-            console.log(errors);
+        error: function(response) {
+            let errors = response.responseJSON.errors;
+            let myErrors = "";
+            for (let key in errors) {
+                for(let index in errors[key]) {
+                    myErrors += "<p style='color: red; margin:0; padding:0; text-align: left;'>" + errors[key][index] + "</p>";
+                }
+            }
+
+            Swal.fire({
+                type: 'error',
+                title: 'Wijziging Bestelling!',
+                html: "Er traden foutmeldingen op tijdens het wijzigen van de bestelling.<br><br>" + myErrors,
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }

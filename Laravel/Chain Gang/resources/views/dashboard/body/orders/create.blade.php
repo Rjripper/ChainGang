@@ -162,7 +162,7 @@ function createOrder() {
     form_data.append('ship_date', $('#ship_date').val());
     form_data.append('order_items', JSON.stringify(products));
 
-    // event.preventDefault();
+    event.preventDefault();
     $.ajax({
         url: '/admin/order/store',
         dataType: 'json',
@@ -172,10 +172,29 @@ function createOrder() {
         data: form_data,
         type: 'POST',
         success: function(){
-            window.location.href = window.location.origin + "/admin/orders";
+            Swal.fire({
+                type: 'success',
+                title: 'Aanmaken Bestelling',
+                html: "U heeft een bestelling aangemaakt.",
+                timer: 3000
+            });
         },
-        error: function(errors) {
-            console.log(errors);
+        error: function(response) {
+            let errors = response.responseJSON.errors;
+            let myErrors = "";
+            for (let key in errors) {
+                for(let index in errors[key]) {
+                    myErrors += "<p style='color: red; margin:0; padding:0; text-align: left;'>" + errors[key][index] + "</p>";
+                }
+            }
+
+            Swal.fire({
+                type: 'error',
+                title: 'Aanmaken Bestelling!',
+                html: "Er traden foutmeldingen op tijdens het aanmaken van een bestelling.<br><br>" + myErrors,
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
