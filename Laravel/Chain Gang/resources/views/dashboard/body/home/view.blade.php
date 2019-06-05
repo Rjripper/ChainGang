@@ -10,6 +10,6 @@
     </div>
     <br>
     <div class="row">
-        @include('dashboard.body.home.sales')
+        @include('dashboard.body.home.sales', compact('month_name', 'current_year', 'orders', 'total_price'))
     </div>
 @endsection

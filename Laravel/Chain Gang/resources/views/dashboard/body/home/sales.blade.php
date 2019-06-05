@@ -8,11 +8,11 @@
                 <div class="bgc-light-blue-500 c-white p-20">
                     <div class="peers ai-c jc-sb gap-40">
                         <div class="peer peer-greed">
-                            <h5>Mei 2019</h5>
+                            <h5>{{$month_name}} {{$current_year}}</h5>
                             <p class="mB-0">Nieuwe Bestellingen</p>
                         </div>
                         <div class="peer">
-                            <h3 class="text-right">&euro;6,000</h3>
+                            <h3 class="text-right">&euro;{{$total_price}}</h3>
                         </div>
                     </div>
                 </div>
@@ -27,13 +27,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="fw-600"><a href="">#3322332</a></td>
-                                <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Geannuleerd</span></td>
-                                <td>Mei 18</td>
-                                <td><span class="text-danger">&euro;12</span></td>
-                            </tr>
-                            <tr>
+                            @foreach ($orders as $order)
+                                <tr>
+                                    <td class="fw-600"><a href="{{ url('/admin/order/' . $order->id) }}">#{{$order->id}}</a></td>
+                                    <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">{{$order->status->title}}</span></td>
+                                    <td>{{$month_name}} {{\Carbon\Carbon::parse($order->order_date)->format('d') }}</td>
+                                    <td><span class="text-danger">&euro;{{$order->total_price($order)}}</span></td>
+                                </tr>
+                            @endforeach
+                            {{-- <tr>
                                 <td class="fw-600"><a href="">#3323232</a></td>
                                 <td><span class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c badge-pill">Afwachting Betaling</span></td>
                                 <td>Mei 19</td>
@@ -68,12 +70,12 @@
                                 <td><span class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c badge-pill">Afwachting Verzending</span></td>
                                 <td>Mei 22</td>
                                 <td><span class="text-success">&euro;56</span></td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="ta-c bdT w-100 p-20"><a href="#">Bekijk alle bestellingen</a></div>
+        <div class="ta-c bdT w-100 p-20"><a href="{{ url('admin/orders/') }}">Bekijk alle bestellingen</a></div>
     </div>
 </div>
