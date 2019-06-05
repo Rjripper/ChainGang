@@ -104,7 +104,8 @@
                         {
                             console.error(errors);
                         }
-                    });
+                    }
+                );
             }
         </script>
 @endsection

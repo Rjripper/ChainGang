@@ -79,16 +79,11 @@ class ReviewController extends Controller
 
        $request->validate(
             [
-                // 'customer_id' => 'integer|required',
-                // 'product_id' => 'integer|required',
                 'rating' => 'integer|required|min:1',
                 'title' => 'required|min:5',
                 'message' => 'required|min:5',
             ]);
             
-        // $user = Auth::user();
-        // // $review->id = $request->id;
-        // $review->customer_id = $user->id;
         $review->customer_id = $request->customer_id;
         $review->product_id = $request->product_id; 
         $review->rating = $request->rating;
@@ -101,5 +96,14 @@ class ReviewController extends Controller
         $review->save();
 
         return redirect()->action('ReviewController@reviewIndex');
+   }
+
+   public function deleteReview(Review $review)
+   {
+       $review = Review::findOrFail($review->id);
+
+       $review->delete();
+
+       return response()->json(['success' => true], 200);
    }
 }
