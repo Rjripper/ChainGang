@@ -49,7 +49,7 @@
                                         <a class="table-icon-link tables-icons" href="{{  url('/admin/sale/'. $sale->id) }} }}"><i class="ti-eye"></i></a>                               
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/edit/'. $sale->id) }}"><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Order_id --}}
-                                        <i class="ti-trash tables-icons" data-id="{{$sale}}" onclick="deleteSale(this);"></i> 
+                                        <i class="ti-trash tables-icons" data-id="{{$sale->id}}" onclick="deleteSale(this);"></i> 
                                     </div>
                                 </td>
                             </tr>
@@ -78,9 +78,9 @@
         form_data.append('_method', 'DELETE'); //Geef DELETE MEE
         form_data.append('_token', CSRF_TOKEN);
  
-        let order_id = node.getAttribute('data-id'); //Pak de Product-Id
+        let sale_id = node.getAttribute('data-id'); //Pak de Product-Id
         $.ajax({
-            url: '/admin/sale/delete/' + $id , //Je url
+            url: '/admin/sale/delete/' + sale_id , //Je url
             dataType: 'json',
             cache: false,
             contentType: false,

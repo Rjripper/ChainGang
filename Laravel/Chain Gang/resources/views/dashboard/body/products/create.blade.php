@@ -62,15 +62,8 @@
                                                 @endforeach
                                               </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>                         
+                                            
+                                                      
                                         </div>
                                     </div>
                                     <br>
@@ -83,15 +76,8 @@
                                                 @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                     <br>
@@ -106,17 +92,10 @@
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
-                                    <br>
+                                    
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>

@@ -116,8 +116,11 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Brand $brand)
     {
-        //
+        $brand = Brand::findOrFail($brand->id);
+        $brand->delete();
+ 
+        return response()->json(['success' => true], 200);
     }
 }

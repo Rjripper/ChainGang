@@ -114,8 +114,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Category $category)
     {
-        //
+        $category = Category::findOrFail($category->id);
+        $category->delete();
+ 
+        return response()->json(['success' => true], 200);
     }
+
 }

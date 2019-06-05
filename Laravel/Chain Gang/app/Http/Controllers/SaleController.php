@@ -139,4 +139,13 @@ class SaleController extends Controller
 
     }
 
+
+    public function delete(Sale $sale)
+    {
+        $sale = Sale::findOrFail($sale->id);
+        $sale->delete();
+ 
+        return response()->json(['success' => true], 200);
+    }
+
 }

@@ -49,7 +49,7 @@
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/product/'. $product->id .'/') }} "><i class="ti-eye"></i></a>
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/product/edit/'. $product->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
+                                        <i class="ti-trash tables-icons"  data-id="{{$product->id}}" onclick="deleteProduct(this);"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -69,4 +69,36 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        function deleteProduct(node)
+        {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+     
+            var form_data = new FormData();
+            form_data.append('_method', 'DELETE'); //Geef DELETE MEE
+            form_data.append('_token', CSRF_TOKEN);
+     
+            let product_id = node.getAttribute('data-id'); //Pak de Product-Id
+            $.ajax({
+                url: '/admin/product/delete/' + product_id, //Je url
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post', //Dit blijft post
+                success: function(){
+            //Werkt t allemaal?
+            //Verwijder de HTML
+              node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement); //Verwijder de html element
+                },
+                error: function(errors) {
+                    console.log(errors);
+                }
+            });
+        }
+        
+    </script>
 @endsection

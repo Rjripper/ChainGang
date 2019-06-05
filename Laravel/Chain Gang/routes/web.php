@@ -171,9 +171,8 @@ Route::group(['middleware' => ['auth:user']], function () {
         //show product
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 
-        Route::get('/admin/product/delete/', function() {
-            return view('dashboard.body.products.delete');
-        });
+        //delete
+        Route::delete('/admin/product/delete/{product}', 'ProductController@delete')->name('deleteSale');
 
 
 
@@ -241,7 +240,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/sale/{id}/', 'SaleController@showSale')->name('showSale');
 
         //delete
-        Route::delete('/admin/sale/delete/{id}', 'SaleController@deleteSale')->name('deleteSale');
+        Route::delete('/admin/sale/delete/{sale}', 'SaleController@delete')->name('deleteSale');
 
 
         // Route::get('/admin/sale/1/', function() {
@@ -289,7 +288,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/brand/{id}/', 'BrandController@show')->name('showBrand');
 
         // //delete
-        // Route::delete('/admin/sale/delete/{id}', 'SaleController@deleteSale')->name('deleteSale');
+        Route::delete('/admin/brand/delete/{brand}', 'BrandController@delete')->name('deleteBrand');
 
 
          /*
@@ -309,6 +308,9 @@ Route::group(['middleware' => ['auth:user']], function () {
         // show type
         Route::get('/admin/type/{id}/', 'TypeController@show')->name('showType');
 
+        // //delete
+        Route::delete('/admin/type/delete/{type}', 'TypeController@delete')->name('deleteType');
+
 
         /*
             Category
@@ -326,6 +328,9 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         // show type
         Route::get('/admin/category/{id}/', 'CategoryController@show')->name('showCategory');
+      
+        // //delete
+        Route::delete('/admin/category/delete/{category}', 'CategoryController@delete')->name('deleteCategory');
 
 
 });
