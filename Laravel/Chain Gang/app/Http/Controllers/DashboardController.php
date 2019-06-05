@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $now = Carbon::now()->locale('nl_NL');
         $month_name = ucfirst(trans($now->monthName));
         $current_year = $now->year;
-        $orders = Order::whereMonth('order_date', '=', $now->month)->get();
+        $orders = Order::whereMonth('order_date', '=', $now->month)->paginate(15);
         $total_price = 0;
 
         foreach($orders as $order) {
