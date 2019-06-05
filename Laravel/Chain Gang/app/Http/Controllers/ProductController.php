@@ -318,11 +318,18 @@ class ProductController extends Controller
 
     }
 
-    public function delete(Product $product)
+    public function deleteProduct(Product $product)
     {
         $product = Product::findOrFail($product->id);
         $product->delete();
  
         return response()->json(['success' => true], 200);
+    }
+    
+    public function getJson(Product $product)
+    {
+        $product = Product::findOrFail($product->id);
+
+        return response()->json(['product' => $product], 200);
     }
 }

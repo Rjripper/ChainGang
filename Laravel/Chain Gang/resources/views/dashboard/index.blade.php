@@ -10,6 +10,8 @@
         <link href=" {{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
         <link href=" {{ asset('css/dashboard/Robert-Jan.css') }}" rel="stylesheet" type="text/css">
         <link href=" {{ asset('resources/sass/custom/index.sass') }}" rel="stylesheet" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         
     </head>
     <body class="app">

@@ -34,23 +34,27 @@
                         </tfoot>
                         <tbody>
                             {{-- Loop this with all Orders --}}
-                            <tr>
-                                <td>12312312</td>
-                                <td>send</td>
-                                <td>bobross</td>
-                                <td>mufasa</td>
-                                <td>28903423423</td>
-                                <td>22-4-2001</td>
-                                <td>€100,-</td>
-                                <td>
-                                    <div class="text-center">                                        
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/1/') }} "><i class="ti-pencil"></i></a>
-                                        {{-- Data-id = Order_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            @if($orders != null)
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->status->title}}</td>
+                                        <td>{{$order->customer->fullname}}</td>
+                                        <td>{{$order->user->username}}</td>
+                                        <td>{{$order->track_and_trace}}</td>
+                                        <td>{{$order->order_date}}</td>
+                                        <td>&euro; {{$order->total_price($order)}}</td>
+                                        <td>
+                                            <div class="text-center">                                        
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
+                                                {{-- Data-id = Order_id --}}
+                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" onclick="deleteOrder(this);"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             {{-- Loop this with all Orders --}}
                         </tbody>
                     </table>
@@ -65,4 +69,52 @@
             </div>
         </div>
     </div>
+    <script>
+    function deleteOrder(node)
+    {
+        let order_id = node.getAttribute('data-id');
+        Swal.fire({
+            title: 'Weet je het zeker?',
+            text: "Je kan deze optie niet terug zetten.",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Annuleren',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ja, verwijder ('+ order_id  +')!'
+            }).then((result) => {
+                if (result.value) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    var form_data = new FormData();
+                    form_data.append('_method', 'DELETE');
+                    form_data.append('_token', CSRF_TOKEN);
+
+                    
+                    $.ajax({
+                        url: '/admin/order/delete/' + order_id,
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(){
+                            node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+                            Swal.fire(
+                            'Verwijderd!',
+                            'Bestelling is verwijderd!',
+                            'success'
+                            );
+                        },
+                        error: function(errors) {
+                            console.log(errors);
+                        }
+                    });
+                    
+                }
+            });
+            
+        }
+    </script>
 @endsection

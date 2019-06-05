@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Order;
+use App\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Validator;
@@ -129,6 +130,98 @@ class CustomerController extends Controller
     }
 
 
+    // Admin
+    public function adminIndex()
+    {
+        $customers = Customer::All();
+        return view('dashboard.body.customers.index', compact('customers'));
+    }
 
-    
+    public function show(Customer $customer)
+    {
+        $customer = Customer::findOrFail($customer->id);
+
+        return view('dashboard.body.customers.view', compact('customer'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.body.customers.create');
+    }
+
+    public function edit(Customer $customer)
+    {
+        $customer = Customer::findOrFail($customer->id);
+
+        return view('dashboard.body.customers.update', compact('customer'));
+    }
+
+    public function store(Request $request)
+    {
+        $rules = $this->rulesCreateCustomer();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
+
+        $customer = new Customer;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->phonenumber = $request->phonenumber;
+        $customer->city = $request->city;
+        $customer->address = $request->address;
+        $customer->zip_code = $request->zip_code;
+        $customer->password = Hash::make($request->password);
+        $customer->save();
+
+        return response()->json(['succes' => true], 200);
+    }
+
+    public function update(Request $request, Customer $customer)
+    {
+        $rules = $this->rulesCreateCustomer();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
+
+        $customer = Customer::findOrFail($customer->id);
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->phonenumber = $request->phonenumber;
+        $customer->city = $request->city;
+        $customer->address = $request->address;
+        $customer->zip_code = $request->zip_code;
+        $customer->password = Hash::make($request->password);
+        $customer->save();
+
+        return response()->json(['succes' => true], 200);
+    }
+
+    public function delete(Customer $customer)
+    {
+        $customer = Customer::findOrFail($customer->id);
+        $customer->delete();
+
+        return response()->json(['success' => true], 200);
+    }
+
+    protected function rulesCreateCustomer()
+    {
+        return [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'email' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
+            'zip_code' => ['required'],
+            'password' => ['required']
+        ];
+    }
+
 }

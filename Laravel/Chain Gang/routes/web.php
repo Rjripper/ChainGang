@@ -99,6 +99,9 @@ Route::post('/admin/login', 'Auth\UserLoginController@login')->name('userLoginSu
 Route::group(['middleware' => ['auth:user']], function () {
 
         Route::get('/admin/dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('/admin', function(){
+            return redirect()->route('dashboard');
+        });
 
         //?????
         Route::get('/admin/customers', function() {
@@ -172,7 +175,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 
         //delete
-        Route::delete('/admin/product/delete/{product}', 'ProductController@delete')->name('deleteSale');
+        Route::delete('/admin/product/delete/{product}', 'ProductController@deleteProduct')->name('deleteSale');
 
 
 
@@ -197,25 +200,30 @@ Route::group(['middleware' => ['auth:user']], function () {
          //Detele newsletter
          Route::delete('/admin/newsletter/delete/{newsletter}', 'NewsletterController@deleteNewsletter')->name('newsletterDelete');
 
+        // Routes Moosti
         /*
             Orders
         */
-        Route::get('/admin/orders', function() {
-            return view('dashboard.body.orders.index');
-        })->name('orders');
+        Route::get('/admin/orders', 'OrderController@index')->name('orders');
+        Route::get('/admin/order/create', 'OrderController@create');
+        Route::post('/admin/order/store', 'OrderController@store');
+        Route::delete('/admin/order/delete/{order}', 'OrderController@delete');
+        Route::get('/product/json/{product}', 'ProductController@getJson');
 
-        Route::get('/admin/order/create', function() {
-            return view('dashboard.body.orders.create');
-        });
+        Route::get('/admin/order/{order}', 'OrderController@showAdmin');
+        Route::get('/admin/order/edit/{order}', 'OrderController@edit');
+        Route::patch('/admin/order/update/{order}', 'OrderController@update');
 
-        Route::get('/admin/order/1/', function() {
-            return view('dashboard.body.orders.view');
-        });
-
-        Route::get('/admin/order/edit/1', function() {
-            return view('dashboard.body.orders.update');
-        });
-
+        /*
+            Customers
+        */
+        Route::get('/admin/customers/', 'CustomerController@adminIndex')->name('customers');
+        Route::get('/admin/customer/create', 'CustomerController@create');
+        Route::post('/admin/customer/store', 'CustomerController@store');
+        Route::delete('/admin/customer/delete/{customer}', 'CustomerController@delete');
+        Route::get('/admin/customer/{customer}', 'CustomerController@show');
+        Route::get('/admin/customer/edit/{customer}', 'CustomerController@edit');
+        Route::patch('/admin/customer/update/{customer}', 'CustomerController@update');
 
         /*
             Category
@@ -280,20 +288,6 @@ Route::group(['middleware' => ['auth:user']], function () {
         // });
 
         /*
-            Reviews
-        */
-
-        // alle reviews
-        Route::get('/admin/reviews', 'ReviewController@reviewIndex')->name('reviews');
-
-        // bekijk een review
-        Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
-
-        Route::get('/admin/review/edit/1', function() {
-            return view('dashboard.body.reviews.update');
-        });
-
-        /*
             Brand
         */
 
@@ -332,6 +326,6 @@ Route::group(['middleware' => ['auth:user']], function () {
         // show type
         Route::get('/admin/type/{id}/', 'TypeController@show')->name('showType');
 
-        // //delete
+        // delete
         Route::delete('/admin/type/delete/{type}', 'TypeController@delete')->name('deleteType');
 });

@@ -34,23 +34,27 @@
                         </tfoot>
                         <tbody>
                             {{-- Loop this with all Users --}}
-                            <tr>
-                                <td>1</td>
-                                <td>Bob</td>
-                                <td>Ross</td>
-                                <td>bobross@ross.com</td>
-                                <td>+316439243823</td>
-                                <td>J.F. Kennedylaan 21</td>
-                                <td>Doetinchem</td>
-                                <td>
-                                    <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/1/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/1/') }} "><i class="ti-pencil"></i></a>
-                                        {{-- Data-id = User_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            @if($customers != null)
+                                @foreach($customers as $customer)
+                                    <tr>
+                                        <td>{{$customer->id}}</td>
+                                        <td>{{$customer->first_name}}</td>
+                                        <td>{{$customer->last_name}}</td>
+                                        <td>{{$customer->email}}</td>
+                                        <td>{{$customer->phonenumber}}</td>
+                                        <td>{{$customer->address}}</td>
+                                        <td>{{$customer->city}}</td>
+                                        <td>
+                                            <div class="text-center">
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
+                                                {{-- Data-id = User_id --}}
+                                                <i class="ti-trash tables-icons" onclick="deleteCustomer(this);" data-id="{{$customer->id}}"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             {{-- Loop this with all Users --}}
                         </tbody>
                     </table>
@@ -65,4 +69,51 @@
             </div>
         </div>
     </div>
+    <script>
+        function deleteCustomer(node) {
+            let customer_id = node.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Weet je het zeker?',
+                text: "Je kan deze optie niet terug zetten.",
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Annuleren',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ja, verwijder ('+ customer_id  +')!'
+                }).then((result) => {
+                if (result.value) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+                    var form_data = new FormData();
+                    form_data.append('_method', 'DELETE');
+                    form_data.append('_token', CSRF_TOKEN);
+            
+                    $.ajax({
+                        url: '/admin/customer/delete/' + customer_id,
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(){
+                            node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+                            Swal.fire(
+                            'Verwijderd!',
+                            'Klant is verwijderd!',
+                            'success'
+                            );
+                        },
+                        error: function(errors) {
+                            console.log(errors);
+                        }
+                    });
+                    
+                }
+            });
+            
+        }
+        </script>
 @endsection
