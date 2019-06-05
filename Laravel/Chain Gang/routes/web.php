@@ -180,22 +180,22 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Newsletters
         */
-        Route::get('/admin/newsletters', function() {
-            return view('dashboard.body.newsletters.index');
-        })->name('newsletters');
 
-        Route::get('/admin/newsletter/create', function() {
-            return view('dashboard.body.newsletters.create');
-        });
+        Route::get('/admin/newsletters', 'NewsletterController@newsletterIndex')->name('newsletters');
 
-        Route::get('/admin/newsletter/1/', function() {
-            return view('dashboard.body.newsletters.view');
-        });
+        // create newsletter
+        Route::get('/admin/newsletters/create/', 'NewsletterController@createNewsletter')->name('newsletterCreate');
+        Route::post('/admin/newsletters/', 'NewsletterController@storeNewsletter')->name('newsletterStore');
 
-        Route::get('/admin/newsletter/edit/1', function() {
-            return view('dashboard.body.newsletters.update');
-        });
+         //updaten newsletter
+         Route::get('/admin/newsletter/edit/{newsletter}', 'NewsletterController@editNewsletter')->name('editNewsletter');
+         Route::patch('/admin/newsletter/{id}/update', 'NewsletterController@updateNewsletter')->name('newsletterUpdate');
+ 
+         // Vieuw one newsletter
+         Route::get('/admin/newsletter/{newsletter}/', 'NewsletterController@newsletterShow')->name('newsletterShow');
 
+         //Detele newsletter
+         Route::delete('/admin/newsletter/delete/{newsletter}', 'NewsletterController@deleteNewsletter')->name('newsletterDelete');
 
         /*
             Orders
@@ -216,6 +216,38 @@ Route::group(['middleware' => ['auth:user']], function () {
             return view('dashboard.body.orders.update');
         });
 
+
+        /*
+            Category
+        */        
+        //index
+        Route::get('/admin/categories', 'CategoryController@index')->name('categories');
+
+        // aanmaken type
+        Route::get('/admin/category/create/', 'CategoryController@create')->name('createCategory');
+        Route::post('/admin/categories/', 'CategoryController@store')->name('storeCategory');
+
+        // updaten type
+        Route::get('/admin/category/edit/{id}', 'CategoryController@edit')->name('editCategory');
+        Route::patch('/admin/category/update/{id}', 'CategoryController@update')->name('updateCategory');
+
+        // show type
+        Route::get('/admin/category/{id}/', 'CategoryController@show')->name('showCategory');
+      
+        // //delete
+        Route::delete('/admin/category/delete/{category}', 'CategoryController@delete')->name('deleteCategory');
+
+
+        // create review
+        Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
+        Route::post('/admin/reviews/', 'ReviewController@storeReview')->name('reviewStore');
+
+        //updaten review
+        Route::get('/admin/review/edit/{review}', 'ReviewController@editReview')->name('editreview');
+        Route::patch('/admin/review/{id}/update', 'ReviewController@updateReview')->name('updateReview');
+
+        // delete revieuw
+        Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('newsletterDelete');
 
         /*
             Sales
@@ -247,23 +279,15 @@ Route::group(['middleware' => ['auth:user']], function () {
         //     return view('dashboard.body.sales.view');
         // });
 
-    
-
-
         /*
             Reviews
         */
-        Route::get('/admin/reviews', function() {
-            return view('dashboard.body.reviews.index');
-        })->name('reviews');
 
-        Route::get('/admin/review/create', function() {
-            return view('dashboard.body.reviews.create');
-        });
+        // alle reviews
+        Route::get('/admin/reviews', 'ReviewController@reviewIndex')->name('reviews');
 
-        Route::get('/admin/review/1/', function() {
-            return view('dashboard.body.reviews.view');
-        });
+        // bekijk een review
+        Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
 
         Route::get('/admin/review/edit/1', function() {
             return view('dashboard.body.reviews.update');
@@ -310,27 +334,4 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         // //delete
         Route::delete('/admin/type/delete/{type}', 'TypeController@delete')->name('deleteType');
-
-
-        /*
-            Category
-        */        
-        //index
-        Route::get('/admin/categories', 'CategoryController@index')->name('categories');
-
-        // aanmaken type
-        Route::get('/admin/category/create/', 'CategoryController@create')->name('createCategory');
-        Route::post('/admin/categories/', 'CategoryController@store')->name('storeCategory');
-
-        // updaten type
-        Route::get('/admin/category/edit/{id}', 'CategoryController@edit')->name('editCategory');
-        Route::patch('/admin/category/update/{id}', 'CategoryController@update')->name('updateCategory');
-
-        // show type
-        Route::get('/admin/category/{id}/', 'CategoryController@show')->name('showCategory');
-      
-        // //delete
-        Route::delete('/admin/category/delete/{category}', 'CategoryController@delete')->name('deleteCategory');
-
-
 });

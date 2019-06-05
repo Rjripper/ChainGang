@@ -6,39 +6,104 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Review;
 use App\Product;
+use App\Customer;
+use Tymon\JWTAuth\Claims\Custom;
 
 class ReviewController extends Controller
 {
     //
 
-    public function index()
+    public function reviewIndex()
     {
         $reviews = Review::all();
-        return view("dashboard.body.product-details.details", compact("reviews"));
+
+        return view("dashboard.body.reviews.index", compact("reviews"));
     }
 
-    public function store(Request $request, Product $product)
+    public function reviewShow(Request $request, Review $review)
     {
-        
-        $request->validate([            
-            'title' => 'required',
-            'message' => 'required',
-            'rating' => 'integer|required|min:1'
-         ]);
+        $review = Review::where('id', $review->id)->get();
 
-         $review = new Review;
-         $user = Auth::user();
-         $review->id = $request->id;     
-         $review->customer_id = $user->id;   
-         $review->product_id = $product->id; 
-         $review->rating = $request->rating;
-         $review->title = $request->title;
-         $review->message = $request->message;
-         
-         
-         //Save Review
-         $review->save();
-
-         return redirect()->back();
+        return view('dashboard.body.reviews.view', compact('review'));
     }
+
+    public function createReview()
+    {
+        $review = Review::all();
+        $customers = Customer::all();
+        $products = Product::all();
+
+        return view('dashboard.body.reviews.create', compact('review', 'customers', 'products'));
+    }
+
+    public function storeReview(Request $request)
+    {
+        $request->validate(
+            [
+                'title' => 'required|min:5',
+                'message' => 'required|min:5',
+                'rating' => 'integer|required|min:1'    
+            ]);
+            
+            $review = new Review;
+
+            $review = new Review;
+            $user = Auth::user();
+            $review->id = $request->id;     
+            $review->customer_id = $user->id;   
+            $review->product_id = $request->product_id; 
+            $review->rating = $request->rating;
+            $review->title = $request->title;
+            $review->message = $request->message;
+
+            // dd($review);
+            // dd($request);
+
+            $review->save();
+
+            return redirect()->action('ReviewController@reviewIndex');
+    }
+
+    public function editReview($id)
+    {
+        $review = Review::findOrFail($id);
+        $customers = Customer::all();
+        $products = Product::all();
+
+        return view('dashboard.body.reviews.update', compact('review', 'customers', 'products'));
+   }
+
+   public function updateReview(Request $request, Review $review, $id)
+   {
+       $review = Review::findOrFail($id);
+
+       $request->validate(
+            [
+                'rating' => 'integer|required|min:1',
+                'title' => 'required|min:5',
+                'message' => 'required|min:5',
+            ]);
+            
+        $review->customer_id = $request->customer_id;
+        $review->product_id = $request->product_id; 
+        $review->rating = $request->rating;
+        $review->title = $request->title;
+        $review->message = $request->message;
+
+        // dd($review);
+        // dd($request);
+
+        $review->save();
+
+        return redirect()->action('ReviewController@reviewIndex');
+   }
+
+   public function deleteReview(Review $review)
+   {
+       $review = Review::findOrFail($review->id);
+
+       $review->delete();
+
+       return response()->json(['success' => true], 200);
+   }
 }
