@@ -180,15 +180,19 @@ class ProductController extends Controller
     public function productIndex(){
 
         $products = Product::all();
+        
 
         return view('dashboard.body.products.index', compact('products'));
     }
 
     public function productShow($id){
 
-        $products = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
 
-        return view('dashboard.body.products.view', compact('products'));
+        return view('dashboard.body.products.view', compact('product', 'brands', 'categories', 'types'));
     }
 
     public function createProduct(){
@@ -230,7 +234,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->type_id = $request->type_id;
         $product->category_id = $request->category_id;
-
+    
         //plaatje opslaan    
         if(empty($request->image))
         {
@@ -269,7 +273,9 @@ class ProductController extends Controller
     }
 
 
-    public function updateProduct(Request $request, Product $product){
+    public function updateProduct(Request $request, $id){
+
+        $product = Product::findOrFail($id);
 
         $request->validate([            
             'product_name' => 'required',
@@ -281,8 +287,9 @@ class ProductController extends Controller
             'type_id' => 'required',
             'category_id' => 'required',            
          ]);
+        
 
-
+            
          $product->product_name = $request->product_name;  
          $product->price = $request->price;    
          $product->description = $request->description; 
@@ -294,7 +301,7 @@ class ProductController extends Controller
  
          if(empty($request->image))
          {
-             $product->product_images = public_path('images/products/uploads/default.jpg');
+            $product->product_images;
          } else {            
              $product->product_images = $this->resizeImage(
                                                          $request->image,
@@ -309,5 +316,13 @@ class ProductController extends Controller
          return redirect()->action('ProductController@productIndex');
  
 
+    }
+
+    public function delete(Product $product)
+    {
+        $product = Product::findOrFail($product->id);
+        $product->delete();
+ 
+        return response()->json(['success' => true], 200);
     }
 }

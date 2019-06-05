@@ -7,7 +7,7 @@
     {{-- begin Form --}}
     {{-- geef de forum een post en de action mee --}}
     {{-- bij action geef je het pad waar hij hem moet opslaan gewoon het zelfde als de get van index. --}}
-    <form method="POST" action="{{ url('/admin/product/')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/product/update/'. $product->id)}}" enctype="multipart/form-data">
         @csrf
         @method('patch')
     <div class="row">
@@ -21,9 +21,9 @@
                                     {{-- Foto upload --}}
                                     {{-- onderaan deze blade staat de javascript voor foto uploaden. --}}
                                     <label for="upload-photo" class="ti-plus user-upload-plus" style="cursor: pointer;">     
-                                        <img src="" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
+                                        <img src="{{asset(old('product_images', $product->product_images))}}" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
                                     </label>
-                                    <input id="upload-photo" type="file" name="image" style="opacity: 0; z-index: -1;" onchange="readURL(this);">
+                                    <input id="upload-photo" type="file" name="image" value="{{asset(old('product_images', $product->product_images))}}"  style="display:none; opacity: 0; z-index: -1;" onchange="readURL(this);">
                                     <label for="upload-photo" style="cursor: pointer;">
                                         <p class="user-upload-text">FOTO'S UPLOADEN</p>
                                     </label>
@@ -58,7 +58,7 @@
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -70,16 +70,16 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Type</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">E-Bike</option>
-                                                <option>3-Wieler</option>
-                                                <option>2-Wieler</option>
+                                            <select id="validationCustom03" name="type_id" class="form-control">
+                                                @foreach ($types as $type)
+                                                    <option value="{{$type->id}}" @if( $type->id ==  $product->type_id) selected @endif>{{$type->title}}</option>
+                                                @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -91,16 +91,16 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Categorie</label>
-                                            <select id="validationCustom03" class="form-control">
-                                                <option selected="selected">Heren</option>
-                                                <option>Vrouwen</option>
-                                                <option>Kinderen</option>
+                                            <select id="validationCustom03" name="category_id" class="form-control">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{$category->id}}" @if($category->id ==  $product->category_id) selected @endif>{{$category->title}}</option>
+                                                @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie" required>
+                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie">
                                                 </div>
                                                 <div class="col-md-5 md-3">
                                                     <button class="btn btn-primary">Toevoegen</button>
@@ -112,7 +112,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>
-                                            <input type="text" class="form-control" id="validationCustom04" placeholder="1200" required>
+                                            <input type="text" class="form-control" id="validationCustom04" name="price" value="{{ old('price', $product->price) }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Beschrijving</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" required>2 Wieler, super snel.</textarea>
+                                            <textarea  class="form-control" name="description" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" required>{{$product->description}}</textarea>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Specificaties</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" required>Elektrisch, Snel, 27inch</textarea>
+                                            <textarea  class="form-control" name="specifications" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" required>{{$product->specifications}}</textarea>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                         </div>
                                     </div>
@@ -141,11 +141,10 @@
                                 </div>
                                 <div class="col-md-6 mb-6">
                                     <div class="text-right">
-                                        <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Product wijzigen</button></a> 
+                                        <button class="btn btn-primary tables-function-button" type="submit">Product wijzigen</button>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </div>                        
                     </div>
                 </div>
             </div>
@@ -153,4 +152,22 @@
     </div>
 </form>
 </div>
+
+<script>
+    //foto upload js
+    //gewoon in de blade laten staan.
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+</script>
 @endsection

@@ -37,7 +37,7 @@
                             @foreach ($products as $product)                                
                             
                             <tr>
-                                <td><img class="user-table-avatar" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje"></td>
+                                <td><img class="user-table-avatar" style="border-radius: 100%;" src="{{asset ($product->product_images)}}" alt="Gebruikers Plaatje"></td>
                                 <td>{{$product->id}}</td>
                                 <td>{{$product->product_name}}</td>
                                 <td>{{$product->brand->title}}</td>
@@ -46,10 +46,10 @@
                                 <td>&euro;{{$product->price}}</td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/product/1/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/product/'. $product->id .'/') }} "><i class="ti-eye"></i></a>
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/product/edit/'. $product->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
-                                        <i class="ti-trash tables-icons remove-user-icon" data-id="1"></i>
+                                        <i class="ti-trash tables-icons"  data-id="{{$product->id}}" onclick="deleteProduct(this);"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -69,4 +69,36 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        function deleteProduct(node)
+        {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+     
+            var form_data = new FormData();
+            form_data.append('_method', 'DELETE'); //Geef DELETE MEE
+            form_data.append('_token', CSRF_TOKEN);
+     
+            let product_id = node.getAttribute('data-id'); //Pak de Product-Id
+            $.ajax({
+                url: '/admin/product/delete/' + product_id, //Je url
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post', //Dit blijft post
+                success: function(){
+            //Werkt t allemaal?
+            //Verwijder de HTML
+              node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement); //Verwijder de html element
+                },
+                error: function(errors) {
+                    console.log(errors);
+                }
+            });
+        }
+        
+    </script>
 @endsection

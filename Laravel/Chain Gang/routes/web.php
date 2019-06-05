@@ -110,6 +110,9 @@ Route::group(['middleware' => ['auth:user']], function () {
         // })->name('users');
 
         // ?????
+
+
+        //index products
         Route::get('/admin/products', 'ProductController@productIndex')->name('products');
 
 
@@ -163,13 +166,13 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
-        Route::patch('/admin/product/{id}/update', 'ProductController@updateProduct')->name('productUpdate');
+        Route::patch('/admin/product/update/{id}', 'ProductController@updateProduct')->name('productUpdate');
 
+        //show product
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');
 
-        Route::get('/admin/product/delete/', function() {
-            return view('dashboard.body.products.delete');
-        });
+        //delete
+        Route::delete('/admin/product/delete/{product}', 'ProductController@delete')->name('deleteSale');
 
 
 
@@ -217,21 +220,34 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Sales
         */
-        Route::get('/admin/sales', function() {
-            return view('dashboard.body.sales.index');
-        })->name('sales');
 
-        Route::get('/admin/sale/create', function() {
-            return view('dashboard.body.sales.create');
-        });
+        //index
+        Route::get('/admin/sales', 'SaleController@indexSale')->name('sales');
 
-        Route::get('/admin/sale/1/', function() {
-            return view('dashboard.body.sales.view');
-        });
+        //aanmaken sale
+        Route::get('/admin/sale/create/', 'SaleController@createSale')->name('createSale');
+        Route::post('/admin/sales/', 'SaleController@storeSale')->name('storeSale');
 
-        Route::get('/admin/sale/edit/1', function() {
-            return view('dashboard.body.sales.update');
-        });
+        // Route::get('/admin/sale/create', function() {
+        //     return view('dashboard.body.sales.create');
+        // });
+
+        //updaten sale
+        Route::get('/admin/sale/edit/{id}', 'SaleController@editSale')->name('editSale');
+        Route::patch('/admin/sale/update/{id}', 'SaleController@updateSale')->name('updateSale');
+
+        //show sale
+        Route::get('/admin/sale/{id}/', 'SaleController@showSale')->name('showSale');
+
+        //delete
+        Route::delete('/admin/sale/delete/{sale}', 'SaleController@delete')->name('deleteSale');
+
+
+        // Route::get('/admin/sale/1/', function() {
+        //     return view('dashboard.body.sales.view');
+        // });
+
+    
 
 
         /*
@@ -252,4 +268,69 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/review/edit/1', function() {
             return view('dashboard.body.reviews.update');
         });
+
+        /*
+            Brand
+        */
+
+        //index
+        Route::get('/admin/brands', 'BrandController@index')->name('brands');
+
+        // //aanmaken brand
+        Route::get('/admin/brand/create/', 'BrandController@create')->name('createBrand');
+        Route::post('/admin/brands/', 'BrandController@store')->name('storeBrand');
+
+        // //updaten brand
+        Route::get('/admin/brand/edit/{id}', 'BrandController@edit')->name('editBrand');
+        Route::patch('/admin/brand/update/{id}', 'BrandController@update')->name('updateBrand');
+
+        // //show brand
+        Route::get('/admin/brand/{id}/', 'BrandController@show')->name('showBrand');
+
+        // //delete
+        Route::delete('/admin/brand/delete/{brand}', 'BrandController@delete')->name('deleteBrand');
+
+
+         /*
+            Type
+        */        
+        //index
+        Route::get('/admin/types', 'TypeController@index')->name('types');
+
+        // aanmaken type
+        Route::get('/admin/type/create/', 'TypeController@create')->name('createType');
+        Route::post('/admin/types/', 'TypeController@store')->name('storeType');
+
+        // updaten type
+        Route::get('/admin/type/edit/{id}', 'TypeController@edit')->name('editType');
+        Route::patch('/admin/type/update/{id}', 'TypeController@update')->name('updateType');
+
+        // show type
+        Route::get('/admin/type/{id}/', 'TypeController@show')->name('showType');
+
+        // //delete
+        Route::delete('/admin/type/delete/{type}', 'TypeController@delete')->name('deleteType');
+
+
+        /*
+            Category
+        */        
+        //index
+        Route::get('/admin/categories', 'CategoryController@index')->name('categories');
+
+        // aanmaken type
+        Route::get('/admin/category/create/', 'CategoryController@create')->name('createCategory');
+        Route::post('/admin/categories/', 'CategoryController@store')->name('storeCategory');
+
+        // updaten type
+        Route::get('/admin/category/edit/{id}', 'CategoryController@edit')->name('editCategory');
+        Route::patch('/admin/category/update/{id}', 'CategoryController@update')->name('updateCategory');
+
+        // show type
+        Route::get('/admin/category/{id}/', 'CategoryController@show')->name('showCategory');
+      
+        // //delete
+        Route::delete('/admin/category/delete/{category}', 'CategoryController@delete')->name('deleteCategory');
+
+
 });
