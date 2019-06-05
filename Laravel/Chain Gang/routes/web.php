@@ -246,6 +246,11 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::delete('/admin/category/delete/{category}', 'CategoryController@delete')->name('deleteCategory');
 
 
+        /*
+            Reviews
+        */
+        Route::get('/admin/reviews/', 'ReviewController@storeReview')->name('reviews');
+
         // create review
         Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
         Route::post('/admin/reviews/', 'ReviewController@storeReview')->name('reviewStore');
