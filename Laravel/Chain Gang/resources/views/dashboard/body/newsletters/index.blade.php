@@ -86,7 +86,7 @@
 
                 $.ajax(
                     {
-                        url: '/admin/newsletters/delete/' + newsletter_id,
+                        url: '/admin/newsletter/delete/' + newsletter_id,
                         dataType: 'json',
                         cache: false,
                         contentType: false,
@@ -107,5 +107,4 @@
                     });
             }
         </script>
-
 @endsection

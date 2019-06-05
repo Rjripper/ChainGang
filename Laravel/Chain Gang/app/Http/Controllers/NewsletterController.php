@@ -128,9 +128,8 @@ class NewsletterController extends Controller
     public function deleteNewsletter(Newsletter $newsletter)//, $id
     {
         $newsletter = Newsletter::findOrFail($newsletter->id);
-        // $newsletter = Newsletter::findOrFail($id);
-        dd('nieuwsletter id = ' . $newsletter->id);
-        dd($newsletter);
+
+        // dd('nieuwsletter id = ' . $newsletter->id);
         
         $newsletter->delete();
 
