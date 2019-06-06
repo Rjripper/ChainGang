@@ -83,7 +83,7 @@ function createCustomer() {
     event.preventDefault();
 
     $.ajax({
-        url: '/admin/customer/store',
+        url: '/laravel/public/admin/customer/store',
         dataType: 'json',
         cache: false,
         contentType: false,

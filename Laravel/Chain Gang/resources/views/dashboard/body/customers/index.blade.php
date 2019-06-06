@@ -46,8 +46,8 @@
                                         <td>{{$customer->city}}</td>
                                         <td>
                                             <div class="text-center">
-                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
-                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = User_id --}}
                                                 <i class="ti-trash tables-icons" onclick="deleteCustomer(this);" data-id="{{$customer->id}}"></i>
                                             </div>
@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="text-right">
-                                <a href="{{ url('/admin/customer/create') }}"><button class="btn btn-primary tables-function-button">Klant aanmaken</button></a> 
+                                <a href="{{ route('createCustomer') }}"><button class="btn btn-primary tables-function-button">Klant aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   
@@ -91,7 +91,7 @@
                     form_data.append('_token', CSRF_TOKEN);
             
                     $.ajax({
-                        url: '/admin/customer/delete/' + customer_id,
+                        url: '/laravel/public/admin/customer/delete/' + customer_id,
                         dataType: 'json',
                         cache: false,
                         contentType: false,

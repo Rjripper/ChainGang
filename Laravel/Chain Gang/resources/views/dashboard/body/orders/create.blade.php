@@ -132,7 +132,7 @@
                     {{-- EIND Form--}}
                     <div class="row">   
                         <div class="btn-back">
-                            <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                            <a href="{{ route('orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                         </div>
                         <div class="btn-add-newsletter-layout">
                             <button type="button" onclick="createOrder();" class="btn btn-primary tables-function-button">Bestelling aanmaken</button>
@@ -164,7 +164,7 @@ function createOrder() {
 
     event.preventDefault();
     $.ajax({
-        url: '/admin/order/store',
+        url: '/laravel/public/admin/order/store',
         dataType: 'json',
         cache: false,
         contentType: false,
@@ -205,7 +205,7 @@ function addProduct() {
 
     //Get Details about specific product
     $.ajax({
-        url: '/product/json/' + product_id ,
+        url: '/laravel/public/product/json/' + product_id ,
         method: 'GET',
         dataType: 'json',
         success: function(data) {

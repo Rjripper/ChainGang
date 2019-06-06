@@ -173,25 +173,25 @@ Route::group(['middleware' => ['auth:user']], function () {
             Orders
         */
         Route::get('/admin/orders', 'OrderController@index')->name('orders');
-        Route::get('/admin/order/create', 'OrderController@create');
-        Route::post('/admin/order/store', 'OrderController@store');
-        Route::delete('/admin/order/delete/{order}', 'OrderController@delete');
-        Route::get('/product/json/{product}', 'ProductController@getJson');
+        Route::get('/admin/order/create', 'OrderController@create')->name('createOrder');
+        Route::post('/admin/order/store', 'OrderController@store')->name('storeOrder');
+        Route::delete('/admin/order/delete/{order}', 'OrderController@delete')->name('deleteOrder');
+        Route::get('/product/json/{product}', 'ProductController@getJson')->name('getJsonOrder');
 
-        Route::get('/admin/order/{order}', 'OrderController@showAdmin');
-        Route::get('/admin/order/edit/{order}', 'OrderController@edit');
-        Route::patch('/admin/order/update/{order}', 'OrderController@update');
+        Route::get('/admin/order/{order}', 'OrderController@showAdmin')->name('showOrder');
+        Route::get('/admin/order/edit/{order}', 'OrderController@edit')->name('editOrder');
+        Route::patch('/admin/order/update/{order}', 'OrderController@update')->name('updateOrder');
 
         /*
             Customers
         */
         Route::get('/admin/customers/', 'CustomerController@adminIndex')->name('customers');
-        Route::get('/admin/customer/create', 'CustomerController@create');
-        Route::post('/admin/customer/store', 'CustomerController@store');
-        Route::delete('/admin/customer/delete/{customer}', 'CustomerController@delete');
-        Route::get('/admin/customer/{customer}', 'CustomerController@show');
-        Route::get('/admin/customer/edit/{customer}', 'CustomerController@edit');
-        Route::patch('/admin/customer/update/{customer}', 'CustomerController@update');
+        Route::get('/admin/customer/create', 'CustomerController@create')->name('createCustomer');
+        Route::post('/admin/customer/store', 'CustomerController@store')->name('storeCustomer');
+        Route::delete('/admin/customer/delete/{customer}', 'CustomerController@delete')->name('deleteCustomer');
+        Route::get('/admin/customer/{customer}', 'CustomerController@show')->name('showCustomer');
+        Route::get('/admin/customer/edit/{customer}', 'CustomerController@edit')->name('editCustomer');
+        Route::patch('/admin/customer/update/{customer}', 'CustomerController@update')->name('updateCustomer');
         // Routes Moosti
 
         /*

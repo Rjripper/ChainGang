@@ -83,7 +83,7 @@ function updateCustomer(user_id) {
     event.preventDefault();
     
     $.ajax({
-        url: '/admin/customer/update/' + user_id,
+        url: '/laravel/public/admin/customer/update/' + user_id,
         dataType: 'json',
         cache: false,
         contentType: false,

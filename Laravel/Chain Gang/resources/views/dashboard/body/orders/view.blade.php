@@ -92,7 +92,7 @@
                             {{-- EIND Form--}}
                             <div class="row">   
                                 <div class="btn-back">
-                                    <a href="{{ url('/admin/orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                                    <a href="{{ route('orders') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                                 </div>       
                             </div>                  
                             {{-- EIND Orders toevoegen--}}
