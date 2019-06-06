@@ -7,24 +7,31 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Nieuwsbrief - Summer Sale (1)</h4>
+                <h4 class="c-grey-900 mB-20">
+                    Nieuwsbrief -
+                    @foreach ($newsletter as $item)
+                    {{$item->title}}
+                    @endforeach
+                </h4>
                
                 {{-- Begin Form --}}
                 <form>
-                    @csrf
-                    {{-- Nieuwsbrief toevoegen --}}
+                    {{-- Nieuwsbrief bekijken --}}
                     <div class="row">
                             <div class="col-sm-2">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group"><label for="inputTitle">Titel</label>
-                                        <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                        <input type="text" class="form-control" id="validationCustom05" value="{{$newsletter[0]->title}}" disabled required>
                                     </div>
                                     <div class="form-group"><label for="inputAteur">Auteur</label> 
-                                        <select id="inputAteur" class="form-control" disabled>
-                                            <option selected="selected">Auteur...</option>
-                                            <option>...</option>
-                                        </select>
+                                        @foreach ($newsletter as $item)
+                                        @php
+                                        $userReference = App\User::Where('id', $item->reference)->get();
+                                        // dd($userReference[0]->first_name);
+                                        @endphp
+                                        <input type="text" class="form-control" id="validationCustom05" value="{{ $userReference[0]->first_name }}" disabled required>
+                                        @endforeach
                                     </div>                                     
                                 </div>
                             </div>
@@ -33,7 +40,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="tag">Preview Nieuwsbrief:</div>
-                                    <iframe class="iframe-layout" name="targetCode" id="targetCode"></iframe>
+                                    {{-- <iframe class="iframe-layout" name="targetCode" id="targetCode"></iframe> --}}
+                                    <textarea class="iframe-layout" disabled>{{$newsletter[0]->message}}</textarea>
                                 </div>
                             </div>
                             </div>
@@ -50,7 +58,7 @@
                     </div>                
                     </div>   
                 </div>            
-            {{-- EIND Nieuwsbrief toevoegen--}}
+            {{-- EIND Nieuwsbrief bekijken--}}
             </div>                   
               
         </div>

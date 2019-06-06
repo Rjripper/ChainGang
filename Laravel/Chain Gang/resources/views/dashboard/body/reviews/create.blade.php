@@ -10,29 +10,33 @@
                 
                     <h4 class="c-grey-900 mB-20">Recensie Aanmaken</h4>
                     {{-- Begin Form --}}
-                    <form>     
+                    <form method="POST" action="{{ url('/admin/reviews/')}}" enctype="multipart/form-data">
                         @csrf
-                        {{-- Nieuwsbrief toevoegen --}} 
+                        {{-- Resensie toevoegen --}} 
                         <div class="row">      
                             <div class="col-md-6">
                                 <div class="card">  
                                     <div class="card-body">      
-                                        <div class="form-group"><label for="inputTitle">Titel</label> <input type="text" class="form-control" id="inputTitle"></div>
-                                        <div class="form-group"><label for="inputKlant">Klant</label> 
-                                            <select id="inputKlant" class="form-control">
-                                                <option selected="selected">Klant...</option>
-                                                <option>...</option>
+                                        <div class="form-group"><label for="inputTitle">Titel</label> 
+                                            <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Titel" required>
+                                        </div>
+                                            <div class="form-group"><label for="inputKlant">Klant</label> 
+                                            <select id="inputKlant" name="customer_id" class="form-control" required>
+                                                    @foreach ($customers as $customer)
+                                                    <option value="{{ $customer->id }}">{{ $customer->first_name }}</option>
+                                                    @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Product</label> 
-                                            <select id="inputKlant" class="form-control">
-                                                <option selected="selected">Product...</option>
-                                                <option>...</option>
+                                            <select id="inputKlant" name="product_id" class="form-control" required>
+                                                @foreach ($products as $product)
+                                                <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Sterren</label> 
-                                            <select id="inputKlant" class="form-control">
-                                                <option selected="selected">Sterren...</option>
+                                            <select id="inputKlant" name="rating" class="form-control" required>
+                                                <option selected="selected">Selecteer een aantal</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -40,7 +44,7 @@
                                                 <option>5</option>
                                             </select>
                                         </div>
-                                        <fieldset class="form-group">
+                                        {{-- <fieldset class="form-group">
                                                 <div class="row">
                                                     <legend class="col-form-legend col-sm-2">Status:</legend>
                                                     <div class="col-sm-10">
@@ -48,18 +52,7 @@
                                                         <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">Afgekeurd</label></div>
                                                     </div>
                                                 </div>
-                                        </fieldset>
-                                        <div class="form-group">
-                                            <label class="fw-500">Aanmaak datum</label>
-                                            <div class="timepicker-input input-icon form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon bgc-white bd bdwR-0">
-                                                        <i class="ti-calendar"></i>
-                                                    </div>
-                                                    <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Start Datum" data-provide="datepicker">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </fieldset> --}}
                                     </div>
                                 </div>    
                             </div>
@@ -67,24 +60,23 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label class="fw-500">Opmerking:</label>
-                                        <textarea class="textArea-layout-reviews" name="description" id="descriptionReview" cols="30" rows="10"></textarea>
+                                        <textarea class="textArea-layout-reviews" name="message" id="descriptionReview" cols="30" rows="10" required></textarea>
                                     </div>    
                                 </div>
                             </div>
                         </div>
+                        <div class="row">   
+                                <div class="btn-back">
+                                    <a href="{{ route('reviews') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
+                                </div>
+                                <div class="btn-add-newsletter-layout">
+                                    {{-- <a href="#"><button class="btn btn-primary tables-function-button">Review aanmaken</button></a> --}}
+                                    <button class="btn btn-primary tables-function-button" type="submit">Review aanmaken</button>
+                                </div>                
+                            </div>        
                     </form>
-                    {{-- Begin Form --}}
-                    <div class="row">   
-                        <div class="btn-back">
-                            <a href="{{ url('/admin/reviews') }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
-                        </div>
-                        <div class="btn-add-newsletter-layout">
-                            <a href="#"><button class="btn btn-primary tables-function-button">Reviews aanmaken</button></a> 
-                        </div>                
-                    </div>        
+                    {{-- Eind Form --}}
                     {{-- Nieuwsbrief toevoegen --}}
-
-
             </div>
         </div>
     </div>

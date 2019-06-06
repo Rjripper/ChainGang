@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Product - E-bike Zoof 3000 (1)</h4>
+                <h4 class="c-grey-900 mB-20">{{$product->product_name}}</h4>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <img class="table-user-image" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="Gebruikers Plaatje">
+                        <img class="table-user-image" src="{{asset( $product->product_images)}}" alt="Gebruikers Plaatje">
                     </div>
                     <div class="col-md-10">
                         <form class="container" id="needs-validation" novalidate>
@@ -18,7 +18,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Product naam</label>
-                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                            <input type="text" class="form-control" id="validationCustom05" value="{{$product->product_name}}" placeholder="" disabled required>
                                         </div>
                                     </div>
                                     <br>
@@ -26,9 +26,10 @@
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Merk</label>
                                             <select id="validationCustom03" class="form-control" disabled>
-                                                <option selected="selected">Gazelle</option>
-                                                <option>Batavus</option>
-                                                <option>Altec</option>
+                                                @foreach ($brands as $brand)                                               
+                                                {{-- geef waarde van de optie weer doe dit tussen <option>...</option> --}}
+                                                    <option value="{{$brand->id}}" @if( $brand->id ==  $product->brand_id) selected @endif>{{$brand->title}}</option>
+                                                @endforeach
                                             </select>                       
                                         </div>
                                     </div>
@@ -37,9 +38,9 @@
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Type</label>
                                             <select id="validationCustom03" class="form-control" disabled>
-                                                <option selected="selected">E-Bike</option>
-                                                <option>3-Wieler</option>
-                                                <option>2-Wieler</option>
+                                                @foreach ($types as $type)
+                                                    <option value="{{$type->id}}" @if( $type->id ==  $product->type_id) selected @endif>{{$type->title}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -48,9 +49,9 @@
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Categorie</label>
                                             <select id="validationCustom03" class="form-control" disabled>
-                                                <option selected="selected">Heren</option>
-                                                <option>Vrouwen</option>
-                                                <option>Kinderen</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{$category->id}}" @if($category->id ==  $product->category_id) selected @endif>{{$category->title}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -58,7 +59,7 @@
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>
-                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                            <input type="text" class="form-control" id="validationCustom05" value="{{$product->price}}" placeholder="" disabled required>
                                         </div>
                                     </div>
                                 </div>
@@ -66,14 +67,14 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Beschrijving</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" disabled>2 Wieler, super snel.</textarea>
+                                            <textarea  class="form-control" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" disabled>{{$product->description}}</textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10">
                                             <label for="validationCustom01">Specificaties</label>
-                                            <textarea  class="form-control"name="beschrijving" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" disabled>Elektrisch, Snel, 27inch</textarea>
+                                            <textarea  class="form-control" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" disabled>{{$product->specifications}}</textarea>
                                         </div>
                                     </div>
                                 </div>

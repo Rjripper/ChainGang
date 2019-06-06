@@ -7,7 +7,7 @@
     {{-- begin Form --}}
     {{-- geef de forum een post en de action mee --}}
     {{-- bij action geef je het pad waar hij hem moet opslaan gewoon het zelfde als de get van index. --}}
-    <form method="POST" action="{{ url('/admin/product/update')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/product/update/'. $product->id)}}" enctype="multipart/form-data">
         @csrf
         @method('patch')
     <div class="row">
@@ -23,7 +23,7 @@
                                     <label for="upload-photo" class="ti-plus user-upload-plus" style="cursor: pointer;">     
                                         <img src="{{asset(old('product_images', $product->product_images))}}" alt="" id="blah" style="width: 100%; height: 100%; display:block;">                               
                                     </label>
-                                    <input id="upload-photo" type="file" name="image" value="{{old('product_images', $product->product_images)}}"  style="display:none; opacity: 0; z-index: -1;" onchange="readURL(this);">
+                                    <input id="upload-photo" type="file" name="image" value="{{asset(old('product_images', $product->product_images))}}"  style="display:none; opacity: 0; z-index: -1;" onchange="readURL(this);">
                                     <label for="upload-photo" style="cursor: pointer;">
                                         <p class="user-upload-text">FOTO'S UPLOADEN</p>
                                     </label>

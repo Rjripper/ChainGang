@@ -8,41 +8,43 @@
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
                 
-                    <h4 class="c-grey-900 mB-20">Recensie - Coole Fiets! (1)</h4>
+                    <h4 class="c-grey-900 mB-20">
+                        Recensie - 
+                        @foreach ($review as $item)
+                        {{ $item->title }}    
+                        @endforeach
+                    </h4>
                     {{-- Begin Form --}}
                     <form>     
-                        @csrf
                         {{-- Reviews toevoegen --}} 
                         <div class="row">      
                             <div class="col-md-6">
                                 <div class="card">  
                                     <div class="card-body">      
                                         <div class="form-group"><label for="inputTitle">Titel</label>
-                                            <input type="text" class="form-control" id="validationCustom05" placeholder="" disabled required>
+                                        <input type="text" class="form-control" id="validationCustom05" value="{{ $review[0]->title }}" disabled required>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Klant</label> 
-                                            <select id="inputKlant" class="form-control" disabled>
-                                                <option selected="selected">Klant...</option>
-                                                <option>...</option>
-                                            </select>
+                                            @foreach ($review as $item)
+                                            @php
+                                            $userName = App\Customer::Where('id', $item->customer_id)->get();
+                                            @endphp
+                                            <input type="text" class="form-control" value="{{ $userName[0]->first_name }}" required disabled>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Product</label> 
-                                            <select id="inputKlant" class="form-control" disabled>
-                                                <option selected="selected">Product...</option>
-                                                <option>...</option>
-                                            </select>
+                                            @php
+                                            $productName = App\Product::Where('id', $item->product_id)->get();
+                                            @endphp
+                                            <input type="text" class="form-control" value="{{ $productName[0]->product_name }}" required disabled>
                                         </div>
                                         <div class="form-group"><label for="inputKlant">Sterren</label> 
-                                            <select id="inputKlant" class="form-control" disabled>
-                                                <option selected="selected">Sterren...</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            @php
+                                            $userName = App\Customer::Where('id', $item->customer_id)->get();
+                                            @endphp
+                                            <input type="text" class="form-control" value="{{ $item->rating }}" required disabled>
                                         </div>
-                                        <fieldset class="form-group">
+                                        @endforeach
+                                        {{-- <fieldset class="form-group">
                                                 <div class="row">
                                                     <legend class="col-form-legend col-sm-2">Status:</legend>
                                                     <div class="col-sm-10">
@@ -50,7 +52,7 @@
                                                         <div class="form-check disabled"><label class="form-check-label"><input disabled class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" disabled="disabled">Afgekeurd</label></div>
                                                     </div>
                                                 </div>
-                                        </fieldset>
+                                        </fieldset> --}}
                                         <div class="form-group">
                                             <label class="fw-500">Aanmaak datum</label>
                                             <div class="timepicker-input input-icon form-group">
@@ -58,7 +60,7 @@
                                                     <div class="input-group-addon bgc-white bd bdwR-0">
                                                         <i class="ti-calendar"></i>
                                                     </div>
-                                                    <input type="text" class="form-control bdc-grey-200 start-date" placeholder="Eind Datum" data-provide="datepicker" disabled>
+                                                    <input type="text" class="form-control bdc-grey-200 start-date" value="{{ $item->created_at }}" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,7 +71,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label class="fw-500">Opmerking:</label>
-                                        <textarea disabled class="textArea-layout-reviews" name="description" id="descriptionReview" cols="30" rows="10"></textarea>
+                                        <textarea disabled class="textArea-layout-reviews" name="description" id="descriptionReview" cols="30" rows="10">{{ $item->message }}</textarea>
                                     </div>    
                                 </div>
                             </div>

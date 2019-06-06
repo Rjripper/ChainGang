@@ -41,7 +41,7 @@
                                             <label for="validationCustom01">Product naam</label>
                                             {{-- kijk naar de naam input field(naam moet het zelfde zijn als database table name) --}}
                                             <input type="text" class="form-control" id="validationCustom01" name="product_name" placeholder="Product naam" required>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
+                                            <div class="invalid-feedback"><strong>Geef een product naam op.</strong></div>
                                             @if ($errors->has('product_name'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('product_name') }}</strong>
@@ -62,15 +62,8 @@
                                                 @endforeach
                                               </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe merk naam">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>                         
+                                            
+                                                      
                                         </div>
                                     </div>
                                     <br>
@@ -83,15 +76,8 @@
                                                 @endforeach
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe type">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                     <br>
@@ -106,17 +92,10 @@
                                             </select>
                                             <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col-md-7 md-3">
-                                                    <input type="text" class="form-control" id="validationCustom04" placeholder="Nieuwe categorie">
-                                                </div>
-                                                <div class="col-md-5 md-3">
-                                                    <button class="btn btn-primary">Toevoegen</button>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
-                                    <br>
+                                    
                                     <div class="row">
                                         <div class="col-md-10 md-3">
                                             <label for="validationCustom01">Prijs &euro;</label>
