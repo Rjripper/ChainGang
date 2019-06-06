@@ -50,8 +50,8 @@
                                 </td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/user/edit/'. $user->id) }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/edit/'. $user->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
                                     <i class="ti-trash tables-icons" data-id="{{$user->id}}" onclick="deleteUser(this);"></i>
                                     </div>
