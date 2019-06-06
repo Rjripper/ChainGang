@@ -103,22 +103,6 @@ Route::group(['middleware' => ['auth:user']], function () {
             return redirect()->route('dashboard');
         });
 
-        //?????
-        Route::get('/admin/customers', function() {
-            return view('dashboard.body.customers.index');
-        })->name('customers'); 
-
-        // Route::get('/admin/users', function() {
-        //     return view('dashboard.body.users.index');
-        // })->name('users');
-
-        // ?????
-
-
-        //index products
-        Route::get('/admin/products', 'ProductController@productIndex')->name('products');
-
-
         /*
             Users
         */
@@ -139,30 +123,13 @@ Route::group(['middleware' => ['auth:user']], function () {
         // View User
         Route::get('/admin/user/{id}', 'UserController@userShow')->name('showUser');
 
-        /*
-            Customers
-        */
-        Route::get('/admin/customer/create/', function() {
-            return view('dashboard.body.customers.create');
-        });
-
-        Route::get('/admin/customer/edit/1/', function() {
-            return view('dashboard.body.customers.update');
-        });
-
-        Route::get('/admin/customer/1/', function() {
-            return view('dashboard.body.customers.view');
-        });
-
-        Route::get('/admin/customer/delete/', function() {
-            return view('dashboard.body.customers.delete');
-        });
-
 
         /*
             Products
         */
         //aanmaken product
+        //index products
+        Route::get('/admin/products/', 'ProductController@productIndex')->name('products');
         Route::get('/admin/product/create/', 'ProductController@createProduct')->name('productCreate');
         Route::post('/admin/product/', 'ProductController@storeProduct')->name('productStore');
 
@@ -200,6 +167,7 @@ Route::group(['middleware' => ['auth:user']], function () {
          //Detele newsletter
          Route::delete('/admin/newsletter/delete/{newsletter}', 'NewsletterController@deleteNewsletter')->name('newsletterDelete');
 
+         
         // Routes Moosti
         /*
             Orders
@@ -224,6 +192,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/customer/{customer}', 'CustomerController@show');
         Route::get('/admin/customer/edit/{customer}', 'CustomerController@edit');
         Route::patch('/admin/customer/update/{customer}', 'CustomerController@update');
+        // Routes Moosti
 
         /*
             Category
