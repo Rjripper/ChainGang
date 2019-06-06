@@ -218,7 +218,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         /*
             Reviews
         */
-        Route::get('/admin/reviews/', 'ReviewController@storeReview')->name('reviews');
+        Route::get('/admin/reviews/', 'ReviewController@reviewIndex')->name('reviews');
 
         // create review
         Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
