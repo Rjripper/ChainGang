@@ -220,6 +220,9 @@ Route::group(['middleware' => ['auth:user']], function () {
         */
         Route::get('/admin/reviews/', 'ReviewController@reviewIndex')->name('reviews');
 
+        // view one revieuw
+        Route::get('/admin/review/{review}/', 'ReviewController@reviewShow')->name('reviewShow');
+
         // create review
         Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
         Route::post('/admin/reviews/', 'ReviewController@storeReview')->name('reviewStore');
@@ -229,7 +232,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::patch('/admin/review/{id}/update', 'ReviewController@updateReview')->name('updateReview');
 
         // delete revieuw
-        Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('newsletterDelete');
+        Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('reviewRevieuDelete');
 
         /*
             Sales
