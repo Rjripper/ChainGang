@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="masonry-item col-md-12">
                                 {{-- Begin Form --}}
-                                <form class="container" id="needs-validation" action="{{ url('/admin/user/'. $user->id.'/update')}}" method="POST">
+                                <form class="container" id="needs-validation" action="{{ url('/laravel/public/admin/user/'. $user->id.'/update')}}" method="POST">
                                     @csrf
                                     @method('patch')
                                     <div class="row">
