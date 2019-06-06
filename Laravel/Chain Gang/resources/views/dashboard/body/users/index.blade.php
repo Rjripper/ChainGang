@@ -50,8 +50,8 @@
                                 </td>
                                 <td>
                                     <div class="text-center">
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/user/edit/'. $user->id) }} "><i class="ti-pencil"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/user/'.$user->id.'/') }} "><i class="ti-eye"></i></a>
+                                        <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/user/edit/'. $user->id) }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = User_id --}}
                                     <i class="ti-trash tables-icons" data-id="{{$user->id}}" onclick="deleteUser(this);"></i>
                                     </div>
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="text-right">
-                                <a href="{{ url('/admin/user/create') }}"><button class="btn btn-primary tables-function-button">Gebruiker aanmaken</button></a> 
+                                <a href="{{ route('userCreate') }}"><button class="btn btn-primary tables-function-button">Gebruiker aanmaken</button></a> 
                             </div>
                         </div>
                     </div> 
@@ -87,7 +87,7 @@
             let user_id = node.getAttribute('data-id'); //Pak de Product-Id
             console.log(user_id);
             $.ajax({
-                url: '/admin/users/delete/' + user_id, //Je url
+                url: '/laravel/public/admin/users/delete/' + user_id, //Je url
                 dataType: 'json',
                 cache: false,
                 contentType: false,

@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="masonry-item col-md-12">
                                 {{-- Begin Form --}}
-                                <form class="container" id="needs-validation" action="{{ url('/admin/users/')}}" method="POST">
+                                <form class="container" id="needs-validation" action="{{ route('users')}}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
