@@ -51,13 +51,6 @@
                                         <div class="col-md-6 mb-3">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-6">
-                                            <a class="btn btn-primary tables-function-button" href="{{ route('users') }}">Terug</a> 
-                                        </div>
-                                        <div class="col-md-6 mb-6">
-                                        </div>
-                                    </div>  
                                 </form>
                             </div>
                         </div>

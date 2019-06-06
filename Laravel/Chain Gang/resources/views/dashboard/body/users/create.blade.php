@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-md-6 mb-6">
                                             <div class="text-right">
-                                                <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Gebruiker Opsaan</button></a> 
+                                                <a href="#"><button class="btn btn-primary tables-function-button" type="submit">Gebruiker Opslaan</button></a> 
                                             </div>
                                         </div>
                                     </div>  
