@@ -10,6 +10,7 @@
                     <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Titel</th>
                                 <th>Bericht</th>
                                 <th>Beoordeling</th>
@@ -22,6 +23,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>ID</th>
                                 <th>Titel</th>
                                 <th>Bericht</th>
                                 <th>Beoordeling</th>
@@ -36,6 +38,7 @@
                             {{-- Loop this with all Reviews --}}
                             @foreach ($reviews as $review)
                             <tr>
+                                <td class="text-truncate" style="max-width:300px">{{ $review->id }}</td>
                                 <td class="text-truncate" style="max-width:300px">{{ $review->title }}</td>
                                 <td class="text-truncate" style="max-width:300px">{{ $review->message }}</td>
                                 <td>{{ $review->rating }}</td>
