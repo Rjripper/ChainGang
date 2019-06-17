@@ -1,16 +1,6 @@
 @extends('klant.index')
 
 @section('body')
-<!-- BREADCRUMB -->
-<div id="breadcrumb">
-    <div class="container">
-        <ul class="breadcrumb">
-        <li><a href="{{url('/')}}">Home</a></li>
-            <li class="active">card</li>
-        </ul>
-    </div>
-</div>
-<!-- /BREADCRUMB -->
 
 <!-- section -->
 <div class="section">

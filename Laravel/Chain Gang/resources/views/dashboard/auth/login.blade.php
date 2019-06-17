@@ -1,7 +1,6 @@
 @extends('klant.index')
 @section('body')
 	<h1 class="text-center">Admin</h1>
-        <!-- /BREADCRUMB -->
         <div class="section">
                 <!-- container -->
                 <div class="container">
