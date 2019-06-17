@@ -11,6 +11,7 @@ use App\Review;
 use App\Sale;
 use App\Category;
 use App\Type;
+use Validator;
 
 
 class ProductController extends Controller
@@ -210,18 +211,12 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request){
 
-        //valideer
-        $request->validate([            
-            'product_name' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required',
-            'description' => 'required|min:1',
-            'specifications' => 'required',
-            'brand_id' => 'required',
-            'type_id' => 'required',
-            'category_id' => 'required',            
-         ]);
-
+        $rules = $this->rulesProduct();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
         //maak product
         $product = new Product;
@@ -241,11 +236,11 @@ class ProductController extends Controller
             $product->product_images = public_path('images/products/uploads/default.jpg');
         } else {            
             $product->product_images = $this->resizeImage(
-                                                        $request->image,
-                                                        'images/products/uploads/',
-                                                        '150',
-                                                        '150',
-                                                        Input::file('image'));
+            $request->image,
+            'images/products/uploads/',
+            '150',
+            '150',
+            Input::file('image'));
         }
 
         //is je data niet zeker? gebruik dd();
@@ -255,8 +250,7 @@ class ProductController extends Controller
         //sla product op
         $product->save();
 
-        //return naar index
-        return redirect()->action('ProductController@productIndex');
+        return response()->json(['success' => true], 200);
 
     }
 
@@ -277,45 +271,35 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        $request->validate([            
-            'product_name' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required',
-            'description' => 'required|min:1',
-            'specifications' => 'required',
-            'brand_id' => 'required',
-            'type_id' => 'required',
-            'category_id' => 'required',            
-         ]);
+        $rules = $this->rulesProductUpdate();
         
-
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
             
-         $product->product_name = $request->product_name;  
-         $product->price = $request->price;    
-         $product->description = $request->description; 
-         $product->specifications = $request->specifications;
-         $product->brand_id = $request->brand_id;
-         $product->type_id = $request->type_id;
-         $product->category_id = $request->category_id;
+        $product->product_name = $request->product_name;  
+        $product->price = $request->price;    
+        $product->description = $request->description; 
+        $product->specifications = $request->specifications;
+        $product->brand_id = $request->brand_id;
+        $product->type_id = $request->type_id;
+        $product->category_id = $request->category_id;
  
  
-         if(empty($request->image))
-         {
-            $product->product_images;
-         } else {            
-             $product->product_images = $this->resizeImage(
-                                                         $request->image,
-                                                         'images/products/uploads/',
-                                                         '150',
-                                                         '150',
-                                                         Input::file('image'));
-         }
+        if(!empty($request->image))
+        {        
+            $product->product_images = $this->resizeImage(
+            $request->image,
+            'images/products/uploads/',
+            '150',
+            '150',
+            Input::file('image'));
+        }
 
-         $product->save();
+        $product->save();
 
-         return redirect()->action('ProductController@productIndex');
- 
-
+        return response()->json(['success' => true], 200);
     }
 
     public function deleteProduct(Product $product)
@@ -331,5 +315,32 @@ class ProductController extends Controller
         $product = Product::findOrFail($product->id);
 
         return response()->json(['product' => $product], 200);
+    }
+
+    protected function rulesProduct()
+    {
+        return [
+            'product_name' => ['required'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'price' => ['required', 'integer','min:1'],
+            'description' => ['required', 'min:1', 'max:255'],
+            'specifications' => ['required', 'min:1', 'max:255'],
+            'brand_id' => ['required'],
+            'type_id' => ['required'],
+            'category_id' => ['required']
+        ];
+    }
+
+    protected function rulesProductUpdate()
+    {
+        return [
+            'product_name' => ['required'],
+            'price' => ['required', 'integer','min:1'],
+            'description' => ['required', 'min:1', 'max:255'],
+            'specifications' => ['required', 'min:1', 'max:255'],
+            'brand_id' => ['required'],
+            'type_id' => ['required'],
+            'category_id' => ['required']
+        ];
     }
 }

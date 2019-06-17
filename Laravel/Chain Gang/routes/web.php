@@ -130,13 +130,13 @@ Route::group(['middleware' => ['auth:user']], function () {
         //aanmaken product
         //index products
         Route::get('/admin/products/', 'ProductController@productIndex')->name('products');
-        Route::get('/admin/product/create/', 'ProductController@createProduct')->name('productCreate');
-        Route::post('/admin/product/', 'ProductController@storeProduct')->name('productStore');
+        Route::get('/admin/product/create', 'ProductController@createProduct')->name('productCreate');
+        Route::post('/admin/product/store', 'ProductController@storeProduct')->name('productStore');
 
 
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
-        Route::patch('/admin/product/update/{id}', 'ProductController@updateProduct')->name('productUpdate');
+        Route::patch('/admin/product/update/{product}', 'ProductController@updateProduct')->name('productUpdate');
 
         //show product
         Route::get('/admin/product/{product}/', 'ProductController@productShow')->name('productShow');

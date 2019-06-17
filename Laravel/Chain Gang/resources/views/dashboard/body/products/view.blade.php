@@ -9,7 +9,7 @@
                 <h4 class="c-grey-900 mB-20">{{$product->product_name}}</h4>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <img class="table-user-image" src="{{asset( $product->product_images)}}" alt="Gebruikers Plaatje">
+                        <img class="table-user-image" src="{{asset( $product->product_images)}}" alt="Product foto">
                     </div>
                     <div class="col-md-10">
                         <form class="container" id="needs-validation" novalidate>
