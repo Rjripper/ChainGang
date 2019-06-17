@@ -110,15 +110,15 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/users', 'UserController@index')->name('users');
 
         // Aanmaken User
-        Route::get('/admin/user/create/', 'UserController@createUser')->name('userCreate');
-        Route::post('/admin/users/', 'UserController@storeUser')->name('userStore');
+        Route::get('/admin/user/create', 'UserController@createUser')->name('userCreate');
+        Route::post('/admin/user/store', 'UserController@storeUser')->name('userStore');
 
         // Update User
         Route::get('/admin/user/edit/{user}', 'UserController@editUser')->name('editUser');
-        Route::patch('/admin/user/{user}/update', 'UserController@updateUser')->name('userUpdate');
+        Route::patch('/admin/user/update/{user}', 'UserController@updateUser')->name('userUpdate');
 
         // Delete User
-        Route::delete('/admin/users/delete/{user}', 'UserController@deleteUser')->name('deleteUser');
+        Route::delete('/admin/user/delete/{user}', 'UserController@deleteUser')->name('deleteUser');
 
         // View User
         Route::get('/admin/user/{id}', 'UserController@userShow')->name('showUser');

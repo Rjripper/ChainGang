@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class UserController extends Controller
 {
@@ -32,16 +33,13 @@ class UserController extends Controller
 
     public function storeUser(Request $request){
 
-        //valideer
-        $request->validate([            
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'username' => 'required|min:3',
-            'email' => 'required|min:1',
-            'is_admin' => 'required',
-            'password' => 'required|string|min:8',
-            'confirm_password' => 'required|string|min:8',         
-        ]);
+        $rules = $this->rulesCreateUser();
+
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
+
         //maak product
         $user = new User();
 
@@ -55,14 +53,13 @@ class UserController extends Controller
         if($request->password == $request->confirm_password){
             $user->password = Hash::make(request('password'));
         } else {
-            return redirect()->back()->with('error', 'Wachtwoorden komen niet overeen');
+            return response()->json(['errors' => [0 => ['error' => 'Wachtwoorden komen niet overeen!']]], 422);
         }
 
         //sla product op
         $user->save();
 
-        //return naar index
-        return redirect()->action('UserController@index');
+        return response()->json(['succes' => true], 200);
 
     }
 
@@ -76,13 +73,12 @@ class UserController extends Controller
 
     public function updateUser(Request $request, User $user){
 
-        $request->validate([            
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'username' => 'required|min:3',
-            'email' => 'required|min:1',
-            'is_admin' => 'required',     
-        ]);
+        $rules = $this->rulesUpdateUser();
+
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
         $user->first_name = $request->first_name;  
         $user->last_name = $request->last_name;    
@@ -92,23 +88,36 @@ class UserController extends Controller
  
         if(!empty($request->current_password))
         {
-            if(Hash::check($request->current_password, $user->password)){
-                if (Hash::make($request->new_password) != $user->password) {
-                   if($request->confirm_password == $request->new_password && $request->confirm_password != "" && $request->new_password != "" ){
-                       $user->password = Hash::make(request('new_password'));
-                   } else {
-                       return redirect()->back()->with('error', 'Vul een geldig wachtwoord in!');
-                   }
-               }else{
-                   return redirect()->back()->with('error', 'Er is iets fout gegaan, probeer opnieuw.');
-               }
-            }else {
-                return redirect()->back()->with('error', 'Het wachtwoord dat u invoerde was verkeerd.');
+            if(empty($request->new_password) && empty($request->confirm_password)) {
+                return response()->json(['errors' => [0 => ['error' => 'Uw nieuwe wachtwoord veld en herhaling van je wachtwoord veld is leeg!']]], 422);
+            } else if(empty($request->new_password)) {
+                return response()->json(['errors' => [0 => ['error' => 'Uw nieuwe wachtwoord veld is leeg!']]], 422);
+            } else if(empty($request->confirm_password)){
+                return response()->json(['errors' => [0 => ['error' => 'Uw herhaling van uw wachtwoord veld is leeg!']]], 422);
+            }
+            else {
+                if(Hash::check($request->current_password, $user->password)) {
+                    if (Hash::make($request->new_password) != $user->password) {
+
+                       if($request->confirm_password == $request->new_password ) {
+                           $user->password = Hash::make(request('new_password'));
+                        } else {
+                            return response()->json(['errors' => [0 => ['error' => 'Uw nieuwe wachtwoord en herhaling van uw wachtwoord veld komen niet overeen!']]], 422);
+                        }
+
+                    } else {
+
+                        return response()->json(['errors' => [0 => ['error' => 'Vul een ander wachtwoord in deze is al een keer eerder gebruikt!']]], 422);
+                    }
+
+                } else {
+                    return response()->json(['errors' => [0 => ['error' => 'U heeft een verkeerde wachtwoord ingevuld!']]], 422);
+                }
             }
         }
 
         $user->save();
-        return redirect()->action('UserController@index');
+        return response()->json(['succes' => true], 200);
     }
 
     public function deleteUser(User $user)
@@ -117,6 +126,29 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['success' => true], 200);
-        //return redirect()->action('UserController@index');
     }
+
+    protected function rulesUpdateUser()
+    {
+        return [
+            'first_name' => ['required', 'min:3'],
+            'last_name' => ['required', 'min:3'],
+            'username' => ['required', 'min:3'],
+            'email' => ['required', 'min:3'],
+            'is_admin' => ['required'],
+        ];
+    }
+
+    protected function rulesCreateUser()
+    {
+        return [
+            'first_name' => ['required', 'min:3'],
+            'last_name' => ['required', 'min:3'],
+            'username' => ['required', 'min:3'],
+            'email' => ['required', 'min:3'],
+            'is_admin' => ['required'],
+            'password' => ['required', 'string', 'min:8'],
+            'confirm_password' => ['required', 'string', 'min:8'],
+        ];
+    } 
 }
