@@ -154,8 +154,8 @@
 									<tr>
 										<th>Product</th>
 										<th></th>
-										<th class="text-center">Prijs</th>
-										<th class="text-center">Aantal</th>
+										<th class="text-center visible-sm">Prijs</th>
+                                    	<th class="text-center visible-sm">Aantal</th>
 										<th class="text-center">Totaal</th>
 										<th class="text-right"></th>
 									</tr>
@@ -238,9 +238,8 @@
                                     @endif
                                 {{-- Loop with Items in Cart --}}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th class="empty" colspan="3"></th>
+							<tr>
+                                    <th class="empty visible-sm" colspan="3"></th>
                                     <th>SUBTOTAAL</th>
                                     @if($total_amount != null)
                                         <th colspan="2" class="sub-total">&euro;{{$total_amount}}</th>
@@ -249,12 +248,12 @@
                                     @endif
                                 </tr>
                                 <tr>
-                                    <th class="empty" colspan="3"></th>
+                                    <th class="empty visible-sm" colspan="3"></th>
                                     <th>VERZENDKOSTEN</th>
                                     <td colspan="2">Gratis Verzending</td>
                                 </tr>
                                 <tr>
-                                    <th class="empty" colspan="3"></th>
+                                    <th class="empty visible-sm" colspan="3"></th>
                                     <th>TOTAAL</th>
                                     @if($total_amount != null)
                                         <th colspan="2" class="total">&euro;{{$total_amount}}</th>
@@ -263,6 +262,7 @@
                                     @endif
                                 </tr>
                             </tfoot>
+
 							</table>
 							{{-- Einde inhoud van de winkelwagen --}}
 							<div class="pull-right">

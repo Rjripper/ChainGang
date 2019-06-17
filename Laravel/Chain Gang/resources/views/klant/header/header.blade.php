@@ -1,5 +1,10 @@
 		<!-- HEADER -->
 		<header>
+			<style>
+				.dropdown-backdrop{
+					z-index: -1 !important;
+				}	
+			</style>
 			<!-- header -->
 			<div id="header">
 				<div class="container">

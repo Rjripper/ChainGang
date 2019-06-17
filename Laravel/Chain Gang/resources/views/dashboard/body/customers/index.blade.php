@@ -46,8 +46,8 @@
                                         <td>{{$customer->city}}</td>
                                         <td>
                                             <div class="text-center">
-                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
-                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = User_id --}}
                                                 <i class="ti-trash tables-icons" onclick="deleteCustomer(this);" data-id="{{$customer->id}}"></i>
                                             </div>
