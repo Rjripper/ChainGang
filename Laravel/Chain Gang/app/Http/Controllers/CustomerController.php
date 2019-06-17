@@ -181,7 +181,7 @@ class CustomerController extends Controller
 
     public function update(Request $request, Customer $customer)
     {
-        $rules = $this->rulesCreateCustomer();
+        $rules = $this->rulesUpdateCustomer();
         
         $data = Validator::make($request->all(), $rules);
         if ($data->fails()) {
@@ -196,7 +196,11 @@ class CustomerController extends Controller
         $customer->city = $request->city;
         $customer->address = $request->address;
         $customer->zip_code = $request->zip_code;
-        $customer->password = Hash::make($request->password);
+
+        if(!empty($request->password)) {
+            $customer->password = Hash::make($request->password);
+        }
+
         $customer->save();
 
         return response()->json(['succes' => true], 200);
@@ -215,12 +219,25 @@ class CustomerController extends Controller
         return [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'email' => ['required'],
+            'email' => ['required', 'email'],
             'phonenumber' => ['required'],
             'city' => ['required'],
             'address' => ['required'],
-            'zip_code' => ['required'],
-            'password' => ['required']
+            'zip_code' => ['required', 'max:10'],
+            'password' => ['required', 'string' ,'min:8']
+        ];
+    }
+
+    protected function rulesUpdateCustomer()
+    {
+        return [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'email' => ['required', 'email'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
+            'zip_code' => ['required', 'max:10'],
         ];
     }
 

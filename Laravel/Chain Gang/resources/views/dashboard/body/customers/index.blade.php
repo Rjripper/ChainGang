@@ -49,7 +49,7 @@
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/' . $customer->id) }} "><i class="ti-eye"></i></a>
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/customer/edit/' . $customer->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = User_id --}}
-                                                <i class="ti-trash tables-icons" onclick="deleteCustomer(this);" data-id="{{$customer->id}}"></i>
+                                                <i class="ti-trash tables-icons" onclick="deleteCustomer(this);" data-id="{{$customer->id}}" data-email="{{$customer->email}}"></i>
                                             </div>
                                         </td>
                                     </tr>
@@ -72,6 +72,7 @@
     <script>
         function deleteCustomer(node) {
             let customer_id = node.getAttribute('data-id');
+            let email = node.getAttribute('data-email');
 
             Swal.fire({
                 title: 'Weet je het zeker?',
@@ -81,7 +82,7 @@
                 cancelButtonText: 'Annuleren',
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ja, verwijder ('+ customer_id  +')!'
+                confirmButtonText: 'Ja, verwijder ('+ email  +')!'
                 }).then((result) => {
                 if (result.value) {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
