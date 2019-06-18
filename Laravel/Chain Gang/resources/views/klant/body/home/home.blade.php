@@ -12,31 +12,31 @@
                 <div id="home-slick">
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/banner01.jpg') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_1.png') }}" alt="">
                         <div class="banner-caption text-center">
                             <h1>Bags sale</h1>
-                            <h3 class="white-color font-weak">Up to 50% Discount</h3>
-                            <button class="primary-btn">Shop Now</button>
+                            <h3 class="blue-color font-weak">Tot wel 50% KORTING!</h3>
+                            <button class="primary-btn">Winkel nu!</button>
                         </div>
                     </div>
                     <!-- /banner -->
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/banner02.jpg') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_2.png') }}" alt="">
                         <div class="banner-caption">
-                            <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
-                            <button class="primary-btn">Shop Now</button>
+                            <h1 class="primary-color">HOT DEAL<br><span class="blue-color font-weak">Tot wel 50% KORTING</span></h1>
+                            <button class="primary-btn">Winkel nu!</button>
                         </div>
                     </div>
                     <!-- /banner -->
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/banner03.jpg') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_3.png') }}" alt="">
                         <div class="banner-caption">
-                            <h1 class="white-color">New Product <span>Collection</span></h1>
-                            <button class="primary-btn">Shop Now</button>
+                            <h1 class="dark-color">Nieuwe fietsen <span>Collectie!</span></h1>
+                            <button class="primary-btn">Winkel nu!</button>
                         </div>
                     </div>
                     <!-- /banner -->
