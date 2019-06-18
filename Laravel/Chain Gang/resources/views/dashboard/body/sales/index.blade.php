@@ -45,11 +45,11 @@
                                 <td>{{$sale->user->username}}</td>
                                 <td>{{$sale->end_date}}</td>                                
                                 <td>
-                                    <div class="text-center">         
-                                        <a class="table-icon-link tables-icons" href="{{  url('/admin/sale/'. $sale->id) }} }}"><i class="ti-eye"></i></a>                               
-                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/edit/'. $sale->id) }}"><i class="ti-pencil"></i></a>
+                                    <div class="text-center">
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/'. $sale->id . '/') }}"><i class="ti-eye"></i></a>                          
+                                        <a class="table-icon-link tables-icons" href="{{ url('/admin/sale/edit/'. $sale->id . '/') }}"><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Order_id --}}
-                                        <i class="ti-trash tables-icons" data-id="{{$sale->id}}" onclick="deleteSale(this);"></i> 
+                                        <i class="ti-trash tables-icons" data-id="{{$sale->id}}" data-title="{{$sale->title}}" onclick="deleteSale(this);"></i> 
                                     </div>
                                 </td>
                             </tr>
@@ -60,6 +60,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="btn-add-index">
+
                                 <a href="{{ route ('createSale') }}"><button class="btn btn-primary tables-function-button">Korting aanmaken</button></a> 
                             </div>
                         </div>
@@ -70,33 +71,51 @@
     </div>
 
     <script>
-    function deleteSale(node)
-    {
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
- 
-        var form_data = new FormData();
-        form_data.append('_method', 'DELETE'); //Geef DELETE MEE
-        form_data.append('_token', CSRF_TOKEN);
- 
-        let sale_id = node.getAttribute('data-id'); //Pak de Product-Id
-        $.ajax({
-            url: '/admin/sale/delete/' + sale_id , //Je url
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post', //Dit blijft post
-            success: function(){
-        //Werkt t allemaal?
-        //Verwijder de HTML
-          node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement); //Verwijder de html element
-            },
-            error: function(errors) {
-                console.log(errors);
+    function deleteSale(node) {
+        let sale_id = node.getAttribute('data-id');
+        let title = node.getAttribute('data-title');
+
+        Swal.fire({
+            title: 'Weet je het zeker?',
+            text: "Je kan deze optie niet terug zetten.",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Annuleren',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ja, verwijder ('+ title  +')!'
+            }).then((result) => {
+            if (result.value) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                var form_data = new FormData();
+                form_data.append('_method', 'DELETE');
+                form_data.append('_token', CSRF_TOKEN);
+        
+                $.ajax({
+                    url: '/admin/sale/delete/' + sale_id,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(){
+                        node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+                        Swal.fire(
+                        'Verwijderd!',
+                        'Uitverkoop is verwijderd!',
+                        'success'
+                        );
+                    },
+                    error: function(errors) {
+                        console.log(errors);
+                    }
+                });
+                
             }
         });
-    }
-    
+            
+    } 
     </script>
 @endsection

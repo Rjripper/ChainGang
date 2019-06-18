@@ -8,6 +8,7 @@ use App\Review;
 use App\Product;
 use App\Customer;
 use Tymon\JWTAuth\Claims\Custom;
+use Validator;
 
 class ReviewController extends Controller
 {
@@ -44,8 +45,6 @@ class ReviewController extends Controller
                 'message' => 'required|min:5',
                 'rating' => 'integer|required|min:1'    
             ]);
-            
-            $review = new Review;
 
             $review = new Review;
             $user = Auth::user();
@@ -64,6 +63,32 @@ class ReviewController extends Controller
             return redirect()->action('ReviewController@reviewIndex');
     }
 
+    public function storeReviewAdmin(Request $request) 
+    {
+        $rules = $this->rulesReview();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
+
+        $review = new Review;
+
+        $review->id = $request->id;     
+        $review->customer_id = $request->customer_id;   
+        $review->product_id = $request->product_id; 
+        $review->rating = $request->rating;
+        $review->title = $request->title;
+        $review->message = $request->message;
+
+        // dd($review);
+        // dd($request);
+
+        $review->save();
+
+        return response()->json(['succes' => true], 200);
+    }
+
     public function editReview($id)
     {
         $review = Review::findOrFail($id);
@@ -71,18 +96,18 @@ class ReviewController extends Controller
         $products = Product::all();
 
         return view('dashboard.body.reviews.update', compact('review', 'customers', 'products'));
-   }
+    }
 
-   public function updateReview(Request $request, Review $review, $id)
-   {
-       $review = Review::findOrFail($id);
+    public function updateReview(Request $request, Review $review)
+    {
+        $review = Review::findOrFail($review->id);
 
-       $request->validate(
-            [
-                'rating' => 'integer|required|min:1',
-                'title' => 'required|min:5',
-                'message' => 'required|min:5',
-            ]);
+        $rules = $this->rulesUpdateReview();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
             
         $review->customer_id = $request->customer_id;
         $review->product_id = $request->product_id; 
@@ -95,15 +120,34 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->action('ReviewController@reviewIndex');
-   }
+        return response()->json(['succes' => true], 200);
+    }
 
-   public function deleteReview(Review $review)
-   {
-       $review = Review::findOrFail($review->id);
+    public function deleteReview(Review $review)
+    {
+        $review = Review::findOrFail($review->id);
 
-       $review->delete();
+        $review->delete();
 
-       return response()->json(['success' => true], 200);
-   }
+        return response()->json(['success' => true], 200);
+    }
+
+    protected function rulesReview()
+    {
+        return [
+            'title' => ['required', 'min:5'],
+            'message' => ['required', 'min:5'],
+            'rating' => ['required', 'integer', 'min:1']
+        ];
+    }
+
+    protected function rulesUpdateReview()
+    {
+        return [
+            'title' => ['required', 'min:5'],
+            'message' => ['required', 'min:5'],
+            'rating' => ['required', 'integer', 'min:1'],
+            'created_at' => ['required']
+        ];
+    }
 }

@@ -155,11 +155,11 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         // create newsletter
         Route::get('/admin/newsletters/create/', 'NewsletterController@createNewsletter')->name('newsletterCreate');
-        Route::post('/admin/newsletters/', 'NewsletterController@storeNewsletter')->name('newsletterStore');
+        Route::post('/admin/newsletter/store', 'NewsletterController@storeNewsletter')->name('newsletterStore');
 
          //updaten newsletter
          Route::get('/admin/newsletter/edit/{newsletter}', 'NewsletterController@editNewsletter')->name('editNewsletter');
-         Route::patch('/admin/newsletter/{id}/update', 'NewsletterController@updateNewsletter')->name('newsletterUpdate');
+         Route::patch('/admin/newsletter/update/{id}/', 'NewsletterController@updateNewsletter')->name('newsletterUpdate');
  
          // Vieuw one newsletter
          Route::get('/admin/newsletter/{newsletter}/', 'NewsletterController@newsletterShow')->name('newsletterShow');
@@ -220,13 +220,15 @@ Route::group(['middleware' => ['auth:user']], function () {
         */
         Route::get('/admin/reviews/', 'ReviewController@reviewIndex')->name('reviews');
 
+        Route::get('/admin/review/{review}', 'ReviewController@reviewShow')->name('reviewShow');
+
         // create review
         Route::get('/admin/reviews/create/', 'ReviewController@createReview')->name('reviewCreate');
-        Route::post('/admin/reviews/', 'ReviewController@storeReview')->name('reviewStore');
+        Route::post('/admin/review/store', 'ReviewController@storeReviewAdmin')->name('reviewStore');
 
         //updaten review
         Route::get('/admin/review/edit/{review}', 'ReviewController@editReview')->name('editreview');
-        Route::patch('/admin/review/{id}/update', 'ReviewController@updateReview')->name('updateReview');
+        Route::patch('/admin/review/update/{review}/', 'ReviewController@updateReview')->name('updateReview');
 
         // delete revieuw
         Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('newsletterDelete');
@@ -240,18 +242,14 @@ Route::group(['middleware' => ['auth:user']], function () {
 
         //aanmaken sale
         Route::get('/admin/sale/create/', 'SaleController@createSale')->name('createSale');
-        Route::post('/admin/sales/', 'SaleController@storeSale')->name('storeSale');
-
-        // Route::get('/admin/sale/create', function() {
-        //     return view('dashboard.body.sales.create');
-        // });
+        Route::post('/admin/sale/store/', 'SaleController@storeSale')->name('storeSale');
 
         //updaten sale
-        Route::get('/admin/sale/edit/{id}', 'SaleController@editSale')->name('editSale');
-        Route::patch('/admin/sale/update/{id}', 'SaleController@updateSale')->name('updateSale');
+        Route::get('/admin/sale/edit/{sale}', 'SaleController@editSale')->name('editSale');
+        Route::patch('/admin/sale/update/{sale}', 'SaleController@updateSale')->name('updateSale');
 
         //show sale
-        Route::get('/admin/sale/{id}/', 'SaleController@showSale')->name('showSale');
+        Route::get('/admin/sale/{sale}/', 'SaleController@showSale')->name('showSale');
 
         //delete
         Route::delete('/admin/sale/delete/{sale}', 'SaleController@delete')->name('deleteSale');
@@ -283,7 +281,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::delete('/admin/brand/delete/{brand}', 'BrandController@delete')->name('deleteBrand');
 
 
-         /*
+        /*
             Type
         */        
         //index

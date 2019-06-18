@@ -9,6 +9,7 @@ use App\Mail\SignedUpNewsletterMail;
 use App\Newsletter;
 use App\User;
 use Symfony\Component\Process\Process;
+use Validator;
 
 class NewsletterController extends Controller
 {
@@ -66,30 +67,28 @@ class NewsletterController extends Controller
 
     public function storeNewsletter(Request $request)
     {
-        // valideer
-        $request->validate(
-            [
-                'title' => 'required',
-                'reference' => 'required',
-                'message' => 'required',
-            ]);
+        $rules = $this->rulesNewsletter();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
-            // maak nieuwsbrief
-            $newsletter = new Newsletter;
+        // maak nieuwsbrief
+        $newsletter = new Newsletter;
 
-            // haal request data op en sla op in newsletter variabelen
-            $newsletter->title = $request->title;
-            $newsletter->reference = $request->reference;
-            $newsletter->message = $request->message;
+        // haal request data op en sla op in newsletter variabelen
+        $newsletter->title = $request->title;
+        $newsletter->reference = $request->reference;
+        $newsletter->message = $request->message;
 
-            // DD
-            // dd($newsletter);
-            // dd($request);
+        // DD
+        // dd($newsletter);
+        // dd($request);
 
-            $newsletter->save();
+        $newsletter->save();
 
-            //return naar index
-            return redirect()->action('NewsletterController@newsletterIndex');
+        return response()->json(['success' => true], 200);
     }
 
     public function editNewsletter($id)
@@ -106,23 +105,23 @@ class NewsletterController extends Controller
     {
         $newsletter = Newsletter::findOrFail($id);
 
-        $request->validate(
-            [
-                'title' => 'required',
-                'reference' => 'required',
-                'message' => 'required',
-            ]);
+        $rules = $this->rulesNewsletter();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
-            $newsletter->title = $request->title;
-            $newsletter->reference = $request->reference;
-            $newsletter->message = $request->message;
+        $newsletter->title = $request->title;
+        $newsletter->reference = $request->reference;
+        $newsletter->message = $request->message;
 
-            // dd($newsletter);
-            // dd($request);
+        // dd($newsletter);
+        // dd($request);
 
-            $newsletter->save();
+        $newsletter->save();
 
-            return redirect()->action('NewsletterController@newsletterIndex');
+        return response()->json(['success' => true], 200);
     }
 
     public function deleteNewsletter(Newsletter $newsletter)//, $id
@@ -134,5 +133,14 @@ class NewsletterController extends Controller
         $newsletter->delete();
 
         return response()->json(['success' => true], 200);
+    }
+
+    protected function rulesNewsletter()
+    {
+        return [
+            'title' => ['required'],
+            'reference' => ['required'],
+            'message' => ['required'],
+        ];
     }
 }

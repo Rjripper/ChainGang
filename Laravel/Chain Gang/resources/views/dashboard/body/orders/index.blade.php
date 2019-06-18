@@ -49,7 +49,7 @@
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
                                                 <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = Order_id --}}
-                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" onclick="deleteOrder(this);"></i>
+                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" data-price="{{$order->total_price($order)}}" onclick="deleteOrder(this);"></i>
                                             </div>
                                         </td>
                                     </tr>
@@ -73,6 +73,7 @@
     function deleteOrder(node)
     {
         let order_id = node.getAttribute('data-id');
+        let prijs = node.getAttribute('data-price');
         Swal.fire({
             title: 'Weet je het zeker?',
             text: "Je kan deze optie niet terug zetten.",
@@ -81,7 +82,7 @@
             cancelButtonText: 'Annuleren',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ja, verwijder ('+ order_id  +')!'
+            confirmButtonText: 'Ja, verwijder ('+ order_id  +') €' + prijs + '!'
             }).then((result) => {
                 if (result.value) {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
