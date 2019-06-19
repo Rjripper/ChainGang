@@ -21,7 +21,6 @@ class CustomerController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         return view('klant.body.user-details.my-account', compact('user'));
     }
 
@@ -36,7 +35,7 @@ class CustomerController extends Controller
         return view('klant.body.user-details.my-orders', compact('orders'));
     }
 
-    public function updateCustomerInformation(Request $request, User $user){
+    public function updateCustomerInformation(Request $request, Customer $customer){
         $request->validate([            
             'first_name' => 'required',
             'last_name' => 'required',
@@ -44,28 +43,25 @@ class CustomerController extends Controller
             'zip_code' => 'required',
             'city' => 'required',
             'phonenumber' => 'required',
-         ]);
-         
-         $user->first_name = $request->first_name;
-         $user->last_name = $request->last_name;
-         $user->address = $request->address;
-         $user->zip_code = $request->zip_code;
-         $user->city = $request->city;
-         $user->phonenumber = $request->phonenumber;
+        ]);
 
-
-
-
+         $customer->first_name = $request->first_name;
+         $customer->last_name = $request->last_name;
+         $customer->address = $request->address;
+         $customer->zip_code = $request->zip_code;
+         $customer->city = $request->city;
+         $customer->phonenumber = $request->phonenumber;
         
-        $user->save();
+        $customer->save();
+
         return redirect()->back()->with('alert', 'Klant Informatie Aangepast!');
     }
 
-    public function customerAccount(Request $request, User $user){
+    public function customerAccount(Request $request, Customer $customer){
 
-        // $rules = $this->profileRules($user);
+        // $rules = $this->profileRules($customer);
 
-        // $user = User::find($id);
+        // $customer = Customer::find($id);
 
         // $validator = Validator::make($request->all(), $rules);
         // if ($validator->fails()) {
@@ -75,14 +71,14 @@ class CustomerController extends Controller
 
         
         //email 
-        $user->email = $request->email;
+        $customer->email = $request->email;
         // dd(Auth::user()->password, Hash::check($request->current_password, Auth::user()->password));
         // // dd(Auth::user()->password);
         if(Hash::check($request->current_password, Auth::user()->password)){
             // dd('prima');
             if ( Hash::make($request->new_password) != Auth::user()->password) {
                 if($request->confirm_password == $request->new_password && $request->confirm_password != "" && $request->new_password != "" ){
-                    $user->password = Hash::make(request('new_password'));
+                    $customer->password = Hash::make(request('new_password'));
                 } else {
                     return redirect()->back()->with('error', 'Vul een geldig wachtwoord in!');
                 }
@@ -103,24 +99,24 @@ class CustomerController extends Controller
         //wachtwoord
         // if($request->filled('current_password') && $request->filled('new_password') && $request->filled('confirm_password'))
         // {
-        //     $user->password = Hash::make(request('new_password'));
+        //     $customer->password = Hash::make(request('new_password'));
         // }
 
-        // dd($user);
+        // dd($customer);
 
-        $user->save();
+        $customer->save();
 
         return redirect()->back()->with('alert', 'Log in Gegevens Aangepast!');
     }
 
 
     /* Normal Profile Rules & Messages */
-    public function profileRules(User $user)
+    public function profileRules(User $customer)
     {
         return [         
-            'email' => ['string', 'email', 'min:1', 'max:255', 'unique:users,email,'. $user->id],
-            'current-password' => ['string', 'max:255','min:6','nullable', function ($attribute, $value, $fail) use ($user) {
-                if (!\Hash::check($value, $user->password)) {
+            'email' => ['string', 'email', 'min:1', 'max:255', 'unique:users,email,'. $customer->id],
+            'current-password' => ['string', 'max:255','min:6','nullable', function ($attribute, $value, $fail) use ($customer) {
+                if (!\Hash::check($value, $customer->password)) {
                     return $fail(__('The current password is incorrect.'));
                 }
             }],
