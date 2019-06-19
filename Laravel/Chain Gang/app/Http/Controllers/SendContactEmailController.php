@@ -16,8 +16,6 @@ class SendContactEmailController extends Controller
         ]);
 
         Mail::to("chaingangtestacc@gmail.com")->send(new ContactMail($data));
-        //^m@2IOH;XP,k1fQv63en.Y]<[Me+TO4y%hk*!:.m
-        return back();
-            
+        return response()->json(['success' => true], 200);
     }
 }
