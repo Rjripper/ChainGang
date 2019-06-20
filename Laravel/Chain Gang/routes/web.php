@@ -26,8 +26,8 @@ Route::get('/', 'HomeController@index')->name('home');
  */
 Route::middleware(['auth'])->group(function(){
     Route::get('/account/overzicht', 'CustomerController@index');
-    Route::patch('/account/update/details/{user}', 'CustomerController@updateCustomerInformation');
-    Route::patch('/account/update/inlog/{user}', 'CustomerController@customerAccount');
+    Route::patch('/account/update/details/{customer}', 'CustomerController@updateCustomerInformation');
+    Route::patch('/account/update/inlog/{customer}', 'CustomerController@customerAccount');
     Route::get('/account/bestellingen', 'CustomerController@orders');
     Route::get('/account/bestellingen/overzicht/{order}', 'OrderController@show');
     Route::post('/review/create/{product}', 'ReviewController@store');
@@ -132,7 +132,6 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/products/', 'ProductController@productIndex')->name('products');
         Route::get('/admin/product/create', 'ProductController@createProduct')->name('productCreate');
         Route::post('/admin/product/store', 'ProductController@storeProduct')->name('productStore');
-
 
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');

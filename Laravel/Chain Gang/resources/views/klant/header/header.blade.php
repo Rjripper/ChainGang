@@ -1,5 +1,10 @@
 		<!-- HEADER -->
 		<header>
+			<style>
+				.dropdown-backdrop{
+					z-index: -1 !important;
+				}	
+			</style>
 			<!-- header -->
 			<div id="header">
 				<div class="container">
@@ -91,4 +96,16 @@
 			</div>
 			<!-- container -->
 		</header>
+		<script>
+		function tempAlert(msg,duration)
+			{
+				let el = document.createElement("div");
+				el.setAttribute("style","position: fixed;top: 0;width: 100%;max-width:100%;text-align: center;padding: 20px;background-color: rgba(93, 216, 111,0.7);color: white;");
+				el.innerHTML = msg;
+				setTimeout(function(){
+				el.parentNode.removeChild(el);
+				},duration * 1000);
+				document.body.appendChild(el);
+			}
+		</script>
 		<!-- /HEADER -->

@@ -1,15 +1,5 @@
 @extends('klant.index')
 @section('body')
-	<!-- BREADCRUMB -->
-	<div id="breadcrumb">
-            <div class="container">
-                <ul class="breadcrumb">
-                <li><a href="{{url('/')}}">Home</a></li>
-                    <li class="active">Mijn Gegevens</li>
-                </ul>
-            </div>
-        </div>
-        <!-- /BREADCRUMB -->
 	<!-- section -->
 	<div class="section">
             <!-- container -->
@@ -27,7 +17,10 @@
                             <ul class="list-group list-group-flush list-links">
                                 <li class="list-group-item"><a href="{{ url('/account/overzicht') }}">Details</a></li>
                                 <li class="list-group-item"><a href="{{ url('/account/bestellingen') }}">Orders</a></li>
-                                <li class="list-group-item"><a href="{{ route('logout') }}">Logout</a></li>
+                                <li class="list-group-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </ul>
                         </div>
                     </div>

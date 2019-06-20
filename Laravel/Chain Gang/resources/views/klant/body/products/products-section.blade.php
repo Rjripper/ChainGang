@@ -85,8 +85,9 @@ function addItemToCart(product_id) {
 
 	var form_data = new FormData();
 	form_data.append('_method', 'POST');
-	form_data.append('_token', CSRF_TOKEN);
-
+    form_data.append('_token', CSRF_TOKEN);
+    //Tempalert staat in header
+    tempAlert('Toegevoegd aan winkelwagen',3);
 	event.preventDefault();
 
 	$.ajax({

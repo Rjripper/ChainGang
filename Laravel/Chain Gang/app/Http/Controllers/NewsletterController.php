@@ -26,8 +26,7 @@ class NewsletterController extends Controller
 
         Mail::to($wants->email)->send(new SignedUpNewsLetterMail());
 
-        return back();
-
+        return response()->json(['success' => true], 200);
 
         //Validate Email Input
         //Create Migration Non-Registered newsletter people
