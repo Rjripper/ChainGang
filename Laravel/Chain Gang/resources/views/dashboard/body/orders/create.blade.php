@@ -164,7 +164,7 @@ function createOrder() {
 
     event.preventDefault();
     $.ajax({
-        url: '/laravel/public/admin/order/store',
+        url: '/admin/order/store',
         dataType: 'json',
         cache: false,
         contentType: false,
@@ -205,7 +205,7 @@ function addProduct() {
 
     //Get Details about specific product
     $.ajax({
-        url: '/laravel/public/product/json/' + product_id ,
+        url: '/product/json/' + product_id ,
         method: 'GET',
         dataType: 'json',
         success: function(data) {

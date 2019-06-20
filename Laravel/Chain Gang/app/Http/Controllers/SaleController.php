@@ -7,11 +7,10 @@ use App\Sale;
 use App\Product;
 use App\User;
 use Carbon\Carbon;
+use Validator;
 
 class SaleController extends Controller
 {
-    //
-
     public function indexSale(){
 
         $sales = Sale::all();
@@ -19,9 +18,9 @@ class SaleController extends Controller
         return view('dashboard.body.sales.index', compact('sales'));
     }
 
-    public function showSale($id){
+    public function showSale(Sale $sale){
 
-        $sale = Sale::findOrFail($id);
+        $sale = Sale::findOrFail($sale->id);
         $products = Product::all();
         $users = User::all();
         
@@ -29,9 +28,9 @@ class SaleController extends Controller
         return view('dashboard.body.sales.view', compact('sale', 'products', 'users'));
     }
 
-    public function deleteSale($id){
+    public function deleteSale(Sale $sale){
 
-        $sale = Sale::findOrFail($id);
+        $sale = Sale::findOrFail($sale->id);
 
         $sale->delete();
 
@@ -54,16 +53,12 @@ class SaleController extends Controller
 
     public function storeSale(Request $request){
 
+        $rules = $this->rulesSale();
         
-        $request->validate([ 
-            'title' => 'required',           
-            'sale' => 'required',
-            'product_id' => 'required',
-            'user_id' => 'required',
-            'start_date' => 'required', 
-            'end_date' => 'required',           
-         ]);
-
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
         //maak product
         $sale = new Sale;
@@ -73,7 +68,7 @@ class SaleController extends Controller
         $sale->sale = $request->sale;
         $sale->product_id = $request->product_id;
         $sale->user_id = $request->user_id;
-        $sale->start_date =  Carbon::parse($request->start_date);   
+        $sale->start_date = Carbon::parse($request->start_date);   
         $sale->end_date = Carbon::parse($request->end_date);      
  
 
@@ -85,14 +80,14 @@ class SaleController extends Controller
         $sale->save();
 
         //return naar index
-        return redirect()->action('SaleController@indexSale');
+        return response()->json(['succes' => true], 200);
 
     }
 
 
-    public function editSale($id){
+    public function editSale(Sale $sale){
 
-        $sale = Sale::findOrFail($id);
+        $sale = Sale::findOrFail($sale->id);
         $products = Product::all();
         $users = User::all();
 
@@ -103,19 +98,16 @@ class SaleController extends Controller
     }
 
 
-    public function updateSale(Request $request, $id){
+    public function updateSale(Request $request, Sale $sale){
 
-        $sale = Sale::findOrFail($id);
+        $sale = Sale::findOrFail($sale->id);
 
-        $request->validate([ 
-            'title' => 'required',           
-            'sale' => 'required',
-            'product_id' => 'required',
-            'user_id' => 'required',
-            'start_date' => 'required', 
-            'end_date' => 'required',           
-         ]);
-
+        $rules = $this->rulesSale();
+        
+        $data = Validator::make($request->all(), $rules);
+        if ($data->fails()) {
+            return response()->json(['errors'=>$data->errors()], 422);
+        }
 
 
         //haal request data op en sla op in product variabelen
@@ -135,7 +127,7 @@ class SaleController extends Controller
         $sale->save();
    
 
-         return redirect()->action('SaleController@indexSale'); 
+        return response()->json(['succes' => true], 200);
 
     }
 
@@ -148,4 +140,14 @@ class SaleController extends Controller
         return response()->json(['success' => true], 200);
     }
 
+    protected function rulesSale()
+    {
+        return [
+            'title' => ['required', 'min:3'],
+            'sale' => ['required', 'integer', 'min:1', 'max:100'],
+            'user_id' => ['required', 'integer', 'min:1'],
+            'start_date' => ['required'],
+            'end_date' => ['required']
+        ];
+    }
 }

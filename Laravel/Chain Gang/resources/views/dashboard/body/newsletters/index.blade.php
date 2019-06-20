@@ -48,7 +48,7 @@
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/'. $newsletter->id . '/') }} "><i class="ti-eye"></i></a>
                                         <a class="table-icon-link tables-icons" href="{{ url('/admin/newsletter/edit/'. $newsletter->id . '/') }} "><i class="ti-pencil"></i></a>
                                         {{-- Data-id = Nieuwsbrief_id --}}
-                                        <i class="ti-trash tables-icons" data-id="{{ $newsletter->id }}" onclick="newsletterDelete(this);"></i>
+                                        <i class="ti-trash tables-icons" data-id="{{ $newsletter->id }}" data-title="{{$newsletter->title}}" onclick="deleteNewsletter(this);"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -68,44 +68,52 @@
                 </div>
             </div>
         </div>
+    <script>
+        function deleteNewsletter(node) {
+        let newsletter_id = node.getAttribute('data-id');
+        let title = node.getAttribute('data-title');
 
+        Swal.fire({
+            title: 'Weet je het zeker?',
+            text: "Je kan deze optie niet terug zetten.",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Annuleren',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ja, verwijder ('+ title  +')!'
+            }).then((result) => {
+            if (result.value) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-        <script>
-            function newsletterDelete(node)
-            {
-                let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-                let form_data = new FormData();
-                form_data.append('_method', 'DELETE'); // Geef delete mee
+                var form_data = new FormData();
+                form_data.append('_method', 'DELETE');
                 form_data.append('_token', CSRF_TOKEN);
-
-                event.preventDefault();
-
-                let newsletter_id = node.getAttribute('data-id'); // Pak het id van de nieuwsbrief
-                console.warn("Het id van de nieuwsbrief is : ", newsletter_id);
-
-                $.ajax(
-                    {
-                        url: '/admin/newsletter/delete/' + newsletter_id,
-                        dataType: 'json',
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        data: form_data,
-                        type: 'post', // dit moet post blijven
-                        success: function()
-                        {
-                            // werkt alles?
-                            // verwijder de HTML
-                            node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement); //Verwijder het html element
-                        },
-
-                        error: function(errors)
-                        {
-                            console.error(errors);
-                        }
+        
+                $.ajax({
+                    url: '/admin/newsletter/delete/' + newsletter_id,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(){
+                        node.parentElement.parentElement.parentElement.parentElement.removeChild(node.parentElement.parentElement.parentElement);
+                        Swal.fire(
+                        'Verwijderd!',
+                        'Newsletter is verwijderd!',
+                        'success'
+                        );
+                    },
+                    error: function(errors) {
+                        console.log(errors);
                     }
-                );
+                });
+                
             }
-        </script>
+        });
+        
+    }
+    </script>
 @endsection

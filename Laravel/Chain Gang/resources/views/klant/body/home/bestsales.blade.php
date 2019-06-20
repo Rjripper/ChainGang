@@ -36,7 +36,7 @@
 								@if($product_to_show_image != null)
 									<img src="{{ asset($product_to_show_image->image) }}" alt="">
 								@else
-									<img src="{{ asset('images/products/default.jpg') }}" alt="">
+									<img src="{{ asset('images/products/default.png') }}" alt="">
 								@endif
 							</div>
 							<div class="product-body">

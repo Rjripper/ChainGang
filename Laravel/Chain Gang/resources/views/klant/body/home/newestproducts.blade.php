@@ -38,7 +38,7 @@
 								@if($newest_product_image != null)
 									<img src="{{ asset($newest_product_image->image) }}" alt="">
 								@else
-									<img src="{{ asset('images/products/default.jpg') }}" alt="">
+									<img src="{{ asset('images/products/default.png') }}" alt="">
 								@endif
 							</div>
 

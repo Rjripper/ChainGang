@@ -8,8 +8,6 @@
     {{-- begin Form --}}
     {{-- geef de forum een post en de action mee --}}
     {{-- bij action geef je het pad waar hij hem moet opslaan gewoon het zelfde als de get van index. --}}
-    <form method="POST" action="{{ url('/admin/product/')}}" enctype="multipart/form-data">
-        @csrf
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
@@ -38,9 +36,9 @@
                                 <div class="masonry-item col-md-4">
                                     <div class="row">
                                         <div class="col-md-10 md-3">
-                                            <label for="validationCustom01">Product naam</label>
+                                            <label for="product_name">Product naam</label>
                                             {{-- kijk naar de naam input field(naam moet het zelfde zijn als database table name) --}}
-                                            <input type="text" class="form-control" id="validationCustom01" name="product_name" placeholder="Product naam" required>
+                                            <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product naam" required>
                                             <div class="invalid-feedback"><strong>Geef een product naam op.</strong></div>
                                             @if ($errors->has('product_name'))
                                             <span class="invalid-feedback">
@@ -52,112 +50,152 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10 md-3">
-                                            <label for="validationCustom01">Merk</label>
+                                            <label for="brand">Merk</label>
                                             {{-- kijk naar de naam select(naam moet het zelfde zijn als database table name) --}}
-                                            <select id="validationCustom03" name="brand_id" class="form-control">
+                                            <select id="brand" name="brand_id" class="form-control">
                                                 {{-- loop door elementen die je wilt laten weergeven in de dropdown --}}
                                                 @foreach ($brands as $brand)
-                                                {{-- geef waarde van de optie weer doe dit tussen <option>...</option> --}}
-                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
+                                                    {{-- geef waarde van de optie weer doe dit tussen <option>...</option> --}}
+                                                    <option value="{{$brand->id}}">{{$brand->title}}</option>
                                                 @endforeach
-                                              </select>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            
-                                                      
+                                            </select>        
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10 md-3">
-                                            <label for="validationCustom01">Type</label>
-                                            <select id="validationCustom03" name="type_id" class="form-control">
+                                            <label for="type">Type</label>
+                                            <select id="type" name="type_id" class="form-control">
                                                 @foreach ($types as $type)
                                                     <option value="{{$type->id}}">{{$type->title}}</option>
                                                 @endforeach
                                             </select>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
-                                            
-                                            
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10 md-3">
-                                            <label for="validationCustom01">Categorie</label>
-                                            <select id="validationCustom03" name="category_id" class="form-control">
-                                                @foreach ($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->title}}</option>
-                                                @endforeach
+                                            <label for="category">Categorie</label>
+                                                <select id="category" name="category_id" class="form-control">
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                                    @endforeach
+                                                </select>
                                             </select>
-                                            </select>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
                                             <br>
-                                           
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-md-10 md-3">
-                                            <label for="validationCustom01">Prijs &euro;</label>
-                                            <input type="text" class="form-control" id="validationCustom04" name="price" placeholder="1200" required>
+                                            <label for="price">Prijs &euro;</label>
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="1200" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="masonry-item col-md-8">
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <label for="validationCustom01">Beschrijving</label>
-                                            <textarea  class="form-control" name="description" id="validationCustom01" cols="30" rows="10" placeholder="Beschrijving" required></textarea>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
+                                            <label for="description">Beschrijving</label>
+                                            <textarea  class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Beschrijving" required></textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <label for="validationCustom01">Specificaties</label>
-                                            <textarea  class="form-control" name="specifications" id="validationCustom01" cols="30" rows="6" placeholder="Specificaties" required></textarea>
-                                            <div class="invalid-feedback">Please provide a valid adres.</div>
+                                            <label for="specifications">Specificaties</label>
+                                            <textarea  class="form-control" name="specifications" id="specifications" cols="30" rows="6" placeholder="Specificaties" required></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <script>!function(){"use strict";window.addEventListener("load",function(){var e=document.getElementById("needs-validation");e.addEventListener("submit",function(t){!1===e.checkValidity()&&(t.preventDefault(),t.stopPropagation()),e.classList.add("was-validated")},!1)},!1)}()</script>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-6">
-                                    <a class="btn btn-primary tables-function-button" href="{{ route('products') }}">Terug</a> 
-                                </div>
-                                <div class="col-md-6 mb-6">
-                                    <div class="text-right">
-                                        <button class="btn btn-primary tables-function-button" type="submit">Product aanmaken</button>
-                                    </div>
+                            <br>
+                        <div class="row">
+                            <div class="col-md-6 mb-6">
+                                <a class="btn btn-primary tables-function-button" href="{{ route('products') }}">Terug</a> 
+                            </div>
+                            <div class="col-md-6 mb-6">
+                                <div class="text-right">
+                                    <button class="btn btn-primary tables-function-button" onclick="createProduct();" type="button">Product aanmaken</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </form>
-        {{-- einde form --}}
             </div>
         </div>
-
-
     </div>
 </div>
 
 <script>
-    //foto upload js
-    //gewoon in de blade laten staan.
-     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+//foto upload js
+//gewoon in de blade laten staan.
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result);
-                };
+        reader.onload = function (e) {
+            $('#blah')
+                .attr('src', e.target.result);
+        };
 
-                reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function createProduct() {
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+    var file_data = $('#upload-photo').prop('files')[0];
+
+    var form_data = new FormData();
+    form_data.append('_method', 'POST');
+    form_data.append('_token', CSRF_TOKEN);
+    form_data.append('product_name', $('#product_name').val());
+    form_data.append('brand_id', $('#brand').val());
+    form_data.append('type_id', $('#type').val());
+    form_data.append('category_id', $('#category').val());
+    form_data.append('price', $('#price').val());
+    form_data.append('description', $('#description').val());
+    form_data.append('specifications', $('#specifications').val());
+    form_data.append('image', file_data);
+
+    event.preventDefault();
+
+    $.ajax({
+        url: '/admin/product/store',
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'POST',
+        success: function(){
+            Swal.fire({
+                type: 'success',
+                title: 'Aanmaken Product',
+                html: "U heeft een product aangemaakt.",
+                timer: 3000
+            });
+        },
+        error: function(response) {
+            let errors = response.responseJSON.errors;
+            let myErrors = "";
+            for (let key in errors) {
+                for(let index in errors[key]) {
+                    myErrors += "<p style='color: red; margin:0; padding:0; text-align: left;'>" + errors[key][index] + "</p>";
+                }
             }
-        }
 
+            Swal.fire({
+                type: 'error',
+                title: 'Aanmaken Product!',
+                html: "Er traden foutmeldingen op tijdens het aanmaken van een product.<br><br>" + myErrors,
+                showConfirmButton: false,
+                timer: 3000
+            });
+        }
+    });
+}
 </script>
 @endsection

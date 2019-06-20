@@ -46,10 +46,10 @@
                                         <td>&euro; {{$order->total_price($order)}}</td>
                                         <td>
                                             <div class="text-center">                                        
-                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
-                                                <a class="table-icon-link tables-icons" href="{{ url('/laravel/public/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/' . $order->id) }} "><i class="ti-eye"></i></a>
+                                                <a class="table-icon-link tables-icons" href="{{ url('/admin/order/edit/' . $order->id) }} "><i class="ti-pencil"></i></a>
                                                 {{-- Data-id = Order_id --}}
-                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" onclick="deleteOrder(this);"></i>
+                                                <i class="ti-trash tables-icons" data-id="{{$order->id}}" data-price="{{$order->total_price($order)}}" onclick="deleteOrder(this);"></i>
                                             </div>
                                         </td>
                                     </tr>
@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <div class="btn-add-index">
-                                <a href="{{ url('/laravel/public/admin/order/create') }}"><button class="btn btn-primary tables-function-button">Bestelling Aanmaken</button></a> 
+                                <a href="{{ url('/admin/order/create') }}"><button class="btn btn-primary tables-function-button">Bestelling Aanmaken</button></a> 
                             </div>
                         </div>
                     </div>   
@@ -73,6 +73,7 @@
     function deleteOrder(node)
     {
         let order_id = node.getAttribute('data-id');
+        let prijs = node.getAttribute('data-price');
         Swal.fire({
             title: 'Weet je het zeker?',
             text: "Je kan deze optie niet terug zetten.",
@@ -81,7 +82,7 @@
             cancelButtonText: 'Annuleren',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ja, verwijder ('+ order_id  +')!'
+            confirmButtonText: 'Ja, verwijder ('+ order_id  +') €' + prijs + '!'
             }).then((result) => {
                 if (result.value) {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -92,7 +93,7 @@
 
                     
                     $.ajax({
-                        url: '/laravel/public/admin/order/delete/' + order_id,
+                        url: '/admin/order/delete/' + order_id,
                         dataType: 'json',
                         cache: false,
                         contentType: false,
