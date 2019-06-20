@@ -16,8 +16,8 @@
     
     <div class="product product-single">
         <div class="product-thumb">
-            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-            <img src="{{ asset('images/initial/images/product04.jpg') }}" alt="">
+            <a href="{{ url('/product/' . $product->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
+            <img style="width: 262.500px;height: 163.500px;" src="{{ asset($product->product_images) }}" alt="">
         </div>
         <div class="product-body">
             <h3 class="product-price">{{$product->price}}</h3>
@@ -32,7 +32,7 @@
             <div class="product-btns">
                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$newest_product->id}}"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
             </div>
         </div>
     </div>

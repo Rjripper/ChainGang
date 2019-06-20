@@ -233,8 +233,11 @@ class ProductController extends Controller
         //plaatje opslaan    
         if(empty($request->image))
         {
-            $product->product_images = public_path('images/products/uploads/default.jpg');
-        } else {            
+            $product->product_images = public_path('storage/images/products/uploads/default.png');
+
+            // $product->product_images->storeAs('products',  );
+        } else {     
+                   
             $product->product_images = $this->resizeImage(
             $request->image,
             'images/products/uploads/',
