@@ -28,10 +28,10 @@
             
     <div class="product-btns">
         <div class="qty-input">
-            <span class="text-uppercase">QTY: </span>
-            <input class="input" type="number">
+            <span class="text-uppercase">AANTAL: </span>
+            <input class="input" type="number" value="1">
         </div>
-        <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
         <div class="pull-right">
             
         </div>
