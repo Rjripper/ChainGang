@@ -41,14 +41,19 @@
 
 								<ul class="custom-menu">
 									<li><a href="{{ url('/account/overzicht') }}"><i class="fa fa-user-o"></i> Mijn Account</a></li>
-									<li><a href="{{ url('/betalen') }}"><i class="fa fa-check"></i> Betalen</a></li>
+									@if(Auth::check())
+										<li><a href="{{ url('/betalen') }}"><i class="fa fa-check"></i> Betalen</a></li>
+									@endif
 									@if (Auth::check())
 										<li><a href="{{  route('logout') }}" onclick="event.preventDefault();
 											document.getElementById('logout-form').submit();"> <i class="fa fa-unlock-alt"></i>Afmelden</a></li>
 									@else 
 										<li><a href="{{  url('/login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
 									@endif
+
+									@if(!Auth::check())
 									<li><a href="{{ url('/register') }}"><i class="fa fa-user-plus"></i> maak een account</a></li>
+									@endif
 								</ul>
 							</li>
 							<!-- /Account -->
