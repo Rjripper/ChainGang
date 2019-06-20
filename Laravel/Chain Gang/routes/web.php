@@ -231,7 +231,7 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::patch('/admin/review/update/{review}/', 'ReviewController@updateReview')->name('updateReview');
 
         // delete revieuw
-        Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('newsletterDelete');
+        Route::delete('/admin/review/delete/{review}', 'ReviewController@deleteReview')->name('reviewRevieuDelete');
 
         /*
             Sales
