@@ -20,7 +20,6 @@
 				@foreach($newest_products as $newest_product)
 					@php
 						//Get Product image
-						$newest_product_image = App\ProductImage::where('product_id', $newest_product->id)->first();
 						$product_in_sale = App\Sale::where('product_id', $newest_product->id)->first();
 					@endphp
 					<!-- Product Single -->
@@ -34,9 +33,8 @@
 									@endif
 								</div>
 								<a href="{{ url('/product/' . $newest_product->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
-								{{-- $newest_product_image->image --}}
-								@if($newest_product_image != null)
-									<img src="{{ asset($newest_product_image->image) }}" alt="">
+								@if($newest_product->product_images != null)
+									<img src="{{ asset($newest_product->product_images) }}" alt="">
 								@else
 									<img src="{{ asset('images/products/default.png') }}" alt="">
 								@endif
