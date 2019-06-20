@@ -16,7 +16,42 @@ class StatusTableSeeder extends Seeder
     {
         //
         DB::table('statuses')->insert([
-            'title' => 'Done',            
+            'title' => 'Afwachting Betaling',            
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('statuses')->insert([
+            'title' => 'Afwachting Verzending',            
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('statuses')->insert([
+            'title' => 'Geannuleerd',            
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('statuses')->insert([
+            'title' => 'Vertraagde Verzending',            
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('statuses')->insert([
+            'title' => 'Verzonden',            
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('statuses')->insert([
+            'title' => 'Bezorgd',            
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
