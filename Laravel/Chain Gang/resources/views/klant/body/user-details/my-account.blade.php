@@ -18,7 +18,7 @@
                 <div class="row">
                     {{-- col --}}
                     <div class="col">
-                        <h1>Mijn Gegevens</h1>
+                        <h1>&nbsp; Mijn Gegevens</h1>
                     </div>
                     {{-- klant menu --}}
                     <div class="col-md-4 col-sm-6 col-xs-6">
