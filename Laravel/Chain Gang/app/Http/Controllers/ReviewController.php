@@ -36,6 +36,35 @@ class ReviewController extends Controller
         return view('dashboard.body.reviews.create', compact('review', 'customers', 'products'));
     }
 
+    //Handle frontend review
+    public function store(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+        $request->validate(
+            [
+                'title' => 'required|min:5',
+                'message' => 'required|min:5',
+                'rating' => 'integer|required|min:1'    
+            ]);
+
+            $review = new Review();
+            $user = Auth::user();
+            
+            $review->customer_id = $user->id;   
+            $review->product_id = $product->id; 
+            $review->rating = $request->rating;
+            $review->title = $request->title;
+            $review->message = $request->message;
+
+            // dd($review);
+            // dd($request);
+
+            $review->save();
+
+            return redirect()->action('ReviewController@reviewIndex');
+    }
+
+    // Handle backend review
     public function storeReview(Request $request)
     {
         $request->validate(

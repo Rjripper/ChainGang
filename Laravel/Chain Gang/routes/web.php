@@ -133,7 +133,6 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/admin/product/create/', 'ProductController@createProduct')->name('productCreate');
         Route::post('/admin/product/', 'ProductController@storeProduct')->name('productStore');
 
-
         //updaten product
         Route::get('/admin/product/edit/{product}', 'ProductController@editProduct')->name('editProduct');
         Route::patch('/admin/product/update/{id}', 'ProductController@updateProduct')->name('productUpdate');
