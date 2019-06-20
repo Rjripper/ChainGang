@@ -16,7 +16,7 @@
     
     <div class="product product-single">
         <div class="product-thumb">
-            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie meer</button>
+            <a href="{{ url('/product/' . $product->id) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Zie Meer</button></a>
             <img style="width: 262.500px;height: 163.500px;" src="{{ asset($product->product_images) }}" alt="">
         </div>
         <div class="product-body">
