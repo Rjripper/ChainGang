@@ -1,8 +1,5 @@
 <div id="aside" class="col-md-3">
-    <div id="hideButton">
-        <button class="primary-btn" onclick="toggle()">Filters</button>
-    </div>
-    <div id="hide">
+    <div id="filters" style="display: none;">
         <!-- aside widget -->
         <div class="aside">
             <h3 class="aside-title">Filter op merk</h3>
@@ -35,7 +32,48 @@
                 @endforeach
             </ul>
         </div>
-    </div><!-- end hide -->
+    </div>
+    <div id="filters_small">
+        <div class="aside">
+            <h3 class="aside-title">Filteren</h3>
+            <div class="dropdown show sort-filter">
+                <h5>Merk</h5>
+                <a style="border: 1px solid gray; border-radius: 0px;" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Merk
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach ($brands as $brand)
+                        <a style="display: block; padding-left: 5px;" href="{{url('/producten/merk', $brand['id'])}}">{{$brand['title']}}</a>
+                    @endforeach
+                </div>
+            </div>
+            <br>
+            <div class="dropdown show sort-filter">
+                <h5>Categorie</h5>
+                <a style="border: 1px solid gray; border-radius: 0px;" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorie
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach ($brands as $brand)
+                        <a style="display: block; padding-left: 5px;" href="{{url('/producten/categorie', $categorie['id'])}}">{{ $categorie['title'] }}</a>
+                    @endforeach
+                </div>
+            </div>
+            <br>
+            <div class="dropdown show sort-filter">
+                <h5>Type</h5>
+                <a style="border: 1px solid gray; border-radius: 0px;" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Type
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach ($brands as $brand)
+                        <a style="display: block; padding-left: 5px;" href="{{url('/producten/type', $type['id'])}}">{{ $type['title'] }}</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end hide -->
 </div>
 
 @if(Request::get('sort') !== null)
@@ -47,49 +85,21 @@
 </script>
 @endif  
 <script>
-function toggle() 
-{
-    if(screen.width < 960)
-    {
-        let x = document.getElementById("hide");
-        if (x.style.display === "none") 
-        {
-            x.style.display = "block";
-        }
-        else 
-        {
-            x.style.display = "none";
-        }
+// filter_button
+//filters
+window.addEventListener("resize", toggleFiltersResize);
+
+function toggleFiltersResize() {
+    let filters = document.getElementById('filters');
+    let small = document.getElementById("filters_small");
+
+    if(window.innerWidth > 960) {
+        filters.style.display = "block";
+        small.style.display = "none";
+    } else {
+        filters.style.display = "none";
+        small.style.display = "block";
     }
 }
-
-
-let y = document.getElementById("hideButton");
-if(screen.width >= 960)
-{
-    y.style.display = "none";
-}
-else
-{
-    x.style.display = "block";
-}
-
-
-// document.getElementsByTagName("screen").onresize = function() { resize };
-// window.onresize = function() { resize }
-
-// function resize()
-// {
-//     let y = document.getElementById("hideButton");
-//     if(screen.width >= 960)
-//     {
-//         y.style.display = "none";
-//         console.log("resize");
-//     }
-//     else
-//     {
-//         x.style.display = "block";
-//         console.log("resize");
-//     }
-// }
+toggleFiltersResize();
 </script>
