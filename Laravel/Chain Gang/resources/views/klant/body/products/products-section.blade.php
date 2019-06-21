@@ -26,7 +26,7 @@ get new price and add it --}}
                     <a href="{{ url('/product/' . $product->id) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
 
                     {{-- Location of Product Item --}}
-                    <img src="{{ asset('images/products/default.png') }}" alt="">
+                    <img src="{{ asset($product->product_images) }}" alt="">
                 </div>
                 <div class="product-body">
                     
