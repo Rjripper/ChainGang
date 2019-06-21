@@ -69,7 +69,7 @@
                 form_data.append('message', document.getElementById('contactMessage').value);
         
                 $.ajax({
-                    url: '/contact/send/',
+                    url: '/contact/send',
                     dataType: 'json',
                     cache: false,
                     contentType: false,
@@ -96,7 +96,7 @@
                 form_data.append('email', document.getElementById('newsletterEmail').value);
         
                 $.ajax({
-                    url: '/newsletter/signup',
+                    url: '/laravel/public/newsletter/signup',
                     dataType: 'json',
                     cache: false,
                     contentType: false,
@@ -108,7 +108,9 @@
                         document.getElementById('newsletterEmail').value = '';
                     },
                     error: function(errors) {
-                        console.log(errors);
+                        tempAlertError('Email is al ingebruik',3);
+                        document.getElementById('newsletterEmail').value = '';
+
                     }
                 });
             }

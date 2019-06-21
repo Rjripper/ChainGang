@@ -74,13 +74,12 @@
                 <div class="col-md-6 col-sm-12 col-xs-12 text-center">
                     <h3 class="title">Blijf op de hoogte</h3>
                     <p>Dit is de nieuwsbrief, die moet nog ergens anders naar toe!!</p>
-                    <form action="{{ url('/newsletter/signup') }}" method="POST">
-                        @csrf
+                    <div>
                         <div class="form-group">
-                            <input class="input nieuwsbrief-form" name="email" placeholder="Vul e-mail adres in">
+                            <input class="input nieuwsbrief-form" id="newsletterEmailHome" name="email" placeholder="Vul e-mail adres in">
                         </div>
-                        <button type="submit" class="primary-btn">Schrijf je in voor de nieuwsbrief!</button>
-                    </form>
+                        <button type="submit" class="primary-btn" onclick="addToNewsletter()">Schrijf je in voor de nieuwsbrief!</button>
+                    </div>
                 </div>
                 <div class="col-sm-0 col-xs-0 col-md-3"></div>
             </div>
@@ -118,5 +117,32 @@
         </div>
     </div>
     {{-- end best verkochte --}}
+    <script>
+        function addToNewsletter() {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                
+                var form_data = new FormData();
+                form_data.append('_token', CSRF_TOKEN);
+                form_data.append('email', document.getElementById('newsletterEmailHome').value);
+        
+                $.ajax({
+                    url: '/laravel/public/newsletter/signup',
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(){
+                        tempAlert('U bent toegevoegt aan niewsbrief',3);
+                        document.getElementById('newsletterEmailHome').value = '';
+                    },
+                    error: function(errors) {
+                        tempAlertError('Email is al ingebruik',3);
+                        document.getElementById('newsletterEmailHome').value = '';
+                    }
+                });
+            }
+    </script>
 @endsection
     

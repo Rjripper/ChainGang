@@ -39,9 +39,11 @@
 					<div class="footer">
 						<h3 class="footer-header">Mijn Account</h3>
 						<ul class="list-links">
-						<li><a href="{{url('/account/gegevens')}}">Mijn account</a></li>
+							<li><a href="{{url('/account/overzicht')}}">Mijn account</a></li>
 							<li><a href="{{url('/betalen')}}">Betalen</a></li>
+							@if (!Auth::check())
 							<li><a href="{{url('/login')}}">Login</a></li>
+							@endif	
 						</ul>
 					</div>
 				</div>
