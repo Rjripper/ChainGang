@@ -12,7 +12,7 @@
                 <div id="home-slick">
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/fiets_1.png') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_1.png') }}" style="opacity:0.6;" alt="">
                         <div class="banner-caption text-center">
                             <h1>Bags sale</h1>
                             <h3 class="blue-color font-weak">Tot wel 50% KORTING!</h3>
@@ -23,7 +23,7 @@
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/fiets_2.png') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_2.png') }}" style="opacity:0.6;" alt="">
                         <div class="banner-caption">
                             <h1 class="primary-color">HOT DEAL<br><span class="blue-color font-weak">Tot wel 50% KORTING</span></h1>
                             <button class="primary-btn">Winkel nu!</button>
@@ -33,7 +33,7 @@
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('images/initial/images/fiets_3.png') }}" alt="">
+                        <img src="{{ asset('images/initial/images/fiets_3.png') }}" style="opacity:0.6;" alt="">
                         <div class="banner-caption">
                             <h1 class="dark-color">Nieuwe fietsen <span>Collectie!</span></h1>
                             <button class="primary-btn">Winkel nu!</button>
