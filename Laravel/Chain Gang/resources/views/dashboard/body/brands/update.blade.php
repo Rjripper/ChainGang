@@ -32,7 +32,7 @@
                         <a href="{{ route('brands')  }}"><button class="btn btn-primary tables-function-button">Terug</button></a>
                     </div>
                     <div class="btn-add-newsletter-layout">
-                        <button class="btn btn-primary tables-function-button">Uitverkoop Wijzigen</button>
+                        <button class="btn btn-primary tables-function-button">Merk Wijzigen</button>
                     </div>                
                 </div>  
             </div>

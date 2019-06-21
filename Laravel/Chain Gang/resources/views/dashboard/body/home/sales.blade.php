@@ -30,7 +30,14 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td class="fw-600"><a href="{{ url('/admin/order/' . $order->id) }}">#{{$order->id}}</a></td>
-                                    <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">{{$order->status->title}}</span></td>
+                                <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">
+                                    @if ($order->status != null)
+                                        {{$order->status->title}}
+                                    @else
+                                        {{App\Status::Where('id', 1)->get()[0]->title}}
+                                    @endif
+                                    
+                                    </span></td>
                                     <td>{{$month_name}} {{\Carbon\Carbon::parse($order->order_date)->format('d') }}</td>
                                     <td><span class="text-danger">&euro;{{$order->total_price($order)}}</span></td>
                                 </tr>
