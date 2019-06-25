@@ -114,9 +114,7 @@ function addItemToCart(product_id) {
 	var form_data = new FormData();
 	form_data.append('_method', 'POST');
 	form_data.append('_token', CSRF_TOKEN);
-
 	event.preventDefault();
-
 	$.ajax({
 		url: '/product/add/cart/' + product_id,
 		dataType: 'json',
@@ -126,6 +124,7 @@ function addItemToCart(product_id) {
         data: form_data,
         type: 'post',
 		success: function(data) {
+			tempAlert('Toegevoegd aan winkelmand',3);
 			console.log(data.cart_session);
 		}
 	});

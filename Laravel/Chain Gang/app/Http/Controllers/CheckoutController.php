@@ -29,7 +29,7 @@ class CheckoutController extends Controller
             $order = new Order;
             $order->customer_id = Auth::user()->id;
             $order->order_date = Carbon::now();
-
+            $order->status_id = 2;
             $order->save();
 
             $products = array();

@@ -114,6 +114,7 @@
 				type: 'post',
 				success: function(data) {
 					console.log(data.cart_session);
+					tempAlert('Toegevoegd aan winkelmand',3);
 				}
 			});
 		}

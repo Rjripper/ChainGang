@@ -32,7 +32,7 @@
             <div class="product-btns">
                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$newest_product->id}}"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
+                <button onclick="addItemToCart(this.getAttribute('data-id'));" class="primary-btn add-to-cart" data-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i> Toevoegen</button>
             </div>
         </div>
     </div>

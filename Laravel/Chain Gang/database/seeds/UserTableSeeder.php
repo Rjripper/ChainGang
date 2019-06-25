@@ -87,11 +87,11 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => 'Erik',
             'last_name' => 'Turkestone',            
-            'username' => 'eturkestone',
+            'username' => 'turkje',
             'email' => 'e.turkesteen@gmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'is_admin' => true,
-            'password' => Hash::make('mrturkesteen'),
+            'password' => Hash::make('Steentje123!'),
             'remember_token' => str_random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
