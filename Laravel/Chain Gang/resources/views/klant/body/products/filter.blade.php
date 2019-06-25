@@ -54,7 +54,7 @@
                     Categorie
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    @foreach ($brands as $brand)
+                    @foreach ($categories as $categorie)
                         <a style="display: block; padding-left: 5px;" href="{{url('/producten/categorie', $categorie['id'])}}">{{ $categorie['title'] }}</a>
                     @endforeach
                 </div>
@@ -66,7 +66,7 @@
                     Type
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    @foreach ($brands as $brand)
+                    @foreach ($types as $type)
                         <a style="display: block; padding-left: 5px;" href="{{url('/producten/type', $type['id'])}}">{{ $type['title'] }}</a>
                     @endforeach
                 </div>
